@@ -1,0 +1,280 @@
+draft,type,num,date,day,topics,slides,readings,assignments
+,,1,05-Sep,Wed,,"Introductions
+
+* Topics                                                                                                                                   
+* Required Software                                                                                                                        
+* Books                                                                                                                                    
+* Course Load                                                                                                                              
+* Homework Policy  
+
+Python 3 Ecosystem and Installation                                                                                                                      
+
+* Environment:                                                                  
+* Package / Python Version Management                                                                                                      
+  * Pip                                                                                                                                  
+  * Pip-env                                                                                                                              
+  * Virtualenv
+  * Anaconda                                                                                                                           
+* Static Analysis                                                                                                                          
+  * Linter: PyFlakes / PEP...                                                                                                            
+  * Type Checking: MyPy?                                                                                                                 
+* Interactive Shell    
+  * python                                                                                                                    
+  * IPython 
+* Notebooks 
+  * Jupyter Notebook                                                                                                                            
+  * Jupyter Lab         
+
+Python Basics and File I/O (home)                                                                                                                            
+
+* Control Structures                                                                                                                       
+* Strings, Tuples, Lists, Dicts  
+* File I/O                                                                                                                
+  ","Python for Data Analysis
+* Ch 1: Preliminaries
+* Ch 2: Python Language Basics, Ipython, Jupyter Notebooks
+* Ch 3: Built-in Data Structures, Functions and Files","HW01
+
+0. GitHub Username 
+1. Install Python Environment
+2. Run Test Programs
+3. Data Analysis on Unstructured Text
+  * histogram, characters from book
+4. Basic Stats
+  * birthday paradox
+  * syllabic poetry
+  * mean, median, mode, etc."
+,,2,10-Sep,Mon,,"File Formats (Description Only, No Libraries)
+
+* CSV
+* TSV
+* XML
+* JSON
+
+Intermediate Python Features:
+
+* Keyword Args
+* Packing and Unpacking with \*, \*\*,
+* List Comprehensions
+* Higher Order Functions
+* Decorators
+* Classes vs Named Tuples vs...
+
+Graphics Package (maybe?, home)
+
+* Turtle or Pil
+","TODO: 
+* find reference for file types 
+  * (specs, wikipedia articles) 
+* ...and intermediate python 
+  * (python docs for keyword args, decorators, list comprehensions)",
+y,,3,12-Sep,Wed,,"Vectors and Matrices (numpy)
+
+* numpy basics
+
+Tabular Data (pandas)
+
+* pandas basics
+
+Data Loading, Storage, and File Formats (revisisted)
+
+* pandas for reading files (csv, xls, etc.)
+* pandas for writing files
+* go through file formats from previous lecture, but using pandas
+
+
+","Python for Data Analysis 
+* Ch 4: Numpy Basics: Arrays and Vectors 
+* Ch 5. Getting Started with pandas
+* Ch 6. Data Loading, Storage, and File Formats
+  * Skip Web Requests
+  * Skip Databases","HW 2
+1. Classes, CSVs
+  * create csv class
+  * allow delimiter change
+  * watch out for commas in data
+2. Simple Visualization (maybe)
+  * create drawing package with pil or turtle
+3. Numerical Data, Tabular Data
+  * simple stats (pandas) on xml or csv data set
+  * music generator (numpy)
+"
+y,,4,17-Sep,Mon,,"Data from the Web
+
+* Web APIs
+  * API Authentication
+  * OAuth?
+  * Rate Limiting
+  * API-specific clients (e.g. Facebook client and Twitter tweepy client)
+  * Custom (e.g. retrieving raw JSON or XML to do our own parsing)
+* Screen Scraping
+* Libraries (scrapy)
+* Parsing Data
+  * Beautiful Soup
+  * lxml
+  * Requests HTML
+","Python for Data Analysis
+* Ch 6: Data Loading, Storage, and File Formats
+  * Focus on Sraping
+  * Focus on APIs
+  * TODO: API Authentication ",
+y,,5,19-Sep,Wed,,"Curating Data
+
+* Open Data Sets
+* Terms of Use
+* Privacy
+
+Scrubbing / Cleaning Data
+
+* Handling Missing Data
+* Transforming Data
+
+Data Wrangling (without databases)
+
+* Joins
+* Pivots","Python for Data Analysis
+* Ch 7: Data Cleaning and Preparation
+* Ch 8: Data Wrangling: Join, Combine, Reshape","HW03
+* brute force attack web site 
+* use password dictionary
+* retrieving data from the web 
+* finance app?
+* cleaning data for analylsis"
+y,,6,24-Sep,Mon,,"Plotting and Visualization
+
+* matplotlib
+* pandas
+* Other (seaborn)
+* Web Based Visualization (plotly, bokeh)","Python for Data Analysis
+Ch 9: Plotting and Visualization",
+y,,7,26-Sep,Wed,,"Aggregation and Time Series
+
+* Group By
+* Aggregations (sum, count, etc.)
+* datetime
+* Time Zones
+* Time Series
+* Windowing
+","
+Ch 10: Data Aggregation and Group By
+Ch 11: Time Series",HW04
+y,,8,01-Oct,Mon,,"Relational Database Overview
+
+* Database vs File System Storage
+* Tabular Data Revisited
+* Relations
+* ""Competitive Landscape""
+
+Basic Postgres Administration
+
+* Configuration Files
+* Installation
+* Access Control
+* Roles and Privileges
+* Database Creation
+* ""Dont's""
+
+
+",,
+y,,9,03-Oct,Wed,,"Creating Single Tables
+
+* Data Types
+* Simple Constraints (Unique)
+
+",,HW05
+y,schedule,10,09-Oct,Tue,,"Commandline Client, SQL, and Simple Queries
+
+* psql
+* Insert
+* Select
+* Update
+* Delete
+ 
+",,
+y,,11,10-Oct,Wed,,"Relational Database Design
+
+* Relations / Foreign Key Constraints
+* E-R Diagrams (in MySQL Workbench or similar)
+  * Reverse engineering
+  * Forward engineering
+* Normalization
+
+
+Importing Data
+
+* CSV, TSV, JSON",,HW06
+y,,12,15-Oct,Mon,,"Joins and Aggregate Queries
+
+* in-depth study of SQL for data analysis and for manipulating RDBMS.
+* JOINs and all facets for standard SQL programming and development. 
+* UNION and related queries
+* Study of aggregate queries
+* In-depth look at nested queries
+* Use single tables for aggregate queries and related queries for deep dives into data sets 
+",,
+y,,13,17-Oct,Wed,,Review,,
+y,exam  ,14,22-Oct,Mon,,Exam 1,,
+y,,15,24-Oct,Wed,,"Performance / Indexing and Query Optimization 
+
+* Indexes
+  * Different Types of Indexes
+* Optimizing Queries
+* Query Planning
+
+Additional Administration
+
+* Backups / Replication
+* Vacuum",,HW07
+y,,16,29-Oct,Mon,,"Geo-spacial Data
+
+* PostGIS
+",,
+y,,17,31-Oct,Wed,,"Postgres and Python
+
+* pyscopg
+* SQLAlchemy?
+* Postgres, SQLAlchemy and pandas
+",,HW08
+y,,18,05-Nov,Mon,,"Creating APIs for Consumption
+",,
+y,,19,07-Nov,Wed,,"Visualization Revisited (Web)
+
+* svg
+* d3
+* bokeh again (or for first time?)
+* plotly again (or for first time?)",,
+y,,20,12-Nov,Mon,,"Data Pipeline
+
+* (everything together)
+* ETL
+* Python, Pandas, Postgres",,HW09
+y,,21,14-Nov,Wed,,"NoSQL
+                                                                                                                                  
+* JSON format in depth                                                                                                                 
+  1. Nested objects                                                                                                                  
+* compare/contrast MongoDB with SQL.                                                                                                   
+* Accessing MongoDB                                                                                                                    
+  1. from command line (e.g. mongo shell)                                                                                            
+  2. from Python libraries (e.g. pymongo module)                                                                                     
+* Basic CRUD                                                                                                                           
+* Geo-spatial data queries ",,
+y,,22,19-Nov,Mon,,"NoSQL (continued)
+
+Python and NoSQL",,HW10
+y,holiday,,21-Nov,Wed,Thanksgiving,Thanksgiving,,
+y,,23,26-Nov,Mon,,"Cloud Data Storage
+
+* S3
+* RDS
+* Firebase ",,
+y,,24,28-Nov,Wed,,"“Serverless” 
+
+* Microservices
+* AWS lambda
+* Firebase
+* zappa or chalice",,HW11
+y,,25,03-Dec,Mon,,"Large Data Sets
+* Hadoop, Parque",,
+y,,26,05-Dec,Wed,,Special Topic TBD,,
+y,,27,10-Dec,Mon,,Review,,
+y,exam  ,28,12-Dec,Wed,Exam 2,Exam 2,,
