@@ -2,7 +2,6 @@
 layout: default
 nav-state: syllabus
 ---
-
 <div class="row">
 
   <div class="col-md-6">
@@ -83,7 +82,7 @@ Topics
 	* basic create/read/update/delete
 	* JOINs
 	* aggregate queries
-	* geo-spatial data with PostGres (maybe)
+	* geo-spatial data with PostgreSQL 
 * NoSQL:
 	* MongoDB
 	* basic create/read/update/delete
@@ -91,9 +90,9 @@ Topics
 * cloud databases / data processing (some combination of the following topics)
 	* Firebase
 	* PostgreSQL on Amazon RDS
-	* hadoop on AWS
-	* S3 (maybe)
-	* Lambda (maybe)
+	* S3
+	* hadoop on AWS or Apache Spark
+	* Lambda (optional)
 </div>
     </div>
     <div class="panel panel-default">
@@ -104,7 +103,7 @@ Topics
 * 5% - Class Participation / Quizzes / Activities
 * 20% - Homework
 * 30% - Midterm Exam
-* 10% - Final Project
+* 10% - Small Project
 * 35% - Final Exam
 
 </div>

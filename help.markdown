@@ -5,7 +5,7 @@ nav-state: help
 
 ## General Help
 
-* {{site.office_hours}}
+{{site.office_hours}}
 
 ## Installing Packages / Modules
 

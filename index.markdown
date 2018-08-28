@@ -1,10 +1,21 @@
 ---
 layout: default
-nav-state: index
+nav-state: schedule
 ---
-<!--
-<h1>AIT Test Deploy</h1>
--->
+<script>
+document.addEventListener('DOMContentLoaded', init);
+
+function init() {
+	for(const link of document.querySelectorAll('table a')) {
+		link.style.cursor = 'default'
+		link.style.color = 'black';
+		link.style.textDecoration = 'solid';
+		link.addEventListener('click', function(evt) {
+			evt.preventDefault();	
+		});
+	}
+}
+</script>
 
 <div id="quick-links">
 <!--
@@ -14,7 +25,7 @@ nav-state: index
 <table class="table table-striped table-hover">
 <thead>
 <tr>
-	<th>Date</th> <th>Topics</th> <th>Readings</th> <th>Assignments</th>
+	<th>Date</th> <th>Topics and Slides</th> <th>Readings</th> <th>Assignments</th>
 </tr>
 </thead>
 <tbody>
@@ -121,7 +132,7 @@ td.topics.draft ul {
 }
 
 td.topics p {
-	color: green;
+	color: #338844;;
 }
 </style>
 <!--

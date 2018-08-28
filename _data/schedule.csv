@@ -1,15 +1,20 @@
-draft,type,num,date,day,topics,slides,readings,assignments
-,,1,05-Sep,Wed,,"Introductions
+draft,type,num,date,day,slides,readings,assignments
+,,1,05-Sep,Wed,"Introductions
 
-* Topics                                                                                                                                   
+* [Course Overview](slides/intro/overview.html) 
+
+<!--
 * Required Software                                                                                                                        
 * Books                                                                                                                                    
 * Course Load                                                                                                                              
 * Homework Policy  
+-->
 
 Python 3 Ecosystem and Installation                                                                                                                      
 
-* Environment:                                                                  
+* [Python Development Environment](slides/python/tools.html)
+
+<!--
 * Package / Python Version Management                                                                                                      
   * Pip                                                                                                                                  
   * Pip-env                                                                                                                              
@@ -24,51 +29,78 @@ Python 3 Ecosystem and Installation
 * Notebooks 
   * Jupyter Notebook                                                                                                                            
   * Jupyter Lab         
+-->
 
-Python Basics and File I/O (home)                                                                                                                            
+Python Basics and File I/O
 
-* Control Structures                                                                                                                       
-* Strings, Tuples, Lists, Dicts  
-* File I/O                                                                                                                
-  ","Python for Data Analysis
+* See readings on Python Basics and Data Structures
+* [File I/O](slides/python/files.html)
+","Python for Data Analysis
+
 * Ch 1: Preliminaries
 * Ch 2: Python Language Basics, Ipython, Jupyter Notebooks
-* Ch 3: Built-in Data Structures, Functions and Files","HW01
+* Ch 3: Built-in Data Structures, Functions and Files","__Quiz #01__ – due Sun, 9/9, at 11pm
+
+__Homework #01__ – due Tue, 9/11, at 11pm
 
 0. GitHub Username 
 1. Install Python Environment
 2. Run Test Programs
-3. Data Analysis on Unstructured Text
-  * histogram, characters from book
-4. Basic Stats
+3. See Readings
+4. Python Warmup
+
+<!--
+  * histogram
   * birthday paradox
   * syllabic poetry
-  * mean, median, mode, etc."
-,,2,10-Sep,Mon,,"File Formats (Description Only, No Libraries)
+  * mean, median, mode, etc.
+-->"
+,,2,10-Sep,Mon,"File Formats (Description Only, No Libraries)
 
+* [Unicode, File Encodings](slides/python/unicode.html)
+* [Data File Formats](slides/python/file-formats.html)
+
+<!--
 * CSV
 * TSV
 * XML
 * JSON
+-->
 
 Intermediate Python Features:
 
+* [Functions, Packing/Unpacking, HOF, Decorators](slides/python/functional.html)
+* [Classes, Named Tuples](slides/python/classes.html)
+* [Iterators, List Comprehensions, Generators, etc.](slides/python/iteration.html)
+
+<!--
 * Keyword Args
 * Packing and Unpacking with \*, \*\*,
 * List Comprehensions
 * Higher Order Functions
 * Decorators
-* Classes vs Named Tuples vs...
+* Generators
+* Lambda
+* Bytes, Unicode, etc.
+* Classes vs Named Tuples vs…
+-->
 
-Graphics Package (maybe?, home)
 
-* Turtle or Pil
-","TODO: 
-* find reference for file types 
-  * (specs, wikipedia articles) 
-* ...and intermediate python 
-  * (python docs for keyword args, decorators, list comprehensions)",
-y,,3,12-Sep,Wed,,"Vectors and Matrices (numpy)
+Image Processing
+
+* [Pil/Pillow](slides/graphics/pil.html)
+","Python for Data Analysis
+
+* Ch 3: Built-in Data Structures, Functions and Files
+
+Articles
+
+* [The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/)
+* [What Every Programmer Absolutely, Positively Needs To Know About Encodings And Character Sets To Work With Text](http://kunststube.net/encoding/)
+* [Unicode HOWTO](https://docs.python.org/3/howto/unicode.html)
+* [Primer on Python Decorators](https://realpython.com/primer-on-python-decorators/)
+","__Quiz #02__ – due Sun, 9/16 at 11pm"
+y,,3,12-Sep,Wed,"Vectors and Matrices (numpy)
 
 * numpy basics
 
@@ -88,7 +120,9 @@ Data Loading, Storage, and File Formats (revisisted)
 * Ch 5. Getting Started with pandas
 * Ch 6. Data Loading, Storage, and File Formats
   * Skip Web Requests
-  * Skip Databases","HW 2
+  * Skip Databases","__Homework #02__ – due Tue, 9/18, at 11pm
+
+<!--
 1. Classes, CSVs
   * create csv class
   * allow delimiter change
@@ -98,8 +132,9 @@ Data Loading, Storage, and File Formats (revisisted)
 3. Numerical Data, Tabular Data
   * simple stats (pandas) on xml or csv data set
   * music generator (numpy)
+-->
 "
-y,,4,17-Sep,Mon,,"Data from the Web
+y,,4,17-Sep,Mon,"Data from the Web
 
 * Web APIs
   * API Authentication
@@ -115,10 +150,10 @@ y,,4,17-Sep,Mon,,"Data from the Web
   * Requests HTML
 ","Python for Data Analysis
 * Ch 6: Data Loading, Storage, and File Formats
-  * Focus on Sraping
+  * Focus on Scraping
   * Focus on APIs
   * TODO: API Authentication ",
-y,,5,19-Sep,Wed,,"Curating Data
+y,,5,19-Sep,Wed,"Curating Data
 
 * Open Data Sets
 * Terms of Use
@@ -140,14 +175,14 @@ Data Wrangling (without databases)
 * retrieving data from the web 
 * finance app?
 * cleaning data for analylsis"
-y,,6,24-Sep,Mon,,"Plotting and Visualization
+y,,6,24-Sep,Mon,"Plotting and Visualization
 
 * matplotlib
 * pandas
 * Other (seaborn)
 * Web Based Visualization (plotly, bokeh)","Python for Data Analysis
 Ch 9: Plotting and Visualization",
-y,,7,26-Sep,Wed,,"Aggregation and Time Series
+y,,7,26-Sep,Wed,"Aggregation and Time Series (pandas revisited)
 
 * Group By
 * Aggregations (sum, count, etc.)
@@ -158,7 +193,7 @@ y,,7,26-Sep,Wed,,"Aggregation and Time Series
 ","
 Ch 10: Data Aggregation and Group By
 Ch 11: Time Series",HW04
-y,,8,01-Oct,Mon,,"Relational Database Overview
+y,,8,01-Oct,Mon,"Relational Database Overview
 
 * Database vs File System Storage
 * Tabular Data Revisited
@@ -176,13 +211,13 @@ Basic Postgres Administration
 
 
 ",,
-y,,9,03-Oct,Wed,,"Creating Single Tables
+y,,9,03-Oct,Wed,"Creating Single Tables
 
 * Data Types
 * Simple Constraints (Unique)
 
 ",,HW05
-y,schedule,10,09-Oct,Tue,,"Commandline Client, SQL, and Simple Queries
+y,schedule,10,09-Oct,Tue,"Commandline Client, SQL, and Simple Queries
 
 * psql
 * Insert
@@ -191,7 +226,7 @@ y,schedule,10,09-Oct,Tue,,"Commandline Client, SQL, and Simple Queries
 * Delete
  
 ",,
-y,,11,10-Oct,Wed,,"Relational Database Design
+y,,11,10-Oct,Wed,"Relational Database Design
 
 * Relations / Foreign Key Constraints
 * E-R Diagrams (in MySQL Workbench or similar)
@@ -203,7 +238,7 @@ y,,11,10-Oct,Wed,,"Relational Database Design
 Importing Data
 
 * CSV, TSV, JSON",,HW06
-y,,12,15-Oct,Mon,,"Joins and Aggregate Queries
+y,,12,15-Oct,Mon,"Joins and Aggregate Queries
 
 * in-depth study of SQL for data analysis and for manipulating RDBMS.
 * JOINs and all facets for standard SQL programming and development. 
@@ -212,9 +247,9 @@ y,,12,15-Oct,Mon,,"Joins and Aggregate Queries
 * In-depth look at nested queries
 * Use single tables for aggregate queries and related queries for deep dives into data sets 
 ",,
-y,,13,17-Oct,Wed,,Review,,
-y,exam  ,14,22-Oct,Mon,,Exam 1,,
-y,,15,24-Oct,Wed,,"Performance / Indexing and Query Optimization 
+y,,13,17-Oct,Wed,Review,,
+y,exam  ,14,22-Oct,Mon,Exam 1,,
+y,,15,24-Oct,Wed,"Performance / Indexing and Query Optimization 
 
 * Indexes
   * Different Types of Indexes
@@ -225,30 +260,29 @@ Additional Administration
 
 * Backups / Replication
 * Vacuum",,HW07
-y,,16,29-Oct,Mon,,"Geo-spacial Data
+y,,16,29-Oct,Mon,"Geo-spacial Data
 
 * PostGIS
 ",,
-y,,17,31-Oct,Wed,,"Postgres and Python
+y,,17,31-Oct,Wed,"Postgres and Python
 
 * pyscopg
 * SQLAlchemy?
 * Postgres, SQLAlchemy and pandas
 ",,HW08
-y,,18,05-Nov,Mon,,"Creating APIs for Consumption
+y,,18,05-Nov,Mon,"Creating APIs for Consumption
 ",,
-y,,19,07-Nov,Wed,,"Visualization Revisited (Web)
+y,,19,07-Nov,Wed,"Visualization Revisited (web-based)
 
 * svg
 * d3
 * bokeh again (or for first time?)
 * plotly again (or for first time?)",,
-y,,20,12-Nov,Mon,,"Data Pipeline
+y,,20,12-Nov,Mon,"Data Pipeline (everything together)
 
-* (everything together)
 * ETL
 * Python, Pandas, Postgres",,HW09
-y,,21,14-Nov,Wed,,"NoSQL
+y,,21,14-Nov,Wed,"NoSQL (mongodb)
                                                                                                                                   
 * JSON format in depth                                                                                                                 
   1. Nested objects                                                                                                                  
@@ -258,23 +292,24 @@ y,,21,14-Nov,Wed,,"NoSQL
   2. from Python libraries (e.g. pymongo module)                                                                                     
 * Basic CRUD                                                                                                                           
 * Geo-spatial data queries ",,
-y,,22,19-Nov,Mon,,"NoSQL (continued)
+y,,22,19-Nov,Mon,"NoSQL (continued)
 
 Python and NoSQL",,HW10
-y,holiday,,21-Nov,Wed,Thanksgiving,Thanksgiving,,
-y,,23,26-Nov,Mon,,"Cloud Data Storage
+y,holiday,,21-Nov,Wed,Thanksgiving,,
+y,,23,26-Nov,Mon,"Cloud Data Storage (Firebase, S3, RDS)
 
 * S3
 * RDS
 * Firebase ",,
-y,,24,28-Nov,Wed,,"“Serverless” 
+y,,24,28-Nov,Wed,"Serverless  (Firebase Again, Lambda, Chalice or Zappa)
 
 * Microservices
 * AWS lambda
 * Firebase
 * zappa or chalice",,HW11
-y,,25,03-Dec,Mon,,"Large Data Sets
+y,,25,03-Dec,Mon,"Processing Large Data Sets (Spark or Hadoop)
+
 * Hadoop, Parque",,
-y,,26,05-Dec,Wed,,Special Topic TBD,,
-y,,27,10-Dec,Mon,,Review,,
-y,exam  ,28,12-Dec,Wed,Exam 2,Exam 2,,
+y,,26,05-Dec,Wed,Optional Topic TBD,,
+y,,27,10-Dec,Mon,Review,,
+y,exam  ,28,12-Dec,Wed,Exam 2,,
