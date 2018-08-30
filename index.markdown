@@ -4,7 +4,6 @@ nav-state: schedule
 ---
 <script>
 document.addEventListener('DOMContentLoaded', init);
-
 function init() {
 	for(const link of document.querySelectorAll('table a')) {
 		link.style.cursor = 'default'
