@@ -3,7 +3,7 @@ layout: default
 nav-state: schedule
 ---
 <script>
-/*
+
 document.addEventListener('DOMContentLoaded', init);
 function init() {
 	for(const link of document.querySelectorAll('table a')) {
@@ -15,7 +15,7 @@ function init() {
 		});
 	}
 }
-*/
+
 </script>
 
 <div id="quick-links">

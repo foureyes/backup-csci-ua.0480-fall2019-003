@@ -10,7 +10,7 @@ nav-state: syllabus
 <div class="panel-heading">Course Info</div>
 <div class="panel-body" markdown="block">
 
-* __Course Title:__ {{ site.course_name }}
+* __Course Title:__ {{ site.vars.course_name }}
 * __Course Number:__ {{ site.vars.course_number }}-{{ site.vars.course_section }}
 * __Semester:__ {{ site.vars.course_semester }}
 * __Meeting Time:__ {{ site.vars.course_time }}
