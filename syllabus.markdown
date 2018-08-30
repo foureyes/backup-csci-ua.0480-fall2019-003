@@ -2,7 +2,6 @@
 layout: default
 nav-state: syllabus
 ---
-
 <div class="row">
   <div class="col-md-6">
     <div class="panel panel-default">
@@ -12,14 +11,14 @@ nav-state: syllabus
 <div class="panel-body" markdown="block">
 
 * __Course Title:__ {{ site.course_name }}
-* __Course Number:__ {{ site.course_number }}-{{ site.course_section }}
-* __Semester:__ {{ site.course_semester }}
-* __Meeting Time:__ {{ site.course_time }}
-* __Room:__ {{ site.course_room }}
+* __Course Number:__ {{ site.vars.course_number }}-{{ site.vars.course_section }}
+* __Semester:__ {{ site.vars.course_semester }}
+* __Meeting Time:__ {{ site.vars.course_time }}
+* __Room:__ {{ site.vars.course_room }}
 * __Instructor:__ Joe Versoza
 * __Email:__ jversoza at cs dot nyu dot edu
-* __Office Hours:__ {{ site.office_hours }}
-* __Office Hours Room:__  {{ site.office_hours_room }}
+* __Office Hours:__ {{ site.vars.office_hours }}
+* __Office Hours Room:__  {{ site.vars.office_hours_room }}
 </div>
     </div>
     <div class="panel panel-default">
@@ -52,9 +51,9 @@ A platform will be provided for asking questions online as well as moderating di
 <div class="panel-body" markdown="block">
 
 
-* [{{ site.book1 }}]({{ site.book1_link}}) by {{ site.book1_author }}
-* [{{ site.book2 }}]({{ site.book2_link}}) by {{ site.book2_author }}
-* [{{ site.book3 }}]({{ site.book3_link}}) by {{ site.book3_author }}
+* [{{ site.vars.book1 }}]({{ site.vars.book1_link}}) by {{ site.vars.book1_author }}
+* [{{ site.vars.book2 }}]({{ site.vars.book2_link}}) by {{ site.vars.book2_author }}
+* [{{ site.vars.book3 }}]({{ site.vars.book3_link}}) by {{ site.vars.book3_author }}
 
 </div>
     </div>
