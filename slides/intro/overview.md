@@ -8,52 +8,40 @@ title: Intro
 
 ### {{ site.vars.course_number}}
 
-<p>
-<small>
-	<strong>(Hi ��, I'm Joe Versoza. )</strong>
-</small>
-</p>
+#### (Hi 👋)
 </section>
 
 <section markdown="block">
 
-## This Class
+## What _is_ This?
 
-### Are you in the right place?
 
-* Special Topics - __{{ site.vars.course_name }}__ 
-* Course Number __{{ site.vars.course_number }}__, Section __{{ site.vars.course_section }}__
+Special Topics - __{{ site.vars.course_name }}__ 
+{:.fragment}
 
-(What a catchy name, eh?)
+* {:.fragment} (What a catchy name, eh?)
+
+Course Number __{{ site.vars.course_number }}__, Section __{{ site.vars.course_section }}__
+{:.fragment}
+
+* {:.fragment} (Are you in the right class? 🤷‍♂️)
+
 </section>
 
 
 <section markdown="block">
-## What's it About?
+## Topics
 
-<div markdown="block">
-
-### It's about making websites (er... web apps?).
-
-
-<div markdown="block" class="img">
-(like [endless.horse](http://endless.horse/), [skifree.js](https://basicallydan.github.io/skifree.js/), or [weather is happening](http://weatherishappening.com/)!!!)
-</div>
-
-<div markdown="block" class="img">
-![or bacon pancakes](/resources/img/pancake.gif)
-</div>
-
-
-
-
-</div>
+### U Will Learn Some Stuff, Like...
 {:.fragment}
 
-<div markdown="block" style="text-align: center;">
-(p.s. check out [brutalistwebsites.com](http://brutalistwebsites.com/) or the [90's design subreddit](https://www.reddit.com/r/90sdesign/) for more _excellent_ 90's style design)
-</div>
-{:.fragment}
+
+* {:.fragment} finding data 👀
+* {:.fragment} cleaning data 🛀
+* {:.fragment} "wrangling" data 🤠
+* {:.fragment} storing data 🗄
+* {:.fragment} _loving_ and _caring_ for your data as if it were your own tiny toddler child (made of 1's and 0's) ❤️👶💻
+	* {:.fragment} (what does that _even_ mean??? idk!) 
 
 
 </section>
