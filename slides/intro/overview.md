@@ -28,6 +28,23 @@ Course Number __{{ site.vars.course_number }}__, Section __{{ site.vars.course_s
 
 </section>
 
+<section markdown="block">
+## Today!
+
+Here's what we'll be covering today:
+
+__In these slides...__ &rarr;
+
+1. {:.fragment} course topics ✅
+2. {:.fragment} introductions 👋
+3. {:.fragment} workload 😅
+
+__And then...__ &rarr;
+{:.fragment}
+
+1. {:.fragment} tools 🔨
+2. {:.fragment} maybe some python stuffs 🐍
+</section>
 
 <section markdown="block">
 ## Topics
@@ -59,118 +76,72 @@ The semester will be broken down into <span class="hl">three parts</span>:
 3. {:.fragment} __Visualizing data (on the web this time), deploying _in the cloud_, working with large data sets__
 	* {:.fragment} (flask, chalice or zappa, s3, rds, Apache Spark or Hadoop)
 
-
 </section>
 
 
 <section markdown="block">
 ## \#goals
 
-__Basically__ ...  you'll be <span class="hl">building end-to-end data pipelines with various tools.</span>
+Basically ...  you'll be <span class="hl">learning how to use various tools to build end-to-end data pipelines </span>: 
 
-<aside class="notes">
-* Who already knows js?
-* Describe - type system, tools for abstraction... like inheritance,
-</aside>
-</section>
-
-<section markdown="block">
-
-## Server Side Programming Topics
-
-<div markdown="block" class="img">
-(specific technologies in __bold__)
-</div>
-
-* {:.fragment} Server Side Framework/Language - __Node.js__
-* {:.fragment} HTTP
-* {:.fragment} Web Framework - __Express__
-* {:.fragment} Authentication and Session Management
-* {:.fragment} Storing Data and Using a Database Abstraction Layer - __MongoDB__ and __Mongoose__ respectively
-* {:.fragment} Forms
-* {:.fragment} Building and Consuming APIs
-* {:.fragment} Deployment
-
-<aside class="notes">
-* Request Methods / Response Codes?
-* has anyone use NoSQL data stores?
-* what about traditional databases? Postgres? MySQL?
-* some [comparisons](https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems)
-* Hooooowzzzz about JSON?
-</aside>
-
-</section>
-
-<section markdown="block">
-## Client Side Topics
-
-<div markdown="block" class="img">
-(specific technologies in __bold__)
-</div>
-
-Build-Out
+From sourcing data &rarr; to using that data for some _useful_ purpose.
 {:.fragment}
 
-* {:.fragment} Quick Review - __DOM/HTML5/CSS3__
-* {:.fragment} CSS Layout
-* {:.fragment} Using JavaScript to Manipulate Styles
-* {:.fragment} Maybe Flexbox, Grids or SASS
+* {:.fragment} __ETL__ <span class="fragment">(<strong>E</strong>xtract <strong>T</strong>ransform and <strong>L</strong>oad)</span>
+	* {:.fragment} extracting data from single / multiple sources, cleaning and trasnforming data to a adhere to a particular format, and loading data into persistent storage
+* {:.fragment} __+ _something useful_ ...__
+	* {:.fragment} visualization on the web 📈🕸
+	* {:.fragment} deployment in the cloud ☁️
+	* {:.fragment} analysis of large data sets Σ
 
-<br>
+</section>
 
-Programming
+<section markdown="block">
+## This is Not...
+
+__This course isn't about...__
+
+* {:.fragment} Machine learning 🚫
+* {:.fragment} Language processing 🚫
+
+__We'll touch on the following topics, but it'll only be introductory material__
 {:.fragment}
 
-* {:.fragment} DOM Manipulation - __Plain JavaScript, ES5/ES6__ (we're not using JQuery)
-* {:.fragment} AJAX 
-* {:.fragment} JavaScript Framework - __React__  or __vue.js__
-
-<aside class="notes">
-* know html? 
-* know css?
-* who's built a mobile ready site? what are some considerations when going from desktop to tablet or phone? think interaction design?
-	* perhaps touch vs click/hover
-	* resolution, obvs
-	* performance / size
-* anyone ever use JQuery
-* what about backbone or angular?
-</aside>
+* {:.fragment} Data visualization on the web 🤷‍
+* {:.fragment} Large scale web apps 🤷‍
+* {:.fragment} Big data 🤷‍
+* {:.fragment} Cloud computing 🤷‍
 </section>
 
 <section markdown="block">
-## Development Tools Topics
+## About... You
 
+__I expect (hope?) that you__:
 
-<div markdown="block" class="img">
-(specific technologies in __bold__)
-</div>
+1. {:.fragment} are comfortable quickly picking up basics of a new programming language
+	* {:.fragment} Python, SQL ...and to a lesser extent, JavaScript and SVG
+2. {:.fragment} are very __comfortable__ using the __commandline__
+3. {:.fragment} have the ability to install tools, software, etc. ... and troubleshoot installations (<strong>basically _know how to use a computer_ </strong>)
+4. {:.fragment} are able __navigate__ through your __file system__ (both through a file explorer like Finder and through the commandline)
+5. {:.fragment} <strong>_actually do homework and - you know - occasionally come to class_</strong> 
+6. {:.fragment} (low bar, I know... but I mean it)
 
-* {:.fragment} Version Control - __Git__
-* {:.fragment} Linter - __ESLint__
-* {:.fragment} Unit Testing Tools
-* {:.fragment} (Optionally) Debugger - __Node Debugger, Inspector__ and __Chrome Developer Tools__
-* {:.fragment} (Maybe) Build Tools - __Grunt__, __Gulp__ ... or __webpack__?
-
-<aside class="notes">
-* what's version control? why?
-* ever used git?
-</aside>
 </section>
 
 <section markdown="block">
-## Motivation for Technologies
 
-__Why use JavaScript, Node.js and Express over Ruby and Ruby on Rails or Python and Django?__
+## DO U NO THIS?
 
+If you're already __familiar__ with this material... for example: &rarr;
 
-1. {:.fragment} only __one language to learn__ throughout the course for server side development, front end development... and even database queries
-2. {:.fragment} __straightforward to install__ entire stack (node, mongodb) on Windows, Linux and OSX
-3. {:.fragment} seems like a __skill set that's currently sought after__ (former students are working with these technologies professionally!)
-5. {:.fragment} a __fun__ stack to learn (really!)
+* {:.fragment} if __you do this professionally__ (are you already an ETL engineer, data scientist, etc.?)
+* {:.fragment} or... if __you've already taken several web minor courses__  (specifically CSCI-UA.0060, the course on databases)
 
 <br> 
-The concepts and theory remain the same across this and other _technology stacks_, so what you learn here is applicable to Ruby, Python, etc. too!
-{:.fragment}
+* {:.fragment} there may be __signficant overlap__ with the material in the __web minor databases class__
+* {:.fragment} your professional work may be very similar (or even more advanced) than what we cover in class
+* {:.fragment} so... you should give some thought as to whether or not you should stay enrolled in this course
+
 </section>
 
 <section markdown="block">
@@ -192,45 +163,6 @@ FYI, also - for coders - management is difficult, but it's a legit career track
 </aside>
 </section>
 
-<section markdown="block">
-## About... You
-
-__I expect (hope?) that you__:
-
-1. {:.fragment} are very __comfortable__ using the __commandline__
-2. {:.fragment} have the ability to install tools, software, etc. ... and troubleshoot installations (<strong>basically _know how to use a computer_ </strong>)
-3. {:.fragment} are able __navigate__ through your __file system__ (both through a file explorer like Finder and through the commandline)
-4. {:.fragment} have basic/rudimentary knowledge of __HTML__ and __CSS__ (even a [late 90's notion](https://www.google.com/search?q=90%27s+website&espv=2&tbm=isch&tbo=u&source=univ&sa=X&ei=wegEVMjPJcPxgwTA5YDICg&ved=0CCgQsAQ&biw=1307&bih=729) of how this stuff works _may be_ fine)
-5. {:.fragment} <strong>_actually do homework and - you know - occasionally come to class_</strong> 
-6. {:.fragment} (low bar, I know... but I mean it)
-
-<br>
-Also, a big (non-) expectation: 
-{:.fragment}
-
-Only __minimal experience with__ __JavaScript__, __server-side web development__, and _modern_ __front-end development__
-{:.fragment}
-
-</section>
-
-<section markdown="block">
-
-## If You Already Know This Stuff
-
-For example...
-
-* {:.fragment} if __you do this professionally__ (seriously, I've had people who get paid to do this take this class???  &#129300;)
-* {:.fragment} or... if __you've already taken several web minor courses__, including web programming and databases
-
-<br> 
-__What are you doing here? GET OUT!__ &#128073;
-{:.fragment}
-
-* {:.fragment} Really, though, you probably won't get much out of the class 
-* {:.fragment} And you'll slack off a bit 
-* {:.fragment} <small markdown="block" style="display:inline">(And then get like a B+, and then you'll try to argue with me about your grade, and I'll be like _I told you not to take this class_, and then we'll both be sad. The end.)</small>
-
-</section>
 
 <section markdown="block">
 ## Workload 
