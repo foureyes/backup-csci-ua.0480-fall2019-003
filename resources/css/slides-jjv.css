@@ -43,9 +43,16 @@ body {
 }
 
 strong {
+  color: #239; 
+  background-color: #e0eef7;
+}
+
+.hl {
   color: #000; 
   background-color: #ff7;
 }
+
+
 body section aside {
   font-weight: bold;
   color: #050;
@@ -98,3 +105,6 @@ pre {
 	color: #aaa;
 }
 
+aside {
+	display: none;
+}

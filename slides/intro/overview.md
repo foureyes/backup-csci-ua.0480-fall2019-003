@@ -19,12 +19,12 @@ title: Intro
 Special Topics - __{{ site.vars.course_name }}__ 
 {:.fragment}
 
-* {:.fragment} (What a catchy name, eh?)
+* {:.fragment} (v catchy name)
 
 Course Number __{{ site.vars.course_number }}__, Section __{{ site.vars.course_section }}__
 {:.fragment}
 
-* {:.fragment} (Are you in the right class? 🤷‍♂️)
+* {:.fragment} (are you in the right class? 🤷‍♂️)
 
 </section>
 
@@ -43,32 +43,30 @@ Course Number __{{ site.vars.course_number }}__, Section __{{ site.vars.course_s
 * {:.fragment} _loving_ and _caring_ for your data as if it were your own tiny toddler child (made of 1's and 0's) ❤️👶💻
 	* {:.fragment} (what does that _even_ mean??? idk!) 
 
-
-</section>
-
-
-<section markdown="block">
-## Full Stack Web Development
-
-This course is __a practical__, __hands-on__ __introduction__ to creating __modern(ish) web applications__. We'll cover (roughly in this order):
-
-1. {:.fragment} JavaScript (just learning the language itself)
-2. {:.fragment} Server Side Programming 
-3. {:.fragment} Client Side _Build-Out_ (HTML and CSS) and Programming
-4. {:.fragment} Maybe a Few _Trendy_ Frameworks / Libraries 
-5. {:.fragment} And We'll Pick up Some Development Tools Along the Way \*
-
-### Let's Look at Some Specific Topics...
 {:.fragment}
 </section>
 
-<section markdown="block">
-## JavaScript Topics
 
-* {:.fragment} Basics (__Types__, __Operators__, __Control Structures__, etc.)
-* {:.fragment} Functional Programming (__Functions__ as _First Class Objects_)
-* {:.fragment} Object Oriented Programming (__Objects__, __Prototypes__)
-* {:.fragment} Running (and Maybe Writing) Tests
+<section markdown="block">
+## Topics (Really)
+
+The semester will be broken down into <span class="hl">three parts</span>:
+
+1. {:.fragment} __Finding, retrieving, scrubbing, transforming, and visualizing data__
+	* {:.fragment} (with Python 3.x, numpy, pandas, matplotlib, requests, html, jupyter, etc.)
+2. {:.fragment} __Designing a data model, storing data in a database, manipulating data in a database__
+	* {:.fragment} (with PostgreSQL, MongoDB, an Python 3.x as _glue_ sometimes)
+3. {:.fragment} __Visualizing data (on the web this time), deploying _in the cloud_, working with large data sets__
+	* {:.fragment} (flask, chalice or zappa, s3, rds, Apache Spark or Hadoop)
+
+
+</section>
+
+
+<section markdown="block">
+## \#goals
+
+__Basically__ ...  you'll be <span class="hl">building end-to-end data pipelines with various tools.</span>
 
 <aside class="notes">
 * Who already knows js?
