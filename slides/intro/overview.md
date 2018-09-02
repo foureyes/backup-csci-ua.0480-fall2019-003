@@ -132,27 +132,54 @@ __I expect (hope?) that you__:
 
 ## DO U NO THIS?
 
-If you're already __familiar__ with this material... for example: &rarr;
-
-* {:.fragment} if __you do this professionally__ (are you already an ETL engineer, data scientist, etc.?)
-* {:.fragment} or... if __you've already taken several web minor courses__  (specifically CSCI-UA.0060, the course on databases)
-
-<br> 
-* {:.fragment} there may be __signficant overlap__ with the material in the __web minor databases class__
-* {:.fragment} your professional work may be very similar (or even more advanced) than what we cover in class
-* {:.fragment} so... you should give some thought as to whether or not you should stay enrolled in this course
+* {:.fragment} do __you do this professionally__ 
+	* {:.fragment} are you already an ETL engineer?
+	* {:.fragment} data scientist? 
+* {:.fragment} or... have __already taken several web minor courses__ ?
+	* (specifically CSCI-UA.0060, the course on databases)
 
 </section>
 
 <section markdown="block">
-## Me?
+## YES, I ALREADY KNOW THIS STUFF ✋
+
+If you're already __familiar__ with this material... &rarr;
+
+* {:.fragment} there may be __signficant overlap__ with the material in the __web minor databases class__
+* {:.fragment} your professional work may be very similar (or even more advanced) than what we cover in class
+* {:.fragment} so... <span class="hl">you should give some thought as to whether or not you should stay enrolled</span> in this course
+
+<br>
+Since this is the first run of the course and you're already enrolled, I can't tell you to drop and take another class (that's up to you!)
+{:.fragment}
+</section>
+
+<section markdown="block">
+## What About Python 🐍?
+
+__If you__... 
+
+* already took <span class="hl">0002</span> (intro to programming) 
+* or if you have some beginner <span class="hl">Python experience</span>
+
+It's ok! ✋
+{:.fragment}
+
+* {:.fragment} we'll go over some intermediate python features
+* {:.fragment} and some libraries you _may_ not be familiar with yet 
+</section>
+
+<section markdown="block">
+## Ok, So... About Me
 
 ### Joe Versoza
 
-* {:.fragment} I think I know some of you / you know me from 0002 or 0101 (uh-oh ... __why__ would you want take another _class_ with me?)!
-* {:.fragment} __Clinical Assistant Professor__ (you can find me at: {{ site.vars.office_hours_room }})
-* {:.fragment} Before teaching full time
-	* {:.fragment} managed a bunch of programmers at a non profit
+* {:.fragment} I also teach AIT (perhaps u kno of this), an intro to Python course, and sometimes 101 or a grad course here and there
+* {:.fragment} I'm a __Clinical Assistant Professor__ (you can find me at: {{ site.vars.office_hours_room }})
+* {:.fragment} I'm _maybe_ qualified to teach this
+	* {:.fragment} My industry background included aggregating data from multiple sources (a postgresql database for a web app, fixed with files dropped off at an ftp server etc.)
+	* {:.fragment} and storing that data in a data warehouse or operational data stores
+	* {:.fragment} I've worked with postgres years ago with functions, stored procedures etc. (perhap outside the scope of this course)
     * {:.fragment} (turns out, managing programmers is _not so fun_ &#128557; &#128514; &#128528;) 
     * {:.fragment} also worked as software engineer for a looong time - mostly with &#128013; ([web.py](http://webpy.org/) and [Django](https://www.djangoproject.com/), and even some [flask](http://flask.pocoo.org/)), but with some [Rails](http://rubyonrails.org/), [PHP](http://en.wikipedia.org/wiki/PHP), [Java/JSP](http://en.wikipedia.org/wiki/JavaServer_Pages) too...
 
