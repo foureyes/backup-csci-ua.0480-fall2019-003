@@ -120,11 +120,11 @@ __I expect (hope?) that you__:
 
 1. {:.fragment} are comfortable quickly picking up basics of a new programming language
 	* {:.fragment} Python, SQL ...and to a lesser extent, JavaScript and SVG
-2. {:.fragment} are very __comfortable__ using the __commandline__
-3. {:.fragment} have the ability to install tools, software, etc. ... and troubleshoot installations (<strong>basically _know how to use a computer_ </strong>)
-4. {:.fragment} are able __navigate__ through your __file system__ (both through a file explorer like Finder and through the commandline)
+2. {:.fragment} are _ok_ using the __commandline__
+3. {:.fragment} have the ability to install tools, software, etc.
+4. {:.fragment} are able __navigate__ through your __file system__ 
+5. {:.fragment} 
 5. {:.fragment} <strong>_actually do homework and - you know - occasionally come to class_</strong> 
-6. {:.fragment} (low bar, I know... but I mean it)
 
 </section>
 
