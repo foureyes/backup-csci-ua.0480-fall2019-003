@@ -13,6 +13,11 @@ Python 3 Ecosystem and Installation
 Python Basics and File I/O
 
 * See readings on Python Basics
+* Different Ways to Run Python (demo)
+  * running python on the commandline
+  * interactive shell
+  * IPython
+  * jupyter notebook / lab
 * Modules (demo)
   * imports
   * python path
@@ -22,8 +27,7 @@ Python Basics and File I/O
   * dictionaries
   * tuples
   * sets
-
-* [File I/O](slides/python/files.html)
+* File I/O (demo)
 ","Python for Data Analysis
 
 * Ch 1: Preliminaries
