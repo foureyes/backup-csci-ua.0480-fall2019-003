@@ -75,7 +75,6 @@ You'll be doing this in two parts:
     * `is_leap_year(year)`
     * `get_num_days_in_month`
     * `generate_date(start_year, end_year)`
-    * you can use your `mylist.py` as a module if any of those functions are helpful
     * you can write more functions if you want!
 3. Using your previously implemented `mydate.py` as a module, import it and use it to help write `birthday.py`
     * In `birthday.py`, you'll write a simulation by generating random birthdays
