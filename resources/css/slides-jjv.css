@@ -44,7 +44,7 @@ body {
 
 strong {
   color: #239; 
-  background-color: #e0eef7;
+  /* background-color: #e0eef7; */
 }
 
 .hl {
@@ -84,11 +84,12 @@ small {
 }
 
 code, pre {
-  background-color: #ddd;
+  /* background-color: #ddd; */
 }
 
 code {
-  font-size: 0.85em;
+  /* font-size: 0.85em; */
+	color: #c7254e;
 }
 
 pre {
