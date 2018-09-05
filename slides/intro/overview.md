@@ -24,7 +24,7 @@ Special Topics - __{{ site.vars.course_name }}__
 Course Number __{{ site.vars.course_number }}__, Section __{{ site.vars.course_section }}__
 {:.fragment}
 
-* {:.fragment} (are you in the right class? 🤷‍♂️)
+* {:.fragment} (are you in the right class? 🤷‍)
 
 </section>
 
@@ -243,10 +243,10 @@ The Director of Undergraduate Studies will handle any instances of cheating or s
 <section markdown="block">
 ## Additional Course Info
 
-* __Office Hours:__ {{ site.vars.office_hours }}
-* __Office Hours Room:__  {{ site.vars.office_hours_room }}
-* __Readings:__ [pulled from multiple free online books and documentation](/syllabus.html#books)
-* __Grading:__ [weights for homework, exams, etc.](/syllabus.html#grading)
+* {:.fragment} __Office Hours:__ {{ site.vars.office_hours }}
+* {:.fragment} __Office Hours Room:__  {{ site.vars.office_hours_room }}
+* {:.fragment} __Readings:__ [pulled from multiple free online books and documentation](/syllabus.html#books)
+* {:.fragment} __Grading:__ [weights for homework, exams, etc.](/syllabus.html#grading)
 </section>
 
 
