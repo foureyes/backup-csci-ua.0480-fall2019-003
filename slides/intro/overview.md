@@ -203,13 +203,17 @@ __It's ok!__ 🙌
 <section markdown="block">
 ## About that Homework
 
-__On the subject of homework and difficulty level, if you need help__ &rarr;
+__If you need help__ &rarr;
 
-
-* {:.fragment} __please ask on piazza__ - public posts are encouraged as long as you're not posting significant parts of the homework solution
+* {:.fragment} __please ask on piazza__ - public posts are encouraged (just don't give away the solution)
 * {:.fragment} high level discussions with other students are ok ✅
 * {:.fragment} help debugging an exception/error from other students is ok ✅
 * {:.fragment} see me or the tutor (office / tutoring hours)
+
+</section>
+
+<section markdown="block">
+## What About Help from the Internets???
 
 __Using online resources outside of the course materials...__
 {:.fragment}
@@ -235,15 +239,6 @@ The Director of Undergraduate Studies will handle any instances of cheating or s
 
 </section>
 
-<section markdown="block">
-## Help!
-
-__If you're concerned about the workload and the material...__ &rarr;
-
-* {:.fragment} I'm __always available to help__, especially on piazza...as well as office hours and by appointment
-* {:.fragment} We'll also have a classroom assistant available (I'll post a schedule by next week)
-
-</section>
 
 <section markdown="block">
 ## Additional Course Info
