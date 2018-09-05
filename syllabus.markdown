@@ -22,7 +22,6 @@ nav-state: syllabus
 </div>
     </div>
     <div class="panel panel-default">
-<a name="homework"></a>
 <div class="panel-heading">Format</div>
 <div class="panel-body" markdown="block">
 
@@ -57,7 +56,37 @@ A platform will be provided for asking questions online as well as moderating di
 
 </div>
     </div>
+
+    <div class="panel panel-default">
+<a name="quizzes"></a>
+<div class="panel-heading">Quizzes</div>
+<div class="panel-body" markdown="block">
+
+
+* 8 quizzes (maybe 1 or 2 more)
+* approximately one quiz per week
+* late submissions not accepted, with the following exceptions
+	* illness, with documentation
+	* religious observance
+	* technical issues (NYU Classes down, quiz or assignment not appearing, etc.), with documentation
+	* this policy may be revised to accommodate special circumstances
+* quizzes will contain randomized questions
+* the material in the quizzes come from readings
+* quizzes may be due before the corresponding lecture for the readings have taken place
+</div>
+    </div>
+
+
+
+
   </div><!-- end col -->
+
+
+
+
+
+
+
 
   <div class="col-md-6">
     <div class="panel panel-default">
@@ -99,11 +128,13 @@ Topics
 <div class="panel-heading">Grading</div>
 <div class="panel-body" markdown="block">
 
-* 5% - Class Participation / Quizzes / Activities
+* 10% - Class Participation / Quizzes / Activities \*
 * 20% - Homework
 * 30% - Midterm Exam
-* 10% - Small Project
+* 5% - Small Project \*
 * 35% - Final Exam
+
+\* these weights may be adjusted
 
 </div>
     </div>
@@ -111,7 +142,7 @@ Topics
 <a name="homework"></a>
 <div class="panel-heading">Homework</div>
 <div class="panel-body" markdown="block">
-* 8 - 10 assignments
+* 8 assignments (maybe 1 or 2 more)
 * approximately one assignment per week
 * late submissions not accepted, with the following exceptions
 	* illness, with documentation
@@ -122,7 +153,6 @@ Topics
 	* don't copy (clone, download, etc.) anyone else's code
 	* don't distribute/publish your code (including publishing to a public git repository or posting in a forum)
 	* the Director of Undergraduate Studies will handle any instances of cheating or software plagiarism
-
 </div>
     </div>
   </div><!-- end col -->

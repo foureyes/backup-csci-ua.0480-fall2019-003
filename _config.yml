@@ -39,7 +39,7 @@ vars:
   final_time: "N/A"
   final_room: "N/A"
   
-  book1: "PostgreSQL: Up and Running, 3rd Editio"
+  book1: "PostgreSQL: Up and Running, 3rd Edition"
   nbook1_link: "http://shop.oreilly.com/product/0636920052715.do"
   book1_author:  "Regina Obe, Leo Hsu"
   
