@@ -43,7 +43,7 @@ vars:
   nbook1_link: "http://shop.oreilly.com/product/0636920052715.do"
   book1_author:  "Regina Obe, Leo Hsu"
   
-  book2: "Python for Data Analysis Book, 2nd Editioni"
+  book2: "Python for Data Analysis Book, 2nd Edition"
   book2_link: "http://wesmckinney.com/pages/book.html"
   book2_author: "Wes McKinney"
   

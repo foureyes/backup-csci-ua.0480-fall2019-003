@@ -60,7 +60,7 @@ __And then...__ &rarr;
 
 <!--
 * {:.fragment} _loving_ and _caring_ for your data as if it were your own tiny toddler child (made of 1's and 0's) ❤️👶💻
-	* {:.fragment} (what does that _even_ mean??? idk!) 
+  * {:.fragment} (what does that _even_ mean??? idk!) 
 -->
 
 </section>
@@ -71,12 +71,14 @@ __And then...__ &rarr;
 
 The semester will be broken down into <span class="hl">three parts</span>:
 
-1. {:.fragment} __Finding, retrieving, scrubbing, transforming, and visualizing data__
-	* {:.fragment} (with Python 3.x, `numpy`, `pandas`, `matplotlib`, `requests`, `requests-html`, Jupyter notebook / lab, etc.)
+1. {:.fragment} ___Sourcing_/scrubbing/transforming/visualizing data__
+  * {:.fragment} (Python 3.x, Jupyter, `numpy`, `pandas`, `matplotlib`, `requests`, `requests-html`, etc.)
+  * {:.fragment} {{ site.vars.book2 }}
 2. {:.fragment} __Designing a data model, storing data in a database, manipulating data in a database__
-	* {:.fragment} (with PostgreSQL, MongoDB, and Python 3.x as _glue_ sometimes)
+  * {:.fragment} (with PostgreSQL, MongoDB, and Python 3.x as _glue_ sometimes)
+  * {:.fragment} {{ site.vars.book1 }}
 3. {:.fragment} __Visualizing data (on the web this time), deploying _in the cloud_, working with large data sets__
-	* {:.fragment} (`flask`, `chalice` or `zappa`, s3, rds, Apache Spark or Hadoop)
+  * {:.fragment} (`flask`, `chalice` or `zappa`, s3, rds, Apache Spark or Hadoop)
 
 </section>
 
@@ -90,11 +92,11 @@ From sourcing data &rarr; to using that data for some _useful_ purpose.
 {:.fragment}
 
 * {:.fragment} __ETL__ <span class="fragment">(<strong>E</strong>xtract <strong>T</strong>ransform and <strong>L</strong>oad)</span>
-	* {:.fragment} extracting data from single / multiple sources, cleaning and transforming data to a adhere to a particular format, and loading data into persistent storage
+  * {:.fragment} extracting data from single / multiple sources, cleaning and transforming data to a adhere to a particular format, and loading data into persistent storage
 * {:.fragment} __+ _something useful_ ...__
-	* {:.fragment} visualization on the web 📈🕸
-	* {:.fragment} deployment in the cloud ☁️
-	* {:.fragment} analysis of large data sets 🗻🗄
+  * {:.fragment} visualization on the web 📈🕸
+  * {:.fragment} deployment in the cloud ☁️
+  * {:.fragment} analysis of large data sets 🗻🗄
 
 </section>
 
@@ -121,7 +123,7 @@ __We'll touch on the following topics, but it'll only be introductory material__
 __I expect (hope?) that you__:
 
 1. {:.fragment} are comfortable __quickly picking up basics of a new programming language__
-	* {:.fragment} Python, SQL ...and to a lesser extent, JavaScript (probably in the context of d3) and SVG (maybe)
+  * {:.fragment} Python, SQL ...and to a lesser extent, JavaScript (probably in the context of d3) and SVG (maybe)
 2. {:.fragment} are _ok_ using the __commandline__
 3. {:.fragment} have the ability to __install tools and software__, navigate through your __file system__ - you know _everyday computing stuffs_
 4. {:.fragment} are comfortable learning some topics on your own / researching on your own (especially when finding your own data sets)
@@ -148,10 +150,10 @@ __Hands up 🙌 if you__...
 ## What if you already know this? 💡
 
 * {:.fragment} Maybe you've __already taken several web minor courses__ 
-	* (specifically CSCI-UA.0060, the course on databases)
+  * (specifically CSCI-UA.0060, the course on databases)
 * {:.fragment} Or you __do this professionally__ 
-	* {:.fragment} as an ETL engineer
-	* {:.fragment} or as a data scientist?
+  * {:.fragment} as an ETL engineer
+  * {:.fragment} or as a data scientist?
 
 There may be __signficant overlap__ with the material in the __web minor databases class__ or in your professional work
 {:.fragment}
@@ -183,8 +185,8 @@ __It's ok!__ 🙌
 * {:.fragment} I also teach __AIT__ (_perhaps u no of this?_), an __Intro to Programming__ course (in Python, of course), and sometimes __101__
 * {:.fragment} I'm a __Clinical Assistant Professor__ (you can find me at: {{ site.vars.office_hours_room }})
 * {:.fragment} In former a life, I worked with PostgreSQL and Python _a lot_
-	* {:.fragment} (not-so-much now...)
-	* {:.fragment} for things like... <span class="fragment">data driven web sites</span> <span class="fragment">, compliance</span><span class="fragment">, and analytics</span>
+  * {:.fragment} (not-so-much now...)
+  * {:.fragment} for things like... <span class="fragment">data driven web sites</span> <span class="fragment">, compliance</span><span class="fragment">, and analytics</span>
 
 </section>
 
@@ -194,7 +196,8 @@ __It's ok!__ 🙌
 
 * {:.fragment} <span class="hl">2 x exams</span> (__final is last day of class, not during finals week!__)
 * {:.fragment} <span class="hl">8 x [homeworks](../../syllabus.html#homework)</span> (maybe 1 or 2 more)
-    * __Write your own code!__
+  * {:.fragment} __Write your own code!__
+  * {:.fragment} submit via git (fill out the survey!)
 * {:.fragment} <span class="hl">8 x [online quizzes](../../syllabus#quizzes)</span>, completed from home (maybe 1 or 2 more)
 * {:.fragment} <span class="hl">1 x small project</span> (this may just end up being essentially just a free-form homework assignment or two)
 </section>
@@ -245,7 +248,10 @@ The Director of Undergraduate Studies will handle any instances of cheating or s
 
 * {:.fragment} __Office Hours:__ {{ site.vars.office_hours }}
 * {:.fragment} __Office Hours Room:__  {{ site.vars.office_hours_room }}
-* {:.fragment} __Readings:__ [pulled from multiple free online books and documentation](/syllabus.html#books)
+* {:.fragment} __Readings:__ [See book info on syllabus](/syllabus.html#books)
+  * {:.fragment} {{ site.vars.book2 }} (first 6 weeks of class)
+  * {:.fragment} {{ site.vars.book1 }} (next 6 weeks of class)
+  * {:.fragment} various online references / documentation (remainder of class)
 * {:.fragment} __Grading:__ [weights for homework, exams, etc.](/syllabus.html#grading)
 </section>
 
@@ -253,14 +259,19 @@ The Director of Undergraduate Studies will handle any instances of cheating or s
 <section markdown="block">
 ## Required Software
 
-### Python 3.x and associated libraries
+__Python 3.x and associated libraries__
 {:.fragment}
 
 * {:.fragment} `numpy`, `pandas`, `matplotlib`, `jupyterlab`, `requests`, etc.
-* {:.fragment} installed through `pip` or `anaconda`
+* {:.fragment} installed through either... 
+  * Anaconda / `conda` (recommended)
+  * or `pip` 
+  * or `pipenv`, `poetry`, etc.
 * {:.fragment}  you're free to use any editor and os you want
+  * {:.fragment} I'd recommend [spyder](https://pythonhosted.org/spyder/)
+  * {:.fragment} we'll also be using Jupyter Notebook / Lab _a lot_ early on
 
-### PostgreSQL
+__PostgreSQL__
 {:.fragment}
 
 * {:.fragment} a local install of PostgreSQL
@@ -271,19 +282,22 @@ The Director of Undergraduate Studies will handle any instances of cheating or s
 ## This Site, These Slides
 
 * you can find my courses at [http://cs.nyu.edu/~jversoza/](http://cs.nyu.edu/~jversoza/)
-* use <span class="hl">arrow keys</span> to navigate
-* click on <span class="hl">print</span>
+* use <span class="hl">arrow keys</span> to navigate ⬅️➡️
+* click on <span class="hl">print</span> to see a one page version 📄
+* probz does not work great on mobile (sry) 😅
 </section>
 
 <section markdown="block" data-background="#440000">
 ## A Quick Summary
 
-* __There _may_ be a lot of work!__
-* __I'm available for help__! The best way to get in touch with me is piazza or in-person (ask the question in class - someone else probably has the same question or office hours / appointment)
-* __the 2nd exam is on the last day of class, NOT DURING FINALS WEEK__
-* If you're a __graduating senior__, make sure you do the work; I can't just hand out C's (also, are you _really_ just trying to get a C?)!
-* __Write your own code for assignments!__
-* Do the readings / quizzes
+* {:.fragment} There's a <span class="hl">decent amount of work</span> as this will be a _hands-on_ / practical class! 🛠
+* {:.fragment} But don't worry... __I'm available for help__! 
+  * piazza or ...
+  * in-person (ask the question in class, during office hours, or make an appointment) 🤚
+* {:.fragment} the <span class="hl">2nd exam is on the last day of class</span>, NOT DURING FINALS WEEK ⚠️
+* {:.fragment} If you're a __graduating senior__, make sure you do the work; I can't just hand out C's (also, are you _really_ just trying to get a C?)! 🎓
+* {:.fragment} __Write your own code for assignments!__ ✏️
+* {:.fragment} Plz do the readings / quizzes 📕
 
 
 </section>

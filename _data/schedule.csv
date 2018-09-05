@@ -2,38 +2,27 @@ draft,type,num,date,day,slides,readings,assignments
 ,,1,05-Sep,Wed,"Introductions
 
 * [Course Overview](slides/intro/overview.html) 
-
-<!--
-* Required Software                                                                                                                        
-* Books                                                                                                                                    
-* Course Load                                                                                                                              
-* Homework Policy  
--->
+* [Fill out this survey!](https://docs.google.com/forms/d/e/1FAIpQLSd3_DKc5OuyktZHel7hDx6dnUn7fDdL5Lm4GBkkQdLNoizfxA/viewform)
+  * GitHub username for homework
+  * consent form to use GitHub for homework submission
 
 Python 3 Ecosystem and Installation                                                                                                                      
 
 * [Python Development Environment](slides/python/tools.html)
 
-<!--
-* Package / Python Version Management                                                                                                      
-  * Pip                                                                                                                                  
-  * Pip-env                                                                                                                              
-  * Virtualenv
-  * Anaconda                                                                                                                           
-* Static Analysis                                                                                                                          
-  * Linter: PyFlakes / PEP...                                                                                                            
-  * Type Checking: MyPy?                                                                                                                 
-* Interactive Shell    
-  * python                                                                                                                    
-  * IPython 
-* Notebooks 
-  * Jupyter Notebook                                                                                                                            
-  * Jupyter Lab         
--->
-
 Python Basics and File I/O
 
-* See readings on Python Basics and Data Structures
+* See readings on Python Basics
+* Modules (demo)
+  * imports
+  * python path
+* Core Python Data Types (demo)
+  * strings
+  * lists
+  * dictionaries
+  * tuples
+  * sets
+
 * [File I/O](slides/python/files.html)
 ","Python for Data Analysis
 
@@ -43,11 +32,14 @@ Python Basics and File I/O
 
 __Homework #01__ – due Tue, 9/11, at 11pm
 
-0. GitHub Username 
-1. Install Python Environment
-2. Run Test Programs
-3. See Readings
-4. Python Warmup
+0. [Fill out this survey!](https://docs.google.com/forms/d/e/1FAIpQLSd3_DKc5OuyktZHel7hDx6dnUn7fDdL5Lm4GBkkQdLNoizfxA/viewform)
+1. Install a Python 3 Environment
+  * use [Anaconda](https://conda.io/docs/user-guide/install/index.html)
+  * if you’re already familiar with Python, you can manually install:
+    * Python 3 (using `apt`, `homebrew`, etc.)
+    * `matplotlib`, `jupyter-notebook` (or lab), `pandas`, `numpy` (using `easy-install`, `pip`, etc.)
+2. Go over readings
+3. [Homework #01 Instructions](assignments/01.html)
 
 <!--
   * histogram
@@ -57,8 +49,10 @@ __Homework #01__ – due Tue, 9/11, at 11pm
 -->"
 ,,2,10-Sep,Mon,"File Formats (Description Only, No Libraries)
 
+<!--
 * [Unicode, File Encodings](slides/python/unicode.html)
 * [Data File Formats](slides/python/file-formats.html)
+-->
 
 <!--
 * CSV
@@ -67,11 +61,13 @@ __Homework #01__ – due Tue, 9/11, at 11pm
 * JSON
 -->
 
-Intermediate Python Features:
+Intermediate Python Features
 
+<!--
 * [Functions, Packing/Unpacking, HOF, Decorators](slides/python/functional.html)
 * [Classes, Named Tuples](slides/python/classes.html)
 * [Iterators, List Comprehensions, Generators, etc.](slides/python/iteration.html)
+-->
 
 <!--
 * Keyword Args
@@ -88,7 +84,9 @@ Intermediate Python Features:
 
 Image Processing
 
+<!--
 * [Pil/Pillow](slides/graphics/pil.html)
+-->
 ","Python for Data Analysis
 
 * Ch 3: Built-in Data Structures, Functions and Files
