@@ -176,11 +176,11 @@ __Return Value__:
 
 __Description__:
 
-`dates_to_strings` converts a list of lists to a list of strings. Each inner list in the list of lists is a date in the format of a three-element list (as explained in the previous function). The result is a list of strings, with each string representing one of the original dates in the list passed in. For example, `[[1979, 10, 7], [2000, 02, 20]]` should give back `['October 7, 1979', 'February 20, 2000']`.
+`dates_to_strings` converts a list of lists to a list of strings. Each inner list in the list of lists is a date in the format of a three-element list (as explained in the previous function). The result is a list of strings, with each string representing one of the original dates in the list passed in. For example, `[[1979, 10, 7], [2000, 2, 20]]` should give back `['October 7, 1979', 'February 20, 2000']`.
 
 __Example Usage__:
 
-<pre><code data-trim contenteditable>res = dates_to_strings([[1979, 10, 7], [2000, 02, 20]]) 
+<pre><code data-trim contenteditable>res = dates_to_strings([[1979, 10, 7], [2000, 2, 20]]) 
 print(res) # ['October 7, 1979', 'February 20, 2000']
 </code></pre>
 
@@ -202,7 +202,7 @@ __Description__:
 
 __Example Usage__:
 
-<pre><code data-trim contenteditable>res = remove_years([[1979, 10, 7], [2000, 02, 20]]) 
+<pre><code data-trim contenteditable>res = remove_years([[1979, 10, 7], [2000, 2, 20]]) 
 print(res) # [[10, 7], [2, 20]]
 </code></pre>
 
