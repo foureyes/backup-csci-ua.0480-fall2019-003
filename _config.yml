@@ -13,7 +13,7 @@ permalink: none
 exclude: [bower_components, README.md, bower.json, gruntfile.js, node_modules]
 
 vars:
-  piazza: "piazza.com/nyu/fall2018/csciua0480section007/home"
+  piazza: "https://piazza.com/nyu/fall2018/csciua0480section007/home"
   email: "jversoza at cs dot nyu dot edu"
   slides_img_prefix: "../../resources/img"
   
