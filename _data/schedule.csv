@@ -21,13 +21,6 @@ Python Basics and File I/O
 * Modules (demo)
   * imports
   * python path
-* Core Python Data Types (demo)
-  * strings
-  * lists
-  * dictionaries
-  * tuples
-  * sets
-* File I/O (demo)
 ","Python for Data Analysis
 
 * Ch 1: Preliminaries
@@ -55,46 +48,48 @@ __Homework #01__ – due Tue, 9/11, at 11pm
   * syllabic poetry
   * mean, median, mode, etc.
 -->"
-,,2,10-Sep,Mon,"File Formats (Description Only, No Libraries)
+,,2,10-Sep,Mon,"* Reading Files
+	* with open
+	* FileNotFoundError
+* Unicode
+* bytes
+	* .decode('utf-8')
+* [Data File Formats](slides/python/file-types.html)
+* Sequence Types, Mapping Types, Sets
+	* Sequence Types
+		* What are they?
+		* Common operations
+	* Lists
+		* Mutable / Immutable
+	* Strings
+		* Formatting / Format Specifier Mini Language
+		* Format strings
+	* Tuples
+	* Tuple Unpacking
+	* Dictionaries
+	* Sets
+		* empty set
+	* Iteration with:
+		* items
+		* enumerate
+		* zip
+		* sorted
+		* list comprehensions
+		* set comprehensions
+		* dictionary comprehensions
+* Functions
+	* \* and \*\*
+	* Functions as Objects
+	* Keyword Arguments
+	* Lambdas
+	* [Decorators](slides/python/decorators.html)
+		* @functools.wraps
+* Classes
+	* [Named Tuples and Classes](slides/python/classes-objects.html)
+	* Data Classes
+	* Iterators and __iter__
+	* generators
 
-<!--
-* [Unicode, File Encodings](slides/python/unicode.html)
-* [Data File Formats](slides/python/file-formats.html)
--->
-
-<!--
-* CSV
-* TSV
-* XML
-* JSON
--->
-
-Intermediate Python Features
-
-<!--
-* [Functions, Packing/Unpacking, HOF, Decorators](slides/python/functional.html)
-* [Classes, Named Tuples](slides/python/classes.html)
-* [Iterators, List Comprehensions, Generators, etc.](slides/python/iteration.html)
--->
-
-<!--
-* Keyword Args
-* Packing and Unpacking with \*, \*\*,
-* List Comprehensions
-* Higher Order Functions
-* Decorators
-* Generators
-* Lambda
-* Bytes, Unicode, etc.
-* Classes vs Named Tuples vs…
--->
-
-
-Image Processing
-
-<!--
-* [Pil/Pillow](slides/graphics/pil.html)
--->
 ","Python for Data Analysis
 
 * Ch 3: Built-in Data Structures, Functions and Files
@@ -105,7 +100,7 @@ Articles
 * [What Every Programmer Absolutely, Positively Needs To Know About Encodings And Character Sets To Work With Text](http://kunststube.net/encoding/)
 * [Unicode HOWTO](https://docs.python.org/3/howto/unicode.html)
 * [Primer on Python Decorators](https://realpython.com/primer-on-python-decorators/)
-","__Quiz #02__ – due Sun, 9/16 at 11pm"
+",__Quiz #02__ – to be posted tonight/tomorrow morning
 y,,3,12-Sep,Wed,"Vectors and Matrices (numpy)
 
 * numpy basics
