@@ -48,47 +48,19 @@ __Homework #01__ – due Tue, 9/11, at 11pm
   * syllabic poetry
   * mean, median, mode, etc.
 -->"
-,,2,10-Sep,Mon,"* Reading Files
-	* with open
-	* FileNotFoundError
-* Unicode
-* bytes
-	* .decode('utf-8')
-* [Data File Formats](slides/python/file-types.html)
-* Sequence Types, Mapping Types, Sets
-	* Sequence Types
-		* What are they?
-		* Common operations
-	* Lists
-		* Mutable / Immutable
-	* Strings
-		* Formatting / Format Specifier Mini Language
-		* Format strings
-	* Tuples
-	* Tuple Unpacking
-	* Dictionaries
-	* Sets
-		* empty set
-	* Iteration with:
-		* items
-		* enumerate
-		* zip
-		* sorted
-		* list comprehensions
-		* set comprehensions
-		* dictionary comprehensions
-* Functions
-	* \* and \*\*
-	* Functions as Objects
-	* Keyword Arguments
-	* Lambdas
-	* [Decorators](slides/python/decorators.html)
-		* @functools.wraps
-* Classes
-	* [Named Tuples and Classes](slides/python/classes-objects.html)
-	* Data Classes
-	* Iterators and __iter__
-	* generators
+,,2,10-Sep,Mon,"File I/O, Unicode and Strings
+
+* [Files, Encodings, Bytes and Strings](notebooks/files-unicode-bytes-strings.ipynb) (notebook)
+* [Data File Formats](slides/python/file-types.html) (slides)
+
+Sequence Types, Mapping Types, Sets
+
+* [Sequences, Dictionaries and Sets](notebooks/sequences.ipynb) (notebook)
+
+Functions
+
+* [\* and \*\*, Keyword Arguments](notebooks/functions.ipynb) (notebook)
+
 
 ","Python for Data Analysis
 
@@ -101,7 +73,29 @@ Articles
 * [Unicode HOWTO](https://docs.python.org/3/howto/unicode.html)
 * [Primer on Python Decorators](https://realpython.com/primer-on-python-decorators/)
 ",__Quiz #02__ – to be posted tonight/tomorrow morning
-y,,3,12-Sep,Wed,"Vectors and Matrices (numpy)
+y,,3,12-Sep,Wed,"Functions
+
+* Functions as Objects
+* Keyword Arguments
+* Lambdas
+* [Decorators](slides/python/decorators.html)
+    * @functools.wraps
+
+Classes
+
+* [Named Tuples and Classes](slides/python/classes-objects.html)
+* Data Classes
+* Iterators and __iter__
+* generators
+
+List/Dictionary/Set Comprehension
+
+* sorted
+* list comprehensions
+* set comprehensions
+* dictionary comprehensions
+
+Vectors and Matrices (numpy)
 
 * numpy basics
 
