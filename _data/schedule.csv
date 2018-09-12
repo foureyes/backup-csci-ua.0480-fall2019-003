@@ -73,7 +73,14 @@ Articles
 * [Unicode HOWTO](https://docs.python.org/3/howto/unicode.html)
 * [Primer on Python Decorators](https://realpython.com/primer-on-python-decorators/)
 ",__Quiz #02__ – to be posted tonight/tomorrow morning
-y,,3,12-Sep,Wed,"Functions
+,,3,12-Sep,Wed,"List/Dictionary/Set Comprehension
+
+* sorted
+* list comprehensions
+* set comprehensions
+* dictionary comprehensions
+
+More About Functions
 
 * Functions as Objects
 * Keyword Arguments
@@ -84,38 +91,19 @@ y,,3,12-Sep,Wed,"Functions
 Classes
 
 * [Named Tuples and Classes](slides/python/classes-objects.html)
-* Data Classes
+* Data Classes are in 3.7!?
 * Iterators and __iter__
 * generators
 
-List/Dictionary/Set Comprehension
+A Diversion
 
-* sorted
-* list comprehensions
-* set comprehensions
-* dictionary comprehensions
+* (Optional) [Images](slides/python/images.html)","Python for Data Analysis
 
-Vectors and Matrices (numpy)
+* Ch 3: Built-in Data Structures, Functions and Files 
+  * Specifically List, Set and Dict Comprehensions
 
-* numpy basics
-
-Tabular Data (pandas)
-
-* pandas basics
-
-Data Loading, Storage, and File Formats (revisisted)
-
-* pandas for reading files (csv, xls, etc.)
-* pandas for writing files
-* go through file formats from previous lecture, but using pandas
-
-
-","Python for Data Analysis 
-* Ch 4: Numpy Basics: Arrays and Vectors 
-* Ch 5. Getting Started with pandas
-* Ch 6. Data Loading, Storage, and File Formats
-  * Skip Web Requests
-  * Skip Databases","__Homework #02__ – due Tue, 9/18, at 11pm
+* [Real Python – Primer on Decorators](https://realpython.com/primer-on-python-decorators/)
+* Classes, Named Tuples – (see slides)","__Homework #02__ – due Tue, 9/18, at 11pm
 
 <!--
 1. Classes, CSVs
@@ -129,7 +117,27 @@ Data Loading, Storage, and File Formats (revisisted)
   * music generator (numpy)
 -->
 "
-y,,4,17-Sep,Mon,"Data from the Web
+y,,4,17-Sep,Mon,"Vectors and Matrices (numpy)
+
+* numpy basics
+
+Tabular Data (pandas)
+
+* pandas basics
+
+Data Loading, Storage, and File Formats (revisisted)
+
+* pandas for reading files (csv, xls, etc.)
+* pandas for writing files
+* go through file formats from previous lecture, but using pandas
+","Python for Data Analysis 
+* Ch 4: Numpy Basics: Arrays and Vectors 
+* Ch 5. Getting Started with pandas
+* Ch 6. Data Loading, Storage, and File Formats
+  * Skip Web Requests
+  * Skip Databases
+ ",
+y,,5,19-Sep,Wed,"Data from the Web
 
 * Web APIs
   * API Authentication
@@ -144,11 +152,18 @@ y,,4,17-Sep,Mon,"Data from the Web
   * lxml
   * Requests HTML
 ","Python for Data Analysis
+
 * Ch 6: Data Loading, Storage, and File Formats
   * Focus on Scraping
   * Focus on APIs
-  * TODO: API Authentication ",
-y,,5,19-Sep,Wed,"Curating Data
+  * TODO: API AuthenticationPython for Data Analysis
+","HW03
+* brute force attack web site 
+* use password dictionary
+* retrieving data from the web 
+* finance app?
+* cleaning data for analylsis"
+y,,6,24-Sep,Mon,"Curating Data
 
 * Open Data Sets
 * Terms of Use
@@ -163,21 +178,20 @@ Data Wrangling (without databases)
 
 * Joins
 * Pivots","Python for Data Analysis
+
 * Ch 7: Data Cleaning and Preparation
-* Ch 8: Data Wrangling: Join, Combine, Reshape","HW03
-* brute force attack web site 
-* use password dictionary
-* retrieving data from the web 
-* finance app?
-* cleaning data for analylsis"
-y,,6,24-Sep,Mon,"Plotting and Visualization
+* Ch 8: Data Wrangling: Join, Combine, Reshape
+",
+y,,7,26-Sep,Wed,"Plotting and Visualization
 
 * matplotlib
 * pandas
 * Other (seaborn)
 * Web Based Visualization (plotly, bokeh)","Python for Data Analysis
-Ch 9: Plotting and Visualization",
-y,,7,26-Sep,Wed,"Aggregation and Time Series (pandas revisited)
+
+* Ch 9: Plotting and Visualization
+",HW04
+y,,8,01-Oct,Mon,"Aggregation and Time Series (pandas revisited)
 
 * Group By
 * Aggregations (sum, count, etc.)
@@ -185,10 +199,12 @@ y,,7,26-Sep,Wed,"Aggregation and Time Series (pandas revisited)
 * Time Zones
 * Time Series
 * Windowing
-","
-Ch 10: Data Aggregation and Group By
-Ch 11: Time Series",HW04
-y,,8,01-Oct,Mon,"Relational Database Overview
+
+","Python for Data Analysis
+
+* Ch 10: Data Aggregation and Group By
+* Ch 11: Time Series",
+y,,9,03-Oct,Wed,"Relational Database Overview
 
 * Database vs File System Storage
 * Tabular Data Revisited
@@ -204,9 +220,7 @@ Basic Postgres Administration
 * Database Creation
 * ""Dont's""
 
-
-",,
-y,,9,03-Oct,Wed,"Creating Single Tables
+Creating Single Tables
 
 * Data Types
 * Simple Constraints (Unique)
