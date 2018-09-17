@@ -51,7 +51,7 @@ __Homework #01__ – due Tue, 9/11, at 11pm
 ,,2,10-Sep,Mon,"File I/O, Unicode and Strings
 
 * [Files, Encodings, Bytes and Strings](notebooks/files-unicode-bytes-strings.ipynb) (notebook)
-* [Data File Formats](slides/python/file-types.html) (slides)
+
 
 Sequence Types, Mapping Types, Sets
 
@@ -98,27 +98,8 @@ List/Dictionary/Set Comprehension
 * set comprehensions
 * dictionary comprehensions
 
-Vectors and Matrices (numpy)
 
-* numpy basics
-
-Tabular Data (pandas)
-
-* pandas basics
-
-Data Loading, Storage, and File Formats (revisisted)
-
-* pandas for reading files (csv, xls, etc.)
-* pandas for writing files
-* go through file formats from previous lecture, but using pandas
-
-
-","Python for Data Analysis 
-* Ch 4: Numpy Basics: Arrays and Vectors 
-* Ch 5. Getting Started with pandas
-* Ch 6. Data Loading, Storage, and File Formats
-  * Skip Web Requests
-  * Skip Databases","__Homework #02__ – due Tue, 9/18, at 11pm
+",,"
 
 <!--
 1. Classes, CSVs
@@ -132,7 +113,50 @@ Data Loading, Storage, and File Formats (revisisted)
   * music generator (numpy)
 -->
 "
-y,,4,17-Sep,Mon,"Data from the Web
+,,4,17-Sep,Mon,"Quick Review
+
+File Formats
+
+* [Data File Formats](slides/python/file-types.html) (slides)
+
+Tabular Data Preview / Homework
+
+Vectors and Matrices (numpy)
+
+* numpy basics
+","Python for Data Analysis 
+* Ch 4: Numpy Basics: Arrays and Vectors 
+* Ch 5. Getting Started with pandas
+* Ch 6. Data Loading, Storage, and File Formats
+  * Skip Web Requests
+  * Skip Databases","__Homework #02__ – due Mon, 9/24, at 11pm
+
+1. [Homework #02 Instructions](assignments/02.html) (DRAFT)"
+y,,5,19-Sep,Wed,"Tabular Data Continued
+
+* pandas basics
+
+Data Loading, Storage, and File Formats (revisisted)
+
+* pandas for reading files (csv, xls, etc.)
+* pandas for writing files
+* go through file formats from previous lecture, but using pandas
+
+","Python for Data Analysis
+
+* Ch 6: Data Loading, Storage, and File Formats
+  * Focus on Scraping
+  * Focus on APIs
+  * TODO: API Authentication 
+* Ch 7: Data Cleaning and Preparation
+* Ch 8: Data Wrangling: Join, Combine, Reshape","HW03
+* brute force attack web site 
+* use password dictionary
+* retrieving data from the web 
+* finance app?
+* cleaning data for analylsis"
+y,,6,24-Sep,Mon,"
+Data from the Web
 
 * Web APIs
   * API Authentication
@@ -146,12 +170,8 @@ y,,4,17-Sep,Mon,"Data from the Web
   * Beautiful Soup
   * lxml
   * Requests HTML
-","Python for Data Analysis
-* Ch 6: Data Loading, Storage, and File Formats
-  * Focus on Scraping
-  * Focus on APIs
-  * TODO: API Authentication ",
-y,,5,19-Sep,Wed,"Curating Data
+
+Curating Data
 
 * Open Data Sets
 * Terms of Use
@@ -165,15 +185,9 @@ Scrubbing / Cleaning Data
 Data Wrangling (without databases)
 
 * Joins
-* Pivots","Python for Data Analysis
-* Ch 7: Data Cleaning and Preparation
-* Ch 8: Data Wrangling: Join, Combine, Reshape","HW03
-* brute force attack web site 
-* use password dictionary
-* retrieving data from the web 
-* finance app?
-* cleaning data for analylsis"
-y,,6,24-Sep,Mon,"Plotting and Visualization
+* Pivots
+
+Plotting and Visualization
 
 * matplotlib
 * pandas

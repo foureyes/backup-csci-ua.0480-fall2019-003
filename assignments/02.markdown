@@ -1,0 +1,477 @@
+---
+layout: homework
+title: "Assignment #2"
+---
+<style>
+img {
+    border: 1px solid #000;
+}
+
+.warning {
+    background-color: yellow;
+    color: #aa1122;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.hintButton {
+    color: #7788ff;
+    cursor: pointer;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', hideHints);
+
+function hideHints(evt) {
+    document.querySelectorAll('.hint').forEach((ele, i) => {
+        const div = document.createElement('div');
+        div.id = 'hint' + i + 'Button';
+        ele.id = 'hint' + i;
+        ele.classList.add('hidden');
+        div.addEventListener('click', onClick);
+        div.textContent = 'Show Hint';
+        div.className = 'hintButton';
+        ele.parentNode.insertBefore(div, ele);
+    });
+
+}
+
+function onClick(evt) {
+    const hintId = this.id.replace('Button', '');
+    const hint = document.getElementById(hintId);
+    hint.classList.toggle('hidden');
+    this.textContent = this.textConent === 'Show Hint' ? 'Hide Hint' : 'Show Hint';
+}
+</script>
+
+# Assignment #2 - List Comprehensions, Classes, CSV, Tabular Data - Due Monday, Sep 24th at 11pm
+
+## (DRAFT - `Table` Specs to be Added!) 
+
+This assignment consists of two parts:
+
+1. `tabletools.py`
+2. Candy!
+
+Clone the homework #2 repository when it is created for you.
+
+## Goals
+
+* create classes
+	* implement magic methods
+	* create an iterator
+* use list comprehensions
+* work with csvs
+* use a lambda function
+* preview working with tabular data in Python
+
+## Part 1 - `tabletools.py`
+
+Working with tabular data as a two-dimensional `Array` is pretty common, but as soon as you try to do some simple operations like filtering based on column name, things get complicated quickly unless you throw in some additional libraries or tools. 
+
+In this homework, we'll being creating (a _maybe over-engineered_) module for reading in csvs and filtering rows based on column values. You'll have to use some Python features in your implementation, like `__iter__`, list comprehensions, etc.
+
+For example, imagine we had a csv containing peopel's names, the number of fruits they eat weekly, and their favorite color (um... idk?). This data is in a csv called `fruitarians.csv`, and can be visualized as a table (note that row # is not in the csv):
+
+```
+ row #    first        last   weekly_fruits_eaten  fav_color
+     0      abe       apple                     0        red
+     1      bob      banana                     4     yellow
+     2    carol     coconut                   100      white
+     3      bob   blueberry                     9       blue
+     4      eve      endive                    20      green
+     5  frances       fruit                     5          ?
+     6      ann       apple                    23      green
+```
+
+What if we'd like to run some reports on this? For example:
+
+* read in the csv...
+* what do the first three columns look like?
+* how many people have the last name, apple?
+* what is the first name and number of fruits eaten / week of everyone that eats more than 10 fruits a week
+* how many people have a first name less than 4 letters eat less than 10 fruit / week?
+
+We'll create an api to do this... and it'll look something like this:
+
+```
+import tabletools as tt
+
+# read in the csv
+t = tt.read_csv('fruitarians.csv')
+
+# what do the first three columns look like?
+t.head(3)
+
+"""
+                first                last weekly_fruits_eaten           fav_color
+0                 abe               apple                 0.0                 red
+1                 bob              banana                 4.0              yellow
+2               carol             coconut               100.0               white
+"""
+
+# how many people have the last name, apple?
+t[t['last'] == 'apple'].shape()[0]
+
+"""
+2
+"""
+
+# what is the first name and number of fruits eaten / week of everyone that eats more than 10 fruits a week
+t[t['weekly_fruits_eaten'] > 10][['first', 'weekly_fruits_eaten']]
+
+"""
+                first weekly_fruits_eaten
+2               carol               100.0
+4                 eve                20.0
+6                 ann                23.0
+"""
+
+# how many people have a first name less than 4 letters eat less than 10 fruit / week?
+def length_less_than(n):
+    def is_length_less_than_n(s):
+        return len(s) < n
+    return is_length_less_than_n
+first_name_three = t[t['first'].map(length_less_than(4))]
+first_name_three[first_name_three['weekly_fruits_eaten'] < 10]
+
+"""
+                first                last weekly_fruits_eaten           fav_color
+0                 abe               apple                 0.0                 red
+1                 bob              banana                 4.0              yellow
+3                 bob           blueberry                 9.0                blue
+"""
+```
+
+
+1. You'll be writing two classes:
+	* `LabelledList` - kind of like a `dict`, but ordered, allows _vectorized_ operations, and iterates over values instead of keys
+	* `Table` - a table of data with column labels
+2. Open `tabletools.py` in a text editor of your choice
+3. Write the classes mentioned above...
+	* __YOU MUST USE AT LEAST 4 LIST COMPREHENSIONS!__
+4. Using your previously implemented `tablestools.py` as a module, import it and use it in a notebook to do some very simple analysis on candy data!
+
+<hr>
+
+### `LabelledList`
+
+A `LabelledList` acts like a dictionary... but:
+
+* it's ordered (note that 3.7 has ordered dictionaries by default, though)
+* when you loop over it, you get values instead of keys
+* if you use a comparison operator with it... and a scalar value (a number, for example), that comparison is done on each value, yielding a new `LabelledList` composed of only `bool` values
+* duplicate 'keys' are allowed
+
+Here's how you might use it:
+
+```
+ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+ll['A'] # gives back value at label 'A'
+ll['BB'] # gives back new LabelledList composed of labels 'BB' and their values
+ll[['A', 'D', 'BB', 'BB']] # gives back new LabelledList composed of the labels specified in list... along with their values
+ll > 2 # gives back a new LabelledList composed of labels in original, along with boolean results of comparison
+```
+
+<hr>
+
+#### Properties:
+
+* `self.values` - contains the values in this `LabelledList` as a `list`
+	* ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+	* ll.values # [1, 2, 3, 4, 5]
+* `self.index` - contains the labels in this `LabelledList` as a `list`
+	* ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+	* ll.index # ['A', 'BB', 'BB', 'CCC', 'D']
+
+<hr>
+
+#### `__init__(self, data=None, index=None)`
+
+Creates a new `LabelledList`. 
+
+* `data` - the values stored in `self.values`; represents all of the values in this `LabelledList`
+* `index` - the labels associated with each value
+
+`data` and `index` are assumed to be the same length (no error checking is necessary) and the order of the elements in each list determines which values are associated with which labels (if data is `[0, 1]` and values are `['foo', 'bar']`, then the label `0` is associated with the value `'foo'`
+
+You can assume that the labels and values are only `str`, `int`, `float`, and `bool` (no type checking is needed in the constructor). Duplicate labels are allowed.
+
+Note that if `index` is `None` then the labels should be from 0 to the length of the data - 1:
+```
+list_with_default_labels = tt.LabelledList(['foo', 'bar', 'baz'])
+
+"""
+0 foo
+1 bar
+2 baz
+"""
+
+list.index # [0, 1, 2]
+```
+
+However, if `index` is provided...
+
+```
+ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+"""
+  A 1
+ BB 2
+ BB 3
+CCC 4
+  D 5
+"""
+```
+
+<hr>
+
+#### `__str__(self)` and `__repr__(self)`
+
+These two methods will give the string representation of a `Labelled List`. `__str__` is used for human readable format (such as when printing) and `__repr__` is used for displaying _what the object actually is_ (for example, debugging by just typing the object name in the interactive shell). 
+
+For our purposes, these will return the same string (in fact, one can call the other).
+
+The string should be a tabular format where labels are on the left and values on the right. You can space this out any way you like, as long as it's very clear what the labels and columns are.
+
+Using the earlier example, here's a nicely formatted `LabelledList`:
+
+```
+ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+"""
+  A 1
+ BB 2
+ BB 3
+CCC 4
+  D 5
+"""
+```
+
+It will be useful to use dynamically padded strings to maintain consistent widths for columns. This can be done with format strings and [the format specification mini language](https://docs.python.org/3/library/string.html#format-specification-mini-language). For example: 
+
+```
+s = 'foo'
+
+# print out 'foo' so that it's padded with spaces and tis total length is 10
+print(f'{s:>10})
+
+# results in:
+#       foo
+```
+
+The `:` signals that a format specifier is coming up. The `>` aligns right. Finally, the `10` is the total width of the new string (spaces will pad the left side).
+
+Of course, you may want the `10` to be variable...
+
+```
+vals_max_len = m # imagine that this is the length of the longest label
+label = s # imagine that this is a label whose length is shorter than the longest label
+# we want to pad this thing ^^^^
+
+# create a format specifier that right justifies and pads
+format_spec = '>{vals_max_len}' 
+
+# now add that format specifier to another formatted string by nesting curly braces!?
+f'{label:{format_spec}}'
+```
+
+Note that if the variable in the format string is a boolean and a format specifier is given, then the boolean will either be a 0 or 1 rather than `True` or `False` which is ok for our purposes (a work-around is to convert the boolean to a string first... then format with `f''`)
+
+<hr>
+
+#### `__getitem__(self, key_list)`
+
+`__getitem__` allows our object to be indexed / 'keyed' into as if it were a `dict`. In `LabelledList` the label is the key. Our implementation's key behavior depends on the type of the key:
+
+1. if the key is another `LabelledList` then the key is the `values` property of that labelled list (which is, of course a `list`... see below for how to handle `list`)
+2. if the key is a `list`, then that means that we're retrieving multiple labels and values, so a new `LabelledList` is returned with each label specified and its associated value (if a label occurs more than once, add all occurrences)
+3. if the key is specifically a list of `bool` values, then give back a new `LabelledList` where the only label and value pairs given are the ones where the position matches the position of a `True` in the incoming key list (you can assume that the list of `bool` values must be the same length as the `index` of labels... you can error handling if it makes it easier to debug your code, though!)
+4. given any single value as the label (such as `str`, `int`)... you will get back:
+	a. the value associated with that exact label if the label occurs only once
+	b. a new `LabelledList` composed of that label repeated, along with its values
+
+Ok. So that's pretty confusing. Here are some examples:
+
+```
+ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+
+# 4a (value is returned as is... just like a dict)
+ll['A']
+
+"""
+1
+"""
+
+# 2 (notice that all label value pairs matching label are given back)
+ll['A', 'BB'] 
+
+"""
+ A 1
+BB 2
+BB 3
+"""
+
+# 1
+ll[tt.LabelledList['A', 'BB']]
+
+"""
+ A 1
+BB 2
+BB 3
+"""
+
+# 3 (only the last two label value pairs have the same positions as True
+ll[[False, False, False, True, True]]
+
+"""
+CCC 4
+  D 5
+"""
+
+# 4b (new LabelledList is returned even though only single value key)
+ll['BB'] #
+
+"""
+BB 2
+BB 3
+"""
+```
+
+Use the built-in function, [`isinstance`](https://docs.python.org/3/library/functions.html#isinstance) to check if a value is a particular type:
+
+```
+isinstance(key_list, LabelledList)
+isinstance(key_list, list)
+```
+
+<hr>
+
+#### `__setitem__(self, key, value)`
+
+Like assignment for `dict`, but if duplicate keys exist all of those values change:
+
+```
+# using ll from previous examples where BB was associated with 2... then 3
+ll['BB'] = 100
+"""
+  A   1
+ BB 100
+ BB 100
+CCC   4
+  D   5
+"""
+```
+
+<hr>
+
+#### `__iter__(self)` 
+
+Implement `__iter__` so that it returns a new object that has a `__next__` method... for this, simple return `self.values` so that iterating over a `LabelledList` gives back values instead of keys:
+
+
+```
+# using the previous version of ll
+for val in ll:
+    print(val)
+"""
+1
+100
+100
+4
+5
+"""
+```
+
+<hr>
+
+#### `__eq__(self, scalar)`, `__ne__(self, scalar)`, `__gt__(self, scalar)`, `__lt__(self, scalar)`
+
+These methods all correspond to an associated comparison operator (`==`, `>`, etc.). Each makes an assumption that the only thing passed in is a numeric type (that is, the other operand is numeric when using the associated comparison operator). They should return a new `LabelledList` of `bool` values corresponding to the operation specified for every value compared to the `scalar` passed in.
+
+__This might be a good place to get in your four list comprehensions!__
+
+```
+tt.LabelledList([0, 1, 2, 3, 4]) > 2
+0 False
+1 False
+2 False
+3  True
+4  True
+```
+
+<hr>
+
+#### `map(self, f)`
+
+Gives back a new `LabelledList` with all of the values transformed to the result of calling `f` on that value.
+
+```
+def squared(n):
+    return n ** 2
+tt.LabelledList([5, 6, 7]).map(squared)
+0 25
+1 36
+2 49
+```
+
+<hr>
+
+### `Table`
+
+#### `__init__(self, data, index=None, columns=None)`
+
+#### `__str__(self)`
+
+#### `__repr__(self)`
+
+#### `__getitem__(self, col_list)`
+
+#### `__eq__(self, other)`
+
+#### `__ne__(self, other)`
+
+#### `head(self, n)`
+
+#### `tail(self, n)`
+
+#### `shape(self)`
+
+### `read_csv(fn)`
+<hr>
+
+## Part 2 - Candy!
+
+[Using the `candy-power-ranking` data set](https://data.fivethirtyeight.com/), explore the data using a notebook and your `LabelledList` and `Table` classes.
+
+* display the last 4 rows of the data set
+* show the candy name, if it's chocolate, if it's peanuty/almondy, and its win percentage for all candy that is chocolate
+* using the results above, add another criteria: only candies that are peanuty/almondy (that is... at the end, you'll only have a listing of chocolate and peanut candies!)
+* using the previous results... let's see how many chocolate and peanut candies lost (their win percentage is < than 50)
+* now... show the candies whose name starts with "Reese"
+* finally... show all the candies whose name is less than 10 characters long
+* __YOU MUST USE LAMBDAS FOR THE LAST TWO__
+
+## Annotations
+
+Add a `README.md` that [links to the lines of code (see this link for instructions how)](https://help.github.com/articles/creating-a-permanent-link-to-a-code-snippet/) where you have:
+
+* 4 list comprehensions
+* 2 lambdas
+
+Use this exact markdown format in your `README.md` to add links (including []'s and ()'s):
+
+```
+* List Comprehensions
+	1. [short description 1](https://path.copied/for/permalink/to/code)
+	2. [short description 2](https://path.copied/for/permalink/to/code)
+	3. [short description 3](https://path.copied/for/permalink/to/code)
+	4. [short description 4](https://path.copied/for/permalink/to/code)
+* Lambdas
+	1. [short description 1](https://path.copied/for/permalink/to/code)
+	2. [short description 2](https://path.copied/for/permalink/to/code)
+```
+
+Substitute a sentence describing your usage for `short description #`
+
