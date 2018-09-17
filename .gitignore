@@ -5,3 +5,4 @@ bower_components
 .DS_Store
 .jekyll-metadata
 .ipynb_checkpoints*
+notebooks/homework*-demo

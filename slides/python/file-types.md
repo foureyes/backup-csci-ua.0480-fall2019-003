@@ -180,7 +180,6 @@ Typically, __viewing XML in a text editor (or even your browser) results in all 
 * {:.fragment} language and platform independent
 * {:.fragment} __self-describing__ (through a schema and tags) and great for nested or _tree_ like data
 * {:.fragment} tags annotate text and provide structure, semantics and meta data to content
-* {:.fragment} see pottery example XML file &rarr;
 </section>
 
 <section markdown="block">
@@ -203,7 +202,7 @@ __Unlike XML, JSON does not require a predefined schema__. With that said, you'l
 * {:.fragment} ...for example: __GeoJSON__ for [geo-spatial data, such as longitude and latitude coordinates](http://geojson.org/)
 * {:.fragment} other examples include
 	* {:.fragment} a complete set of U.S. zip codes in JSON from [mongodb.org]( http://media.mongodb.org/zips.json?_ga=1.189730348.604843538.1465649834)
-	* {:.fragment} [stats.nba.com](stats.nba.com) loads data from [json files](http://stats.nba.com/js/data/widgets/home_playoffs.json) (check out Chrome's developer tools)
+	* {:.fragment} [stats.nba.com](https://stats.nba.com) loads data from [json files](http://stats.nba.com/js/data/widgets/home_playoffs.json) (check out Chrome's developer tools)
 	* {:.fragment} JSON is a very __common data interchange format for the web__ 
 
 </section>
