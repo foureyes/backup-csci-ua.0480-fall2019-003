@@ -49,7 +49,6 @@ function onClick(evt) {
 
 # Assignment #2 - List Comprehensions, Classes, CSV, Tabular Data - Due Monday, Sep 24th at 11pm
 
-## (DRAFT - `Table` Specs to be Added!) 
 
 This assignment consists of two parts:
 
@@ -418,23 +417,79 @@ tt.LabelledList([5, 6, 7]).map(squared)
 
 <hr>
 
-### `Table`
+### `Table` (DRAFT - More `Table` Specs to be Added!) 
+
+A `Table` represents tabular data with row labels (`index`) and column names (`columns`)... along with 2 dimensional grid of data (`data`).
+
+It supports operations for filtering by values in a column... as well as selecting specific columns.
+
+
+#### Properties
+
+* `self.values` - contains the values in this `Table` as a `list`
+    * `t = Table([[1, 2, 3],[4, 5, 6]],['a', 'b'], ['x', 'y', 'z'])`
+	* `.values # [[1, 2, 3],[4, 5, 6]]`
+* `self.index` - contains the row labels in this `Table` as a `list`
+    * `t = Table([[1, 2, 3],[4, 5, 6]],['a', 'b'], ['x', 'y', 'z'])`
+	* `t.index # ['a', 'b']`
+* `self.columns` - contains the column names  in this `Tabled` as a `list`
+    * `t = Table([[1, 2, 3],[4, 5, 6]],['a', 'b'], ['x', 'y', 'z'])`
+	* `t.index # ['x', 'y', 'z']`
 
 #### `__init__(self, data, index=None, columns=None)`
 
-#### `__str__(self)`
+If either `index` or `columns` are not included, then default to numeric values from 0 up to length of `index` - 1 or `columns` - 1
 
-#### `__repr__(self)`
+```
+t = Table([['foo', 'bar', 'baz'],['qux', 'quxx', 'corge']])
+
+      0     1     2
+0   foo   bar   baz
+1   qux  quxx corge
+```
+
+Otherwise, adding the `index` and `columns` as arguments will explicitly set the row labels and column names
+
+```
+t = Table(d, ['foo', 'bar', 'bazzy', 'qux', 'quxx'], ['a', 'b', 'c', 'd', 'e'])
+
+         a    b    c    d    e
+  foo 1000   10  100    1  1.0
+  bar  200    2  2.0 2000   20
+bazzy    3  300 3000  3.0   30
+  qux   40 4000  4.0  400    4
+ quxx    7    8    6    3   41
+```
+#### `__str__(self)` and `__repr__(self)`
+
+Format the table in any way such that rows and columns can be clearly distinguished. See the example below for a potential format (it's ultimately up to you how you'd like to format it, though... as long as the grader can read it). 
+
+Please read the notes for the `LabelledList` `__str__` and `__reper__` methods for info on setting a consistent width for cells.
+
+```
+t = Table([['foo', 'bar', 'baz'],['qux', 'quxx', 'corge']])
+
+      0     1     2
+0   foo   bar   baz
+1   qux  quxx corge
+```
 
 #### `__getitem__(self, col_list)`
 
-#### `__eq__(self, other)`
+```
+# Using LabeledList
+t = Table(d, ['foo', 'bar', 'bazzy', 'qux', 'quxx'], ['a', 'b', 'c', 'd', 'e'])
+         a    b
+  foo 1000   10
+  bar  200    2
+bazzy    3  300
+  qux   40 4000
+ quxx    7    8
+```
 
-#### `__ne__(self, other)`
+#### `__eq__(self, other)` and `__ne__(self, other)`
 
-#### `head(self, n)`
-
-#### `tail(self, n)`
+#### `head(self, n)` and `tail(self, n)`
 
 #### `shape(self)`
 
