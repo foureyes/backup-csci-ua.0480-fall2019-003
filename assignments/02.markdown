@@ -284,7 +284,7 @@ Note that if the variable in the format string is a boolean and a format specifi
 
 `__getitem__` allows our object to be indexed / 'keyed' into as if it were a `dict`. In `LabelledList` the label is the key. Our implementation's key behavior depends on the type of the key:
 
-1. if the key is another `LabelledList` then the key is the `values` property of that labelled list (which is, of course a `list`... see below for how to handle `list`)
+1. if the key is another `LabelledList` then the key is the `values` property of that labelled list (which is, of course a `list`... see below for how to handle `list` and a `list` of only `bool` values)
 2. if the key is a `list`, then that means that we're retrieving multiple labels and values, so a new `LabelledList` is returned with each label specified and its associated value (if a label occurs more than once, add all occurrences)
 3. if the key is specifically a list of `bool` values, then give back a new `LabelledList` where the only label and value pairs given are the ones where the position matches the position of a `True` in the incoming key list (you can assume that the list of `bool` values must be the same length as the `index` of labels... you can error handling if it makes it easier to debug your code, though!)
 4. given any single value as the label (such as `str`, `int`)... you will get back:
@@ -462,9 +462,11 @@ bazzy    3  300 3000  3.0   30
 ```
 #### `__str__(self)` and `__repr__(self)`
 
-Format the table in any way such that rows and columns can be clearly distinguished. See the example below for a potential format (it's ultimately up to you how you'd like to format it, though... as long as the grader can read it). 
+Again, these two methods will give the string representation of an object. `__str__` is used for a human readable format (for example, used with `print`), and `__repr__` is used for displaying _what the object actually is_ (for example, typing the object name Jupyter). Both of these methods return strings, and for our purposes, these can be the same string.
 
-Please read the notes for the `LabelledList` `__str__` and `__reper__` methods for info on setting a consistent width for cells.
+For a `Table` object, create a string representation in any way such that rows and columns can be clearly distinguished. See the example below for a potential format (it's ultimately up to you how you'd like to format it, though... as long as the grader can read it and determine which rows and columns are aligned). 
+
+Please read the notes for the `LabelledList` `__str__` and `__reper__` methods for info on setting a consistent width for cells using string formatting (`f'{foo:{format_spec}}'`).
 
 ```
 t = Table([['foo', 'bar', 'baz'],['qux', 'quxx', 'corge']])
@@ -475,6 +477,21 @@ t = Table([['foo', 'bar', 'baz'],['qux', 'quxx', 'corge']])
 ```
 
 #### `__getitem__(self, col_list)`
+
+`__getitem__` allows our `Table`  to be indexed / 'keyed' into as if it were a `dict`. The behavior of indexing or retrieving by key depends on the type of the value used as a key!
+
+Essentially, most keys result in selecting all rows, but specifying which columns to include in a new `Table` (for example `t['a'] selects column a from all rows, and t[['a', 'b']] selects column a and b from all rows. The main exception is a list or `LabelledList` of `bool` values... which specifies which rows to include based on position of the `bool` value and the position of the row (for example, if `t` has 2 rows, then t[[True, False]] will only give back the first row as a new `Table`. 
+
+For exact details, see below:
+
+1. if the key is a `LabelledList`, then the key is the `values` property of that labelled list (which is a `list`)... and a `Table` consisting of __only__ the columns contained in the `LabelledList` is returned (note that all rows are returned) ... note that if the `LabelledList` `values` are all `bool`, then follow the procedure for dealing with a list of `bool` values as shown below
+2. if the key is a `list`, then that means that we're retrieving multiple columns, so a new `Table` is returned including only the columns specified by the elements in the key list passed in. If a key list has repeated column names, duplicate the column. If a column name matches more than one column, add both columns.
+3. if the key is specifically a list of `bool` values, then give back a new `Table` where the only rows given are the ones where the position matches the position of a `True` in the incoming key list (you can assume that the list of `bool` values must be the same length as the total number of rows in the `Table` object)
+4. given any single value as the label (such as `str`, `int`)... you will get back:
+	a. _that_ column for all rows as a `LabelledList` if there is only one occurrence of that column name
+	b. a new `Table` composed of that column repeated if there are duplicate column names
+
+Once again, the behavior is complex enough to warrant examples:
 
 ```
 # Using LabeledList
