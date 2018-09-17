@@ -91,9 +91,9 @@ print(g(1, 2))
 
 
 <section markdown="block">
-## A Familiar Bit of Code
+## A Bit of Code
 
-Hey... we've seen the code below somewhere before, right? Some questions about it...
+Answer questions about the following code:
 
 * __what are the types of its arguments?__ &rarr;
 * __what is the type of its return?__ &rarr;
@@ -309,6 +309,32 @@ def shout(old_f):
 </section>
 
 <section markdown="block">
+## One Last Thing
+
+`__name__` and `__doc__` get mangled, so....
+
+<pre><code data-trim contenteditable>
+from functools import wraps
+def my_decorator(f):
+     @wraps(f)
+     def wrapper(*args, **kwds):
+         print('Calling decorated function')
+         return f(*args, **kwds)
+     return wrapper
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+@my_decorator
+def example():
+     """Docstring"""
+     print('Called example function')
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
 ## Why
 
 __I guess that's umm... useful? What are some applications of decorators?__ &rarr;
@@ -337,4 +363,5 @@ In reality, though...
 * __good thing decorators are easy to use!__
 
 </section>
+
 
