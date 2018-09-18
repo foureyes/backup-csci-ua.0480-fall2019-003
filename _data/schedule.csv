@@ -113,7 +113,9 @@ List/Dictionary/Set Comprehension
   * music generator (numpy)
 -->
 "
-,,4,17-Sep,Mon,"Quick Review
+,,4,17-Sep,Mon,"Review Classes
+
+* [Classes, Iterators, Generators](notebooks/classes-review.ipynb) (notebook)
 
 File Formats
 
@@ -123,7 +125,7 @@ Tabular Data Preview / Homework
 
 Vectors and Matrices (numpy)
 
-* numpy basics
+* [numpy basics](notebooks/numpy/numpy-basics.ipynb) (notebook)
 ","Python for Data Analysis 
 * Ch 4: Numpy Basics: Arrays and Vectors 
 * Ch 5. Getting Started with pandas
