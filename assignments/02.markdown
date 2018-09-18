@@ -147,52 +147,53 @@ first_name_three[first_name_three['weekly_fruits_eaten'] < 10]
 
 
 1. You'll be writing two classes:
-	* `LabelledList` - kind of like a `dict`, but ordered, allows _vectorized_ operations, and iterates over values instead of keys
+	* `LabeledList` - kind of like a `dict`, but ordered, allows _vectorized_ operations, and iterates over values instead of keys
 	* `Table` - a table of data with column labels
 2. Open `tabletools.py` in a text editor of your choice
 3. Write the classes mentioned above...
 	* __YOU MUST USE AT LEAST 4 LIST COMPREHENSIONS!__
+	* __YOU CANNOT USE THE FOLLOWING MODULES__: `numpy`, `pandas`, `csv`
 4. Using your previously implemented `tablestools.py` as a module, import it and use it in a notebook to do some very simple analysis on candy data!
 
 <hr>
 
-### `LabelledList`
+### `LabeledList`
 
-A `LabelledList` acts like a dictionary... but:
+A `LabeledList` acts like a dictionary... but:
 
 * it's ordered (note that 3.7 has ordered dictionaries by default, though)
 * when you loop over it, you get values instead of keys
-* if you use a comparison operator with it... and a scalar value (a number, for example), that comparison is done on each value, yielding a new `LabelledList` composed of only `bool` values
+* if you use a comparison operator with it... and a scalar value (a number, for example), that comparison is done on each value, yielding a new `LabeledList` composed of only `bool` values
 * duplicate 'keys' are allowed
 
 Here's how you might use it:
 
 ```
-ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+ll = tt.LabeledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
 ll['A'] # gives back value at label 'A'
-ll['BB'] # gives back new LabelledList composed of labels 'BB' and their values
-ll[['A', 'D', 'BB', 'BB']] # gives back new LabelledList composed of the labels specified in list... along with their values
-ll > 2 # gives back a new LabelledList composed of labels in original, along with boolean results of comparison
+ll['BB'] # gives back new LabeledList composed of labels 'BB' and their values
+ll[['A', 'D', 'BB', 'BB']] # gives back new LabeledList composed of the labels specified in list... along with their values
+ll > 2 # gives back a new LabeledList composed of labels in original, along with boolean results of comparison
 ```
 
 <hr>
 
 #### Properties:
 
-* `self.values` - contains the values in this `LabelledList` as a `list`
-	* ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+* `self.values` - contains the values in this `LabeledList` as a `list`
+	* ll = tt.LabeledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
 	* ll.values # [1, 2, 3, 4, 5]
-* `self.index` - contains the labels in this `LabelledList` as a `list`
-	* ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+* `self.index` - contains the labels in this `LabeledList` as a `list`
+	* ll = tt.LabeledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
 	* ll.index # ['A', 'BB', 'BB', 'CCC', 'D']
 
 <hr>
 
 #### `__init__(self, data=None, index=None)`
 
-Creates a new `LabelledList`. 
+Creates a new `LabeledList`. 
 
-* `data` - the values stored in `self.values`; represents all of the values in this `LabelledList`
+* `data` - the values stored in `self.values`; represents all of the values in this `LabeledList`
 * `index` - the labels associated with each value
 
 `data` and `index` are assumed to be the same length (no error checking is necessary) and the order of the elements in each list determines which values are associated with which labels (if data is `[0, 1]` and values are `['foo', 'bar']`, then the label `0` is associated with the value `'foo'`
@@ -201,7 +202,7 @@ You can assume that the labels and values are only `str`, `int`, `float`, and `b
 
 Note that if `index` is `None` then the labels should be from 0 to the length of the data - 1:
 ```
-list_with_default_labels = tt.LabelledList(['foo', 'bar', 'baz'])
+list_with_default_labels = tt.LabeledList(['foo', 'bar', 'baz'])
 
 """
 0 foo
@@ -215,7 +216,7 @@ list.index # [0, 1, 2]
 However, if `index` is provided...
 
 ```
-ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+ll = tt.LabeledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
 """
   A 1
  BB 2
@@ -229,16 +230,16 @@ CCC 4
 
 #### `__str__(self)` and `__repr__(self)`
 
-These two methods will give the string representation of a `Labelled List`. `__str__` is used for human readable format (such as when printing) and `__repr__` is used for displaying _what the object actually is_ (for example, debugging by just typing the object name in the interactive shell). 
+These two methods will give the string representation of a `Labeled List`. `__str__` is used for human readable format (such as when printing) and `__repr__` is used for displaying _what the object actually is_ (for example, debugging by just typing the object name in the interactive shell). 
 
 For our purposes, these will return the same string (in fact, one can call the other).
 
 The string should be a tabular format where labels are on the left and values on the right. You can space this out any way you like, as long as it's very clear what the labels and columns are.
 
-Using the earlier example, here's a nicely formatted `LabelledList`:
+Using the earlier example, here's a nicely formatted `LabeledList`:
 
 ```
-ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+ll = tt.LabeledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
 """
   A 1
  BB 2
@@ -282,29 +283,23 @@ Note that if the variable in the format string is a boolean and a format specifi
 
 #### `__getitem__(self, key_list)`
 
-`__getitem__` allows our object to be indexed / 'keyed' into as if it were a `dict`. In `LabelledList` the label is the key. Our implementation's key behavior depends on the type of the key:
+`__getitem__` allows our object to be indexed / 'keyed' into as if it were a `dict`. In `LabeledList` the label is the key. Our implementation's key behavior depends on the type of the key:
 
-1. if the key is another `LabelledList` then the key is the `values` property of that labelled list (which is, of course a `list`... see below for how to handle `list` and a `list` of only `bool` values)
-2. if the key is a `list`, then that means that we're retrieving multiple labels and values, so a new `LabelledList` is returned with each label specified and its associated value (if a label occurs more than once, add all occurrences)
-3. if the key is specifically a list of `bool` values, then give back a new `LabelledList` where the only label and value pairs given are the ones where the position matches the position of a `True` in the incoming key list (you can assume that the list of `bool` values must be the same length as the `index` of labels... you can error handling if it makes it easier to debug your code, though!)
+1. if the key is another `LabeledList` then the key is the `values` property of that labeled list (which is, of course a `list`... see below for how to handle `list` and a `list` of only `bool` values)
+2. if the key is a `list`, then that means that we're retrieving multiple labels and values, so a new `LabeledList` is returned with each label specified and its associated value (if a label occurs more than once, add all occurrences)
+3. if the key is specifically a list of `bool` values, then give back a new `LabeledList` where the only label and value pairs given are the ones where the position matches the position of a `True` in the incoming key list (you can assume that the list of `bool` values must be the same length as the `index` of labels... you can error handling if it makes it easier to debug your code, though!)
 4. given any single value as the label (such as `str`, `int`)... you will get back:
 	a. the value associated with that exact label if the label occurs only once
-	b. a new `LabelledList` composed of that label repeated, along with its values
+	b. a new `LabeledList` composed of that label repeated, along with its values
 
 Ok. So that's pretty confusing. Here are some examples:
 
 ```
-ll = tt.LabelledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
+ll = tt.LabeledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
 
-# 4a (value is returned as is... just like a dict)
-ll['A']
-
-"""
-1
-"""
-
-# 2 (notice that all label value pairs matching label are given back)
-ll['A', 'BB'] 
+# 1 (values aare taken from LabeledList as a list...
+# more than one label yields all label and value pairs)
+ll[tt.LabeledList['A', 'BB']]
 
 """
  A 1
@@ -312,8 +307,8 @@ BB 2
 BB 3
 """
 
-# 1
-ll[tt.LabelledList['A', 'BB']]
+# 2 (same as above, but with plain list)
+ll['A', 'BB'] 
 
 """
  A 1
@@ -329,7 +324,14 @@ CCC 4
   D 5
 """
 
-# 4b (new LabelledList is returned even though only single value key)
+# 4a (value is returned as is... just like a dict)
+ll['A']
+
+"""
+1
+"""
+
+# 4b (new LabeledList is returned even though only single value key)
 ll['BB'] #
 
 """
@@ -341,7 +343,7 @@ BB 3
 Use the built-in function, [`isinstance`](https://docs.python.org/3/library/functions.html#isinstance) to check if a value is a particular type:
 
 ```
-isinstance(key_list, LabelledList)
+isinstance(key_list, LabeledList)
 isinstance(key_list, list)
 ```
 
@@ -367,7 +369,7 @@ CCC   4
 
 #### `__iter__(self)` 
 
-Implement `__iter__` so that it returns a new object that has a `__next__` method... for this, simple return `self.values` so that iterating over a `LabelledList` gives back values instead of keys:
+Implement `__iter__` so that it returns a new object that has a `__next__` method... for this, simple return `self.values` so that iterating over a `LabeledList` gives back values instead of keys:
 
 
 ```
@@ -387,12 +389,12 @@ for val in ll:
 
 #### `__eq__(self, scalar)`, `__ne__(self, scalar)`, `__gt__(self, scalar)`, `__lt__(self, scalar)`
 
-These methods all correspond to an associated comparison operator (`==`, `>`, etc.). Each makes an assumption that the only thing passed in is a numeric type (that is, the other operand is numeric when using the associated comparison operator). They should return a new `LabelledList` of `bool` values corresponding to the operation specified for every value compared to the `scalar` passed in.
+These methods all correspond to an associated comparison operator (`==`, `>`, etc.). Each makes an assumption that the only thing passed in is a numeric type (that is, the other operand is numeric when using the associated comparison operator). They should return a new `LabeledList` of `bool` values corresponding to the operation specified for every value compared to the `scalar` passed in.
 
 __This might be a good place to get in your four list comprehensions!__
 
 ```
-tt.LabelledList([0, 1, 2, 3, 4]) > 2
+tt.LabeledList([0, 1, 2, 3, 4]) > 2
 0 False
 1 False
 2 False
@@ -404,12 +406,12 @@ tt.LabelledList([0, 1, 2, 3, 4]) > 2
 
 #### `map(self, f)`
 
-Gives back a new `LabelledList` with all of the values transformed to the result of calling `f` on that value.
+Gives back a new `LabeledList` with all of the values transformed to the result of calling `f` on that value.
 
 ```
 def squared(n):
     return n ** 2
-tt.LabelledList([5, 6, 7]).map(squared)
+tt.LabeledList([5, 6, 7]).map(squared)
 0 25
 1 36
 2 49
@@ -466,7 +468,7 @@ Again, these two methods will give the string representation of an object. `__st
 
 For a `Table` object, create a string representation in any way such that rows and columns can be clearly distinguished. See the example below for a potential format (it's ultimately up to you how you'd like to format it, though... as long as the grader can read it and determine which rows and columns are aligned). 
 
-Please read the notes for the `LabelledList` `__str__` and `__reper__` methods for info on setting a consistent width for cells using string formatting (`f'{foo:{format_spec}}'`).
+Please read the notes for the `LabeledList` `__str__` and `__reper__` methods for info on setting a consistent width for cells using string formatting (`f'{foo:{format_spec}}'`).
 
 ```
 t = Table([['foo', 'bar', 'baz'],['qux', 'quxx', 'corge']])
@@ -480,42 +482,139 @@ t = Table([['foo', 'bar', 'baz'],['qux', 'quxx', 'corge']])
 
 `__getitem__` allows our `Table`  to be indexed / 'keyed' into as if it were a `dict`. The behavior of indexing or retrieving by key depends on the type of the value used as a key!
 
-Essentially, most keys result in selecting all rows, but specifying which columns to include in a new `Table` (for example `t['a'] selects column a from all rows, and t[['a', 'b']] selects column a and b from all rows. The main exception is a list or `LabelledList` of `bool` values... which specifies which rows to include based on position of the `bool` value and the position of the row (for example, if `t` has 2 rows, then t[[True, False]] will only give back the first row as a new `Table`. 
+Essentially, most keys result in selecting all rows, but specifying which columns to include in a new `Table` (for example `t['a'] selects column a from all rows, and t[['a', 'b']] selects column a and b from all rows. The main exception is a list or `LabeledList` of `bool` values... which specifies which rows to include based on position of the `bool` value and the position of the row (for example, if `t` has 2 rows, then t[[True, False]] will only give back the first row as a new `Table`. 
+
+If there's ever only one column returned, give back a `LabeledList`. Otherwise, give back a `Table`.
 
 For exact details, see below:
 
-1. if the key is a `LabelledList`, then the key is the `values` property of that labelled list (which is a `list`)... and a `Table` consisting of __only__ the columns contained in the `LabelledList` is returned (note that all rows are returned) ... note that if the `LabelledList` `values` are all `bool`, then follow the procedure for dealing with a list of `bool` values as shown below
-2. if the key is a `list`, then that means that we're retrieving multiple columns, so a new `Table` is returned including only the columns specified by the elements in the key list passed in. If a key list has repeated column names, duplicate the column. If a column name matches more than one column, add both columns.
+1. if the key is a `LabeledList`, then the key is the `values` property of that labeled list (which is a `list`)... and a `Table` consisting of __only__ the columns contained in the `LabeledList` is returned (note that all rows are returned) ... note that if the `LabeledList` `values` are all `bool`, then follow the procedure for dealing with a list of `bool` values as shown below
+2. if the key is a `list`, then that means that we're retrieving multiple columns, so a new `Table` is returned including only the columns specified by the elements in the key list passed in. If a key list has repeated column names, duplicate the column. If a column name matches more than one column, add both columns in the resulting Table.
 3. if the key is specifically a list of `bool` values, then give back a new `Table` where the only rows given are the ones where the position matches the position of a `True` in the incoming key list (you can assume that the list of `bool` values must be the same length as the total number of rows in the `Table` object)
 4. given any single value as the label (such as `str`, `int`)... you will get back:
-	a. _that_ column for all rows as a `LabelledList` if there is only one occurrence of that column name
+	a. _that_ column for all rows as a `LabeledList` if there is only one occurrence of that column name
 	b. a new `Table` composed of that column repeated if there are duplicate column names
 
 Once again, the behavior is complex enough to warrant examples:
 
 ```
-# Using LabeledList
+#####
+# Remember... if only one column is given back, return a LabeledList
+# ...but if there's more than one column, give back a Table
+#####
+
+# 1 (using a LabeledList to select columns)
 t = Table(d, ['foo', 'bar', 'bazzy', 'qux', 'quxx'], ['a', 'b', 'c', 'd', 'e'])
+t[LabelledList(['a', 'b'])]
+"""
          a    b
   foo 1000   10
   bar  200    2
 bazzy    3  300
   qux   40 4000
  quxx    7    8
+"""
+
+# 2 (the first two columns are selected using a list of columns...
+# notice that repeat columns are allowed)
+t = Table([[15, 17, 19], [14, 16, 18]], columns=['x', 'y', 'z'])
+t[['x', 'x', 'y']]
+
+"""
+   x  x  y
+0 15 15 17
+1 14 14 16
+"""
+
+# 3 (select only the first and third rows by using a list of booleans)
+t = Table([[1, 2, 3], [4, 5, 6], [7, 8 , 9]], columns=['x', 'y', 'z'])
+t[[True, False, True]]
+
+"""
+  x y z
+0 1 2 3
+2 7 8 9
+"""
+
+# 4a (using a column name that matches only a single column gives
+# back a LabeledList... note no column names, but there are labels!)
+
+t = Table([[1, 2, 3], [4, 5, 6]], columns=['a', 'b', 'a'])
+t['b']
+
+"""
+0 2
+1 5
+"""
+
+# 4b (however, if more than one column matches column name, include
+# all matched columns in the resulting Table object)
+t = Table([[1, 2, 3], [4, 5, 6]], columns=['a', 'b', 'a'])
+t['a']
+
+"""
+  a a
+0 1 3
+1 4 6
+"""
 ```
+
 
 #### `__eq__(self, other)` and `__ne__(self, other)`
 
 #### `head(self, n)` and `tail(self, n)`
 
+Returns a `Table` showing the first or last `n` row respectively.
+
+```
+t = Table([[1, 2], [3, 4], [5, 6], [7, 8]], columns=['x', 'y'])
+
+print(t.head(2))
+
+"""
+  x y
+0 1 2
+1 3 4
+"""
+
+print(t.tail(2))
+
+"""
+  x y
+2 5 6
+3 7 8
+"""
+```
 #### `shape(self)`
 
+Gives back a tuple containing the number of rows and columns:
+
+```
+t = Table([[1, 2], [3, 4], [5, 6], [7, 8]], columns=['x', 'y'])
+t.shape()
+
+"""
+(4, 2)
+"""
+```
+
 ### `read_csv(fn)`
+
+Finally, in `tabletools.py`, write a function that reads in a `csv` file and gives back a `Table` object:
+
+1. assume that the first row is the header (it can be treated as column names)
+2. assume that there is no need to escape commas (a simple `split` will suffice)
+3. beware of leading and trailing whitespace (`strip` may be helpful)
+4. __convert numeric values to `floats`__ (use `try`/`except`... and look for `ValueError` specifically)
+
+To test your code, you can try to open a csv from your `tabletools.py` module. Once you're finished testing, you can comment out the code (or alternatively, you can wrap your test code in `if __name__ == '__main__':
+` to only run it when the module isn't being imported) 
+
 <hr>
 
 ## Part 2 - Candy!
 
-[Using the `candy-power-ranking` data set](https://data.fivethirtyeight.com/), explore the data using a notebook and your `LabelledList` and `Table` classes.
+[Using the `candy-power-ranking` data set](https://data.fivethirtyeight.com/), explore the data using a notebook and your `LabeledList` and `Table` classes.
 
 * display the last 4 rows of the data set
 * show the candy name, if it's chocolate, if it's peanuty/almondy, and its win percentage for all candy that is chocolate
@@ -544,6 +643,4 @@ Use this exact markdown format in your `README.md` to add links (including []'s 
 	1. [short description 1](https://path.copied/for/permalink/to/code)
 	2. [short description 2](https://path.copied/for/permalink/to/code)
 ```
-
-Substitute a sentence describing your usage for `short description #`
 
