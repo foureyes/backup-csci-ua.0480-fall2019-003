@@ -125,7 +125,7 @@ Tabular Data Preview / Homework
 
 Vectors and Matrices (numpy)
 
-* [numpy basics](notebooks/numpy/numpy-basics.ipynb) (notebook)
+* [quick numpy demo](notebooks/numpy/numpy-basics.ipynb) (notebook)
 ","Python for Data Analysis 
 * Ch 4: Numpy Basics: Arrays and Vectors 
 * Ch 5. Getting Started with pandas
@@ -138,7 +138,11 @@ Vectors and Matrices (numpy)
 __Quiz #03__ – due Wed, 9/26, at 11pm
 
 * (see NYU Classes)"
-y,,5,19-Sep,Wed,"Tabular Data Continued
+,,5,19-Sep,Wed,"Vectors and Matrices Continued (numpy)
+
+* [Numpy Array Basics](slides/python/numpy-basics.html)
+
+Tabular Data Continued
 
 * pandas basics
 
