@@ -160,12 +160,16 @@ Data Loading, Storage, and File Formats (revisisted)
   * Focus on APIs
   * TODO: API Authentication 
 * Ch 7: Data Cleaning and Preparation
-* Ch 8: Data Wrangling: Join, Combine, Reshape","HW03
+* Ch 8: Data Wrangling: Join, Combine, Reshape","<!--
+
+HW03
 * brute force attack web site 
 * use password dictionary
 * retrieving data from the web 
 * finance app?
-* cleaning data for analylsis"
+* cleaning data for analylsis
+
+-->"
 y,,6,24-Sep,Mon,"
 Data from the Web
 
