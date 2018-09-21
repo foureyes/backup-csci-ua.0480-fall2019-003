@@ -96,6 +96,7 @@ A platform will be provided for asking questions online as well as moderating di
 Extracting, transforming and analyzing data in myriad formats with traditional relational databases as well as non-relational databases. Data modeling, cloud databases, and API programming. Garnering insights using Python and current data analysis tools and libraries.
 
 Topics
+
 * data formats and retrieving data:
 	* data formats (JSON CSV TSV etc.)
 	* retrieving data with Python (web, file system, etc.)
@@ -120,7 +121,7 @@ Topics
 	* PostgreSQL on Amazon RDS
 	* S3
 	* hadoop on AWS or Apache Spark
-	* Lambda (optional)
+	* AWS Lambda 
 </div>
     </div>
     <div class="panel panel-default">
