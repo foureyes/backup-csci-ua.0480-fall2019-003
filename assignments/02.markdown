@@ -297,7 +297,7 @@ Ok. So that's pretty confusing. Here are some examples:
 ```
 ll = tt.LabeledList([1, 2, 3, 4, 5], ['A', 'BB', 'BB', 'CCC', 'D'])
 
-# 1 (values aare taken from LabeledList as a list...
+# 1 (values are taken from LabeledList as a list...
 # more than one label yields all label and value pairs)
 ll[tt.LabeledList(['A', 'BB'])]
 
@@ -308,7 +308,7 @@ BB 3
 """
 
 # 2 (same as above, but with plain list)
-ll['A', 'BB'] 
+ll[['A', 'BB']] 
 
 """
  A 1
