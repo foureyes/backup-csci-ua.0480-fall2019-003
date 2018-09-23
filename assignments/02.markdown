@@ -591,6 +591,7 @@ t4 = Table([[4, 5], [6, 7]], index=['r1', 'r2'])
 t1 == t4
 False
 ```
+(Note return value is _just_ a single boolean)
 
 #### `head(self, n)` and `tail(self, n)`
 
