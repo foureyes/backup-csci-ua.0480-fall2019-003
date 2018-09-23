@@ -145,7 +145,7 @@ Oh yes. Duplicate. Labels. R. Allowed. 👯
 
 <pre><code data-trim contenteditable>
 pd.Series(['Syracuse', 'Hoboken', 'Ithaca'], 
-	['NY', 'NJ', 'NY']) # (line continuation)
+    ['NY', 'NJ', 'NY']) # (line continuation)
 NY    Syracuse
 NJ     Hoboken
 NY      Ithaca
@@ -386,6 +386,31 @@ z     NaN
 </section>
 
 <section markdown="block">
+## Vectorized Arithmetic
+
+Yup ✅ ... works as you'd expect:
+
+<pre><code data-trim contenteditable>
+s = pd.Series([1, 2], ['x', 'y'])
+</code></pre>
+{:.fragment}
+
+
+<pre><code data-trim contenteditable>
+s - 2
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+x   -1
+y    0
+</code></pre>
+{:.fragment}
+
+</section>
+
+
+<section markdown="block">
 ## DataFrames 🖼  
 
 __You can think of a <span class="hl">DataFrame</span> as:__ &rarr;
@@ -426,24 +451,51 @@ Each method allows different ways to specify `data`, `index` and `columns`
 </section>
 
 <section markdown="block">
-## 
+## Implicit `index` and `columns`
+
+__Without the second or third arguments specified, `index` and `columns` are generated as 0 to length of rows or cols - 1__
 
 <pre><code data-trim contenteditable>
+# only data (index and columns generated)
 pd.DataFrame([[1, 2, 3], [4, 5, 6]])
 </code></pre>
+{:.fragment}
 
 <pre><code data-trim contenteditable>
    0  1  2
 0  1  2  3
 1  4  5  6
 </code></pre>
+{:.fragment}
+
+
+<pre><code data-trim contenteditable>
+# only data and index (columns generated)
+pd.DataFrame([[1, 2, 3], [4, 5, 6]], ['r1', 'r2'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+    0  1  2
+r1  1  2  3
+r2  4  5  6
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Creating DataFrames Continued
+
+__Of course, with all three, you can explictly set `data`, `index`, and `columns`__ &rarr;
 
 <pre><code data-trim contenteditable>
 pd.DataFrame(
-	[[1, 2, 3], [4, 5, 6], [7, 8, 9 ],   # data
-	['r1', 'r2', 'r3'],                  # index
-	['A', 'B', 'C'])                     # columns
+    [[1, 2, 3], [4, 5, 6], [7, 8, 9 ], # data
+    ['r1', 'r2', 'r3'],                # index
+    ['A', 'B', 'C'])                   # columns
 </code></pre>
+{:.fragment}
 
 <pre><code data-trim contenteditable>
     A  B  C
@@ -451,5 +503,199 @@ r1  1  2  3
 r2  4  5  6
 r3  7  8  9
 </code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Keyword Arguments
+
+__Like `Series`, you can mix and match with keyword arguments:__ &rarr;
+
+In the following code, notice that:
+{:.fragment}
+
+* {:.fragment} `data` is passed in as a positional argument,
+* {:.fragment} `index` is left out (to be generated automatically)
+* {:.fragment} `columns` is defined as a keyword argument
+
+<pre><code data-trim contenteditable>
+pd.DataFrame([[1, 2, 3], [4, 5, 6]], 
+    columns=['A', 'B', 'C'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+   A  B  C
+0  1  2  3
+1  4  5  6
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Retrieving Columns
+
+__Columns can be retrieved by:__
+
+* {:.fragment} indexing with a <span class="hl">single column name</span> 
+	* {:.fragment} (which may return a `Series` or `DataFrame`)
+* {:.fragment} indexing with a <span class="hl">list</span> of column names to return a `DataFrame`
+
+__Using the following `DataFrame`, let's check out some indexing possibilities__ &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+    columns=['foo', 'bar', 'baz'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+   foo  bar  baz
+0    4    5    6
+1    7    8    9
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Retrieving one Column
+
+__With a single column name, a column is returned as a `Series`__ &rarr; 
+
+<pre><code data-trim contenteditable>
+df['foo']
+0    4
+1    7
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+# note that the type and name of the column are usually
+# given too:
+Name: foo, dtype: int64
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+type(df['foo']) # we get a series back
+pandas.core.series.Series
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+df['foo'].name # note the name attribute!
+Out[107]: 'foo'
+</code></pre>
+{:.fragment}
+
+
+
+</section>
+
+
+<section markdown="block">
+## Retrieving Multiple Columns pt 1!
+
+__If a label in the `index` occurs more than once, then a `DataFrame` of multiple columns is returned rather than a single `Series`__ &rarr;
+
+
+<pre><code data-trim contenteditable>
+d = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+    columns=['a', 'b', 'a'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+d['a']
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+   a  a
+0  4  6
+1  7  9
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Retrieving Multiple Columns pt 2!
+
+__When indexing with a list of column names (even if there's only one name in the list), a `DataFrame` is returned with only the columns matching the names in the list included in the returned `DataFrame`__ &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+df[['foo', 'bar']]
+   foo  bar
+0    4    5
+1    7    8
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+type(df[['foo', 'bar']])
+pandas.core.frame.DataFrame
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+type(df[['foo']])  # list w/ 1 element
+pandas.core.frame.DataFrame # (still!)
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Reorganize / Repeat
+
+__Indexing can also be used to reorder columns and repeat columns__ &rarr;
+
+Given the `DataFrame` we've been working with:
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+    columns=['foo', 'bar', 'baz'])
+</code></pre>
+{:.fragment}
+
+__What `DataFrame` will we get back from:__ &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+df[['bar', 'bar', 'foo']]
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+   bar  bar  foo  # bar is repeated
+0    5    5    4  # and placed before
+1    8    8    7  # foo
+</code></pre>
+{:.fragment}
+
+</section>
+
+
+<section markdown="block">
+## If Key Doesn't Exist...
+
+__Regardless of whether or not a list or a single column is used for indexing into a `DataFrame`, a `KeyError` is raised if a key doesn't exist__ &rarr;
+
+
+<pre><code data-trim contenteditable>
+df[['foo', 'dne']]
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+KeyError: "['dne'] not in index"
+</code></pre>
+{:.fragment}
+
+
 
 </section>

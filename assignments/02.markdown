@@ -391,6 +391,8 @@ for val in ll:
 
 These methods all correspond to an associated comparison operator (`==`, `>`, etc.). Each makes an assumption that the only thing passed in is a numeric type (that is, the other operand is numeric when using the associated comparison operator). They should return a new `LabeledList` of `bool` values corresponding to the operation specified for every value compared to the `scalar` passed in.
 
+__If there is an index present, keep that index__
+
 __This might be a good place to get in your four list comprehensions!__
 
 ```
@@ -400,6 +402,13 @@ tt.LabeledList([0, 1, 2, 3, 4]) > 2
 2 False
 3  True
 4  True
+```
+
+```
+ll = tt.LabeledList([1, 2], ['x', 'y'])
+ll == 1
+x  True
+y False
 ```
 
 <hr>
@@ -505,7 +514,7 @@ Once again, the behavior is complex enough to warrant examples:
 
 # 1 (using a LabeledList to select columns)
 t = Table(d, ['foo', 'bar', 'bazzy', 'qux', 'quxx'], ['a', 'b', 'c', 'd', 'e'])
-t[LabelledList(['a', 'b'])]
+t[LabeledList(['a', 'b'])]
 """
          a    b
   foo 1000   10
@@ -561,6 +570,27 @@ t['a']
 
 
 #### `__eq__(self, other)` and `__ne__(self, other)`
+
+Only implement for `other` as a `Table` (you do not have to implement this for vectorized comparisons / arithmetic). Determines if two `Table` objects are equal by comparing the values in `values`, `index` and `columns`:
+
+```
+t1 = Table([[4, 5], [6, 7]])
+t2 = Table([[4, 5], [6, 7]])
+t1 == t2
+True
+```
+
+```
+t3 = Table([[4, 5], [6, 7]], columns=['a', 'b'])
+t1 == t3
+False
+```
+
+```
+t4 = Table([[4, 5], [6, 7]], index=['r1', 'r2'])
+t1 == t4
+False
+```
 
 #### `head(self, n)` and `tail(self, n)`
 
