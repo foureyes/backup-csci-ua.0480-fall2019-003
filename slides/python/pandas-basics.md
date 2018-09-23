@@ -357,33 +357,7 @@ s['x'] #  Series! x     7
 </section>
 
 
-<section markdown="block">
-## `Series` Operations
 
-`Series` operations align by label rather than position:  &rarr;
-
-* {:.fragment} if index pairs aren't the same (present in one, missing from the other), then <span class="hl">resulting `index`</span> will be both labels!
-* {:.fragment} missing values are inserted where labels to not match 
-
-__What is the result of the following operation?__ &rarr;
-{:.fragment}
-
-<pre><code data-trim contenteditable>
-s1 = pd.Series([1, 2], ['x', 'y'])
-s2 = pd.Series([9, 100], ['x', 'z'])
-
-s1 + s2
-</code></pre>
-{:.fragment}
-
-<pre><code data-trim contenteditable>
-x    10.0
-y     NaN
-z     NaN
-</code></pre>
-{:.fragment}
-
-</section>
 
 <section markdown="block">
 ## Vectorized Arithmetic
@@ -409,6 +383,185 @@ y    0
 
 </section>
 
+<section markdown="block">
+## Label Alignment
+
+__If the other operand is a `Series`, operations will be done based on label alignment__ &rarr;
+
+* {:.fragment} values for matching labels will be operated on
+* {:.fragment} non-matching labels result in `NaN` (in pandas, this means NA or missing)
+* {:.fragment} the union of labels will be the result of the operation
+
+__Let's start off with a straightforward one; what's the result of this operation?__ &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+s = pd.Series([1, 2], ['x', 'y'])
+s + pd.Series([9, 8], ['x', 'y']) # let's add!
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+x    10
+y    10
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Tricky Label Alignment
+
+__Now for something a little tricker. What is the result of this operation?__ &rarr;
+
+<pre><code data-trim contenteditable>
+s = pd.Series([1, 2], ['x', 'y'])
+s + pd.Series([9, 100], ['x', 'z']) # tricky!
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+x    10.0
+y     NaN
+z     NaN
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Alignment Summary
+
+__`Series` operations align by label rather than position:  &rarr;__
+
+* {:.fragment} if index pairs aren't the same (present in one, missing from the other), then <span class="hl">resulting `index`</span> will be both labels!
+* {:.fragment} missing values are inserted where labels to not match 
+
+<pre><code data-trim contenteditable>
+s1 = pd.Series([1, 2], ['x', 'y'])
+s2 = pd.Series([9, 100], ['x', 'z'])
+
+s1 + s2
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+x    10.0
+y     NaN
+z     NaN
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Comparison Operations
+
+__Comparison operators work similarly to arithmetic operators, except, of course, they return boolean values... what are the results of the following comparisons?__ &rarr;
+
+<pre><code data-trim contenteditable>
+s = pd.Series([1, 2], ['x', 'y'])
+</code></pre>
+
+<pre><code data-trim contenteditable>
+s == 1
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+x     True # such vectorized!
+y    False
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+s  == pd.Series([1, 2], ['x', 'y'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+x    True # compared by value
+y    True
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Nothing Compares 2 U 
+
+__One big difference ⚠️ though... if the labels don't align, you get an exception (`ValueError`)!__
+
+<pre><code data-trim contenteditable>
+s = pd.Series([1, 2], ['x', 'y'])
+</code></pre>
+
+<pre><code data-trim contenteditable>
+# try this...
+s  == pd.Series([1, 99], ['x', 'z'])
+
+# or this...
+s  == pd.Series([1], ['x'])
+</code></pre>
+
+<pre><code data-trim contenteditable>
+ValueError: Can only compare identically-labeled Series objects
+</code></pre>
+</section>
+
+
+<section markdown="block">
+## Filtering with Booleans 
+
+__Just like a `numpy` `ndarray`, you can filter a `Series` with a list of booleans:__ &rarr;
+
+<pre><code data-trim contenteditable>
+s = pd.Series([2, 3, 4, 5]) #  0    2
+                            #  1    3
+                            #  2    4
+                            #  3    5
+</code></pre>
+{:.fragment}
+
+What does the following expression give us? &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+s[[True, False, True, False]]	
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+0    2   # keeps 1st and 3rd (index 0 and 2)
+2    4   # discards 2nd and 4th (index 1 and 3)
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Using Results of Comparison to Filter
+
+__A common pattern is to use a `Series` of booleans returned from a comparison to filter out values:__ 
+
+What is the result of the following? &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+s = pd.Series([5, 6, 7, 8], index=['A', 'B', 'C', 'D'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+s[s % 2 == 1]
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+A    5   # only odds, s % 2 == 1 
+C    7   # gives us booleans [T, F, T, F]
+</code></pre>
+{:.fragment}
+</section>
 
 <section markdown="block">
 ## DataFrames 🖼  
@@ -687,7 +840,13 @@ __Regardless of whether or not a list or a single column is used for indexing in
 
 
 <pre><code data-trim contenteditable>
-df[['foo', 'dne']]
+df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+    columns=['foo', 'bar', 'baz'])
+</code></pre>
+
+<pre><code data-trim contenteditable>
+d['dne']             
+df[['foo', 'dne']] # both of these are 🚫
 </code></pre>
 {:.fragment}
 
@@ -695,7 +854,136 @@ df[['foo', 'dne']]
 KeyError: "['dne'] not in index"
 </code></pre>
 {:.fragment}
+</section>
+
+<section markdown="block">
+## Setting Values
+
+__Now that we know how to retrieve values with indexing... let's see how we can set values__ &rarr;
 
 
 
+<pre><code data-trim contenteditable>
+ df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+     columns=['foo', 'bar', 'baz'])
+</code></pre>
+
+<pre><code data-trim contenteditable>
+df['foo'] = 77
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+   foo  bar  baz
+0   77    5    6
+1   77    8    9
+</code></pre>
+{:.fragment}
+
+
+
+
+<pre><code data-trim contenteditable>
+df['foo'] = [99, 100]
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+   foo  bar  baz
+0   99    5    6
+1  100    8    9
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+df['foo'] = pd.Series([-8, -9])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+   foo  bar  baz
+0   -8    5    6
+1   -9    8    9
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Assignment Errors
+
+When you are assigning lists or arrays to a column, the value’s length must match the length of the DataFrame. If you assign a Series, its labels will be realigned exactly to the DataFrame’s index, inserting missing values in any holes:
+<pre><code data-trim contenteditable>
+df['foo'] = [100]
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+ValueError: Length of values does not match length of index
+</code></pre>
+{:.fragment}
+
+
+</section>
+
+<section markdown="block">
+## Adding Columns
+
+<pre><code data-trim contenteditable>
+ df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+     columns=['foo', 'bar', 'baz'])
+</code></pre>
+
+df['qux'] = [20, 30]
+
+In [212]: df
+Out[212]:
+   foo  bar  baz  qux
+0    4    5    6   20
+1    7    8    9   30
+
+In [213]: df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+     ...:     columns=['foo', 'bar', 'baz'])
+     ...:
+</section>
+
+<section markdown="block">
+## Removing Columns: a Mystery ⁉️
+
+__User the `.drop` method on a `DataFrame` to remove a column. Let's try it:__ &rarr;
+
+<pre><code data-trim contenteditable>
+# Let's use our classic...
+df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+    columns=['foo', 'bar', 'baz'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+df.drop('baz') #  🤔
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+KeyError: "['baz'] not found in axis"
+# 😮 what happened!?
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Removing Columns 
+
+__Remember `numpy`... specifically the significance of each and axis?__ &rarr;
+
+
+<pre><code data-trim contenteditable>
+df.drop('baz', axis=1)
+</code></pre>
+
+<pre><code data-trim contenteditable>
+   foo  bar
+0    4    5
+1    7    8
+</code></pre>
 </section>
