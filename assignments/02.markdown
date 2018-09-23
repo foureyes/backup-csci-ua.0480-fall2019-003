@@ -47,7 +47,7 @@ function onClick(evt) {
 }
 </script>
 
-# Assignment #2 - List Comprehensions, Classes, CSV, Tabular Data - Due Monday, Sep 24th at 11pm
+# Assignment #2 - List Comprehensions, Classes, CSV, Tabular Data - Due Wed, Sep 26th (extended from Mon, Sep 24th) at 11pm
 
 
 This assignment consists of two parts:
