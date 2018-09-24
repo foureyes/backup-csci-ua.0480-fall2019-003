@@ -594,7 +594,7 @@ __Like `Series`, there are multiple ways to create `DataFrames`__ &rarr;
 
 * {:.fragment} positional arguments
 	* {:.fragment} with an`ndarray` or other sequence types
-	* {:.fragment} with a `dict`
+	* {:.fragment} with a `dict` of `dict` objects
 * {:.fragment} using keyword arguments
 * {:.fragment} mixing positional and keyword arguments
 
@@ -660,6 +660,31 @@ r3  7  8  9
 </section>
 
 <section markdown="block">
+## Nested Dictionaries
+
+__A nested `dict` can be used to explicitly define row labels and column names as well__ &rarr;
+
+* {:.fragment} <span class="hl">outer</span> keys are <span class="hl">column</span> names
+* {:.fragment} <span class="hl">inner</span> keys are <span class="hl">row</span> names
+
+<pre><code data-trim contenteditable>
+d = pd.DataFrame({
+    "colA": {'r1': 6, 'r2': 7},
+    "colB": {'r1': 8, 'r2': 9}
+})
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+    colA  colB
+r1     6     8
+r2     7     9
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
 ## Keyword Arguments
 
 __Like `Series`, you can mix and match with keyword arguments:__ &rarr;
@@ -683,6 +708,20 @@ pd.DataFrame([[1, 2, 3], [4, 5, 6]],
 1  4  5  6
 </code></pre>
 {:.fragment}
+
+</section>
+
+<section markdown="block">
+## `values` `index` `columns`
+
+__The data, row labels and columns can all be retrieved by accessing attributes / properties on a `DataFrame` instance__ &rarr;
+
+* {:.fragment} `values` - the data for the table
+* {:.fragment} `index` - the row labels
+* {:.fragment} `columns` - the column names
+* {:.fragment} there's also `dtype`...
+	* since a `DataFrame` and `Series` can hold different types...
+	*`dtype` will be set to the `type` that can accommodate all the values in the `DataFrame`
 
 </section>
 
@@ -861,12 +900,17 @@ KeyError: "['dne'] not in index"
 
 __Now that we know how to retrieve values with indexing... let's see how we can set values__ &rarr;
 
-
+Using our usual example:... 
+{:.fragment}
 
 <pre><code data-trim contenteditable>
  df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
      columns=['foo', 'bar', 'baz'])
 </code></pre>
+{:.fragment}
+
+<span class="hl">Assigning to a scalar sets all values of a column:</span>
+{:.fragment}
 
 <pre><code data-trim contenteditable>
 df['foo'] = 77
@@ -882,6 +926,13 @@ df['foo'] = 77
 
 
 
+
+</section>
+
+<section markdown="block">
+## Assignment Continued
+
+__Of course, you can set each value in a column to a specific value using a `list` or even a `Series`__ &rarr;
 
 <pre><code data-trim contenteditable>
 df['foo'] = [99, 100]
@@ -908,11 +959,51 @@ df['foo'] = pd.Series([-8, -9])
 {:.fragment}
 
 </section>
+<section markdown="block">
+## About That `Series`
+
+__As you might expect, if you assign a `Series` to a `DataFrame` column:__ &rarr;
+
+* {:.fragment} the labels will be aligned to perform assignment
+* {:.fragment} with... `DataFrame` labels missing from the `Series` filled with `NaN` 
+* {:.fragment} and extra labels in the `Series` (not matching any of the `DataFrame`’s labels) ignored
+
+
+</section>
+
+<section markdown="block">
+## More `Series` Assignment
+
+__Pay attention to the mismatched labels...__ &rarr;
+
+<pre><code data-trim contenteditable>
+df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+    index=['r1', 'r2'],
+    columns=['foo', 'bar', 'baz'])
+#     foo  bar  baz
+# r1    4    5    6
+# r2    7    8    9
+</code></pre>
+
+<pre><code data-trim contenteditable>
+df['foo'] = pd.Series([100, 200], ['r1', 'r3'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+      foo  bar  baz
+r1  100.0    5    6    
+r2    NaN    8    9   # r2 is added as NaN
+                      # r3 ignored
+</code></pre>
+{:.fragment}
+
+</section>
 
 <section markdown="block">
 ## Assignment Errors
 
-When you are assigning lists or arrays to a column, the value’s length must match the length of the DataFrame. If you assign a Series, its labels will be realigned exactly to the DataFrame’s index, inserting missing values in any holes:
+__When assigning a `list`/`ndarray` or `Series` to a column, the length of the data must match the length of the `DataFrame` column.__ &rarr;
 <pre><code data-trim contenteditable>
 df['foo'] = [100]
 </code></pre>
@@ -929,31 +1020,34 @@ ValueError: Length of values does not match length of index
 <section markdown="block">
 ## Adding Columns
 
+__If the column name used in assignment does not exist, a new column will be created__ &rarr;
+
 <pre><code data-trim contenteditable>
- df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
-     columns=['foo', 'bar', 'baz'])
+df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+    columns=['foo', 'bar', 'baz'])
 </code></pre>
+{:.fragment}
 
-df['qux'] = [20, 30]
+<pre><code data-trim contenteditable>
+df['qux'] = [20, 30]  # qux is new!
+</code></pre>
+{:.fragment}
 
-In [212]: df
-Out[212]:
+<pre><code data-trim contenteditable>
    foo  bar  baz  qux
 0    4    5    6   20
 1    7    8    9   30
+</code></pre>
+{:.fragment}
 
-In [213]: df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
-     ...:     columns=['foo', 'bar', 'baz'])
-     ...:
 </section>
 
 <section markdown="block">
 ## Removing Columns: a Mystery ⁉️
 
-__User the `.drop` method on a `DataFrame` to remove a column. Let's try it:__ &rarr;
+__The `.drop` method on a `DataFrame` can be used remove a column. Let's try it:__ &rarr;
 
 <pre><code data-trim contenteditable>
-# Let's use our classic...
 df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
     columns=['foo', 'bar', 'baz'])
 </code></pre>
@@ -972,18 +1066,126 @@ KeyError: "['baz'] not found in axis"
 </section>
 
 <section markdown="block">
-## Removing Columns 
+## Axis Flashback 
 
-__Remember `numpy`... specifically the significance of each and axis?__ &rarr;
+__Remember `numpy`... specifically the significance of `.shape` and axis?__ &rarr;
 
+* {:.fragment} `.shape` describes the length of the dimensions of an `ndarray`
+* {:.fragment} a two-dimensional `ndarray` has a `.shape` that's a two-element tuple
+* {:.fragment} what does the first element of that tuple represent? and the second?
+	* {:.fragment} the first, <span class="hl">axis 0</span>, represents <span class="hl">rows</span>
+	* {:.fragment} the second, <span class="hl">axis 1</span>, represents <span class="hl">columns</span>
+
+</section>
+
+<section markdown="block">
+## Really Removing Columns 
+
+__`.drop` takes `axis` as a keyword argument__ &rarr;
+
+* {:.fragment} buuuut... it's default value is 0 (rows! 😮)
+* {:.fragment} to remove a column, use `axis=1`
 
 <pre><code data-trim contenteditable>
+df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+    columns=['foo', 'bar', 'baz'])
+
 df.drop('baz', axis=1)
 </code></pre>
+{:.fragment}
 
 <pre><code data-trim contenteditable>
-   foo  bar
-0    4    5
+   foo  bar  # baz column
+0    4    5  # was removed!
 1    7    8
 </code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Dictionary Life (`del`)
+
+__Similar to deleting keys/values in dictionaries, the `del` keyword cal also be used to drop columns__ &rarr;
+
+<pre><code data-trim contenteditable>
+df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+    columns=['foo', 'bar', 'baz'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+del df['baz']
+</code></pre>
+
+<pre><code data-trim contenteditable>
+   foo  bar  # again, baz
+0    4    5  # is removed!
+1    7    8
+</code></pre>
+</section>
+
+<section markdown="block">
+## Ok, How About Rows?
+
+__Indexing into rows can be done by indexing into the `loc` attribute / property of a `DataFrame` object.__ &rarr;
+
+* {:.fragment} again, a `Series` is returned
+* {:.fragment} the labels are the `column` names, though!
+
+<pre><code data-trim contenteditable>
+df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
+	columns=['foo', 'bar', 'baz'])
+</code></pre>
+
+<pre><code data-trim contenteditable>
+df.loc[1]
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+foo    7  # last row returned
+bar    8  # (2nd row is index 1)
+baz    9
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Transpose
+
+__Rows can be made into columns (and columns to rows) using transpose:__ &rarr;
+
+Imagine that `df` looks like this `DataTable`:
+
+<pre><code data-trim contenteditable>
+   foo  bar  baz
+0    4    5    6
+1    7    8    9
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+df.T      # transpose....
+     0  1
+foo  4  7
+bar  5  8
+baz  6  9
+</code></pre>
+{:.fragment}
+
+</section>
+
+
+<section markdown="block">
+## Index
+
+__The index of a `DataFrame` is actually an object itself (not just a simpley `array` of labels... Apropriately, it's called an `Index`:__ &rarr;
+
+* {:.fragment} holds axis labels (row labels and column names)
+* {:.fragment} immutable
+* {:.fragment} can be shared among objects
+* {:.fragment} _like_ a fixed size set
+	* {:.fragment} (shares some operations
+	* {:.fragment} (but can contain duplicates)
+
 </section>
