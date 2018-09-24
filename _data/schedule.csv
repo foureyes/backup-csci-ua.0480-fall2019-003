@@ -147,11 +147,6 @@ Tabular Data Continued
 
 * pandas basics
 
-Data Loading, Storage, and File Formats (revisisted)
-
-* pandas for reading files (csv, xls, etc.)
-* pandas for writing files
-* go through file formats from previous lecture, but using pandas
 
 ","Python for Data Analysis
 
@@ -175,6 +170,17 @@ HW03
 * [Pandas Basics](slides/python/pandas-basics.html) (slides)
 
 <!--
+
+
+
+-->","Python for Data Analysis
+Ch 9: Plotting and Visualization",
+y,,7,26-Sep,Wed,"Data Loading, Storage, and File Formats (revisisted)
+
+* pandas for reading files (csv, xls, etc.)
+* pandas for writing files
+* go through file formats from previous lecture, but using pandas
+
 Data from the Web
 
 * Web APIs
@@ -208,13 +214,14 @@ Data Wrangling (without databases)
 
 Plotting and Visualization
 
-* matplotlib
+","
+Ch 10: Data Aggregation and Group By
+Ch 11: Time Series",HW04
+y,,8,01-Oct,Mon,"* matplotlib
 * pandas
 * Other (seaborn)
 * Web Based Visualization (plotly, bokeh)
--->","Python for Data Analysis
-Ch 9: Plotting and Visualization",
-y,,7,26-Sep,Wed,"Aggregation and Time Series (pandas revisited)
+Aggregation and Time Series (pandas revisited)
 
 * Group By
 * Aggregations (sum, count, etc.)
@@ -222,10 +229,12 @@ y,,7,26-Sep,Wed,"Aggregation and Time Series (pandas revisited)
 * Time Zones
 * Time Series
 * Windowing
-","
-Ch 10: Data Aggregation and Group By
-Ch 11: Time Series",HW04
-y,,8,01-Oct,Mon,"Relational Database Overview
+
+
+
+
+",,
+y,,9,03-Oct,Wed,"Relational Database Overview
 
 * Database vs File System Storage
 * Tabular Data Revisited
@@ -241,9 +250,7 @@ Basic Postgres Administration
 * Database Creation
 * ""Dont's""
 
-
-",,
-y,,9,03-Oct,Wed,"Creating Single Tables
+Creating Single Tables
 
 * Data Types
 * Simple Constraints (Unique)
