@@ -148,14 +148,7 @@ Tabular Data Continued
 * pandas basics
 
 
-","Python for Data Analysis
-
-* Ch 6: Data Loading, Storage, and File Formats
-  * Focus on Scraping
-  * Focus on APIs
-  * TODO: API Authentication 
-* Ch 7: Data Cleaning and Preparation
-* Ch 8: Data Wrangling: Join, Combine, Reshape","<!--
+",,"<!--
 
 HW03
 * brute force attack web site 
@@ -173,8 +166,7 @@ HW03
 
 
 
--->","Python for Data Analysis
-Ch 9: Plotting and Visualization",
+-->",,
 y,,7,26-Sep,Wed,"Data Loading, Storage, and File Formats (revisisted)
 
 * pandas for reading files (csv, xls, etc.)
@@ -207,6 +199,18 @@ Scrubbing / Cleaning Data
 * Handling Missing Data
 * Transforming Data
 
+
+","Python for Data Analysis
+
+* Ch 6: Data Loading, Storage, and File Formats
+  * Focus on Scraping
+  * Focus on APIs
+* API Authentication 
+* Ch 7: Data Cleaning and Preparation
+
+
+",HW04
+y,,8,01-Oct,Mon,"
 Data Wrangling (without databases)
 
 * Joins
@@ -214,13 +218,11 @@ Data Wrangling (without databases)
 
 Plotting and Visualization
 
-","
-Ch 10: Data Aggregation and Group By
-Ch 11: Time Series",HW04
-y,,8,01-Oct,Mon,"* matplotlib
+* matplotlib
 * pandas
 * Other (seaborn)
 * Web Based Visualization (plotly, bokeh)
+
 Aggregation and Time Series (pandas revisited)
 
 * Group By
@@ -233,7 +235,12 @@ Aggregation and Time Series (pandas revisited)
 
 
 
-",,
+","Python for Data Analysis
+
+* Ch 9: Plotting and Visualization
+* Ch 8: Data Wrangling: Join, Combine, Reshape
+* Ch 10: Data Aggregation and Group By
+* Ch 11: Time Series",
 y,,9,03-Oct,Wed,"Relational Database Overview
 
 * Database vs File System Storage
