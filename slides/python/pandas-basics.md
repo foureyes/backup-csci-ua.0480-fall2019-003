@@ -32,14 +32,16 @@ However, unlike numpy, <span class="hl">pandas specializes in dealing with tabul
 
 
 <section markdown="block">
-## Two Types!
+## Some Types!
 
-__pandas offers two types for manipulation of tabular data:__ &rarr;
+__pandas offers a few types for manipulation of tabular data:__ &rarr;
 
 * {:.fragment} __Series__ 
 	* {:.fragment} one-dimensional, labeled, array
 * {:.fragment} __DataFrame__
 	* {:.fragment} two-dimensional data structure (think of a table with columns and rows)
+* {:.fragment} Bonus Type! __Index__
+	* {:.fragment} the type that holds the labels for a `Series` and `DataFrame`
 
 Let's check out a `Series` first!
 {:.fragment}
@@ -356,6 +358,58 @@ s['x'] #  Series! x     7
 {:.fragment}
 </section>
 
+<section markdown="block">
+## Indexing by Position
+
+__Just like a `numpy` `ndarray`, you can still use position for indexing__ &rarr;
+
+<pre><code data-trim contenteditable>
+s = pd.Series([2, 3, 4, 5], list('abcd'))
+</code></pre>
+
+Both of the following... &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+s['a']
+s[0]
+</code></pre>
+{:.fragment}
+
+...gives us `2`
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Slicing with Labels
+
+__Although indexing by labels and position is similar, there's a pretty big gotcha when slicing ⚠️__ &rarr;
+
+* {:.fragment} slicing by position works as expected
+* {:.fragment} slicing with labels is inclusive at the end
+
+<pre><code data-trim contenteditable>
+s = pd.Series([2, 3, 4, 5, 6], list('abcde'))
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+s[1:3]
+b    3
+c    4  #👌
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+s['b':'d']
+b    3
+c    4
+d    5 # WAT!?😮
+</code></pre>
+{:.fragment}
+
+</section>
 
 
 
@@ -841,12 +895,9 @@ pandas.core.frame.DataFrame # (still!)
 </section>
 
 <section markdown="block">
-## Reorganize / Repeat
+## Rearrange / Repeat
 
-__Indexing can also be used to reorder columns and repeat columns__ &rarr;
-
-Given the `DataFrame` we've been working with:
-{:.fragment}
+__Indexing can also be used to to retrieve a new `DataFrame` with reordered columns and/or repeated columns__ &rarr;
 
 <pre><code data-trim contenteditable>
 pd.DataFrame([[4, 5, 6], [7, 8, 9]],
@@ -896,9 +947,136 @@ KeyError: "['dne'] not in index"
 </section>
 
 <section markdown="block">
+## `DataFrame` Slices Gives Rows!
+
+__If a `DataFrame` is sliced BY POSITION, it yields rows rather than columns__ &rarr;
+
+<pre><code data-trim contenteditable>
+d = pd.DataFrame({"cA": {'r1': 1, 'r2': 2, 'r3': 3},
+                  "cB": {'r1': 4, 'r2': 5, 'r3': 6},
+                  "cC": {'r1': 7, 'r2': 8, 'r3': 9}})
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+d[:2] # slicing refers to rows here! 
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+    cA  cB  cC  # only first two rows!
+r1   1   4   7
+r2   2   5   8
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Indexing with List of Booleans / Arrays
+
+__Much like `Series` and `ndarray`, we can use a list or array of booleans to select parts of a `DataFrame`__
+
+* {:.fragment} a list/array of booleans filters `DataFrame` rows
+* {:.fragment} the length of the booleans must match the number of rows
+
+<pre><code data-trim contenteditable>
+d = pd.DataFrame({"cA": {'r1': 1, 'r2': 2, 'r3': 3},
+                  "cB": {'r1': 4, 'r2': 5, 'r3': 6},
+                  "cC": {'r1': 7, 'r2': 8, 'r3': 9}})
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+d[[False, True, True]] 
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+    cA  cB  cC # gimme last two rows!
+r2   2   5   8
+r3   3   6   9
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Constructing Boolean Selection 
+
+__Again, we don't have to manually create a Boolean `array`; it can be the result of a vectorized boolean comparison__ &rarr;
+
+Let's take this example...
+<pre><code data-trim contenteditable>
+d = pd.DataFrame({"cA": {'r1': 1, 'r2': 2, 'r3': 3},
+                  "cB": {'r1': 4, 'r2': 5, 'r3': 6},
+                  "cC": {'r1': 7, 'r2': 8, 'r3': 9}})
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## Boolean Selection Continued
+
+__Retrieve the rows where column `cA` is more than 1__ 
+<pre><code data-trim contenteditable>
+# d is       cA  cB  cC
+#        r1   1   4   7
+#        r2   2   5   8
+#        r3   3   6   9
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+d['cA'] > 1  # r1    False
+             # r2     True
+             # r3     True
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+d[d['cA'] > 1] # 😘
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+    cA  cB  cC
+r2   2   5   8
+r3   3   6   9
+</code></pre>
+{:.fragment}
+
+</section>
+
+
+
+
+<section markdown="block">
 ## Setting Values
 
-__Now that we know how to retrieve values with indexing... let's see how we can set values__ &rarr;
+__Now that we know how to retrieve values with indexing... let's see how we can set values with `Series`__ &rarr;
+
+<pre><code data-trim contenteditable>
+s = pd.Series([2, 3, 4, 5, 6], list('abcde'))
+</code></pre>
+
+<pre><code data-trim contenteditable>
+s['a'] = 100     # assigning with an index
+s['b':'d'] = 200 # assigning with a slice
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+a    100
+b    200
+c    200
+d    200
+e      6
+</code></pre>
+{:.fragment}
+
+</section>
+<section markdown="block">
+## Setting Values, `DataFrame`
 
 Using our usual example:... 
 {:.fragment}
@@ -972,7 +1150,7 @@ __As you might expect, if you assign a `Series` to a `DataFrame` column:__ &rarr
 </section>
 
 <section markdown="block">
-## More `Series` Assignment
+## More `DataFrame` / `Series` Assignment
 
 __Pay attention to the mismatched labels...__ &rarr;
 
@@ -1015,6 +1193,27 @@ ValueError: Length of values does not match length of index
 {:.fragment}
 
 
+</section>
+<section markdown="block">
+## Assignment + Boolean Selection
+
+__Note that indexing with an `array`, `Series` or `list` of booleans can be used in assignment as well__ &rarr;
+
+<pre><code data-trim contenteditable>
+d = pd.DataFrame({"cA": {'r1': 1, 'r2': 2, 'r3': 3},
+                  "cB": {'r1': 4, 'r2': 5, 'r3': 6},
+                  "cC": {'r1': 7, 'r2': 8, 'r3': 9}})
+d[d['cA'] > 1] = 0
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+    cA  cB  cC
+r1   1   4   7
+r2   0   0   0
+r3   0   0   0
+</code></pre>
+{:.fragment}
 </section>
 
 <section markdown="block">
@@ -1116,12 +1315,14 @@ df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
 <pre><code data-trim contenteditable>
 del df['baz']
 </code></pre>
+{:.fragment}
 
 <pre><code data-trim contenteditable>
    foo  bar  # again, baz
 0    4    5  # is removed!
 1    7    8
 </code></pre>
+{:.fragment}
 </section>
 
 <section markdown="block">
@@ -1136,6 +1337,7 @@ __Indexing into rows can be done by indexing into the `loc` attribute / property
 df = pd.DataFrame([[4, 5, 6], [7, 8, 9]],
 	columns=['foo', 'bar', 'baz'])
 </code></pre>
+{:.fragment}
 
 <pre><code data-trim contenteditable>
 df.loc[1]
@@ -1146,6 +1348,32 @@ df.loc[1]
 foo    7  # last row returned
 bar    8  # (2nd row is index 1)
 baz    9
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Retrieving a Single Value 
+
+__Remember that once you have a row, you can index into that as well.__ &rarr;
+
+* {:.fragment} we can use `.loc` to get a row...
+* {:.fragment} and then get a specific element from that row
+
+__What value would this retrieve?__ &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+# df is      foo  bar  baz
+#         0    4    5    6
+#         1    7    8    9
+
+df.loc[1]['bar']
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+8
 </code></pre>
 {:.fragment}
 </section>
@@ -1179,7 +1407,7 @@ baz  6  9
 <section markdown="block">
 ## Index
 
-__The index of a `DataFrame` is actually an object itself (not just a simpley `array` of labels... Apropriately, it's called an `Index`:__ &rarr;
+__The index of a `DataFrame` is actually an object itself (not just a simple `array` of labels... Apropriately, it's called an `Index`:__ &rarr;
 
 * {:.fragment} holds axis labels (row labels and column names)
 * {:.fragment} immutable
@@ -1189,3 +1417,278 @@ __The index of a `DataFrame` is actually an object itself (not just a simpley `a
 	* {:.fragment} (but can contain duplicates)
 
 </section>
+
+<section markdown="block">
+## `Index` Objects
+
+__Given this example, data frame, let's take a look at its index__ &rarr;
+
+<pre><code data-trim contenteditable>
+d = pd.DataFrame({"colA": {'r1': 6, 'r2': 7},
+                  "colB": {'r1': 8, 'r2': 9}})
+idx = d.index
+</code></pre>
+
+<pre><code data-trim contenteditable>
+idx    # Index is its own type!
+Index(['r1', 'r2'], dtype='object')
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+idx[0]  # indexing works as you'd expect: 'r1'
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+idx[0] = 'nope!'  # assignment?
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+TypeError: Index does not support mutable operations
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Speaking of Indexes...
+
+__Remember that we can get a new `DataFrame` with rearranged or repeated indexes?__ &rarr;
+
+__Retrieve a new `DataFrame` with the column `bar` from another `DataFrame`, `df`, repeated twice__ &rarr;
+
+<pre><code data-trim contenteditable>
+# df is      foo  bar  baz
+#         0    4    5    6
+#         1    7    8    9
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+df[['bar', 'bar']]
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## More Powerful "Reindexing" 💪
+
+__The method, `.reindex`, can be called on a `Series` or a `DataFrame` to:__ &rarr;
+
+* {:.fragment} reorder columns, rows
+* {:.fragment} repeat columns, rows
+* {:.fragment} add columns, rows
+* {:.fragment} interpolate values
+
+By default, it returns new object, but it can also be done __in place__ (on the actual object itself) using a keyword argument
+{:.fragment}
+
+(Note, the `.loc` property on a `DataFrame` can also do some of this...)
+{:.fragment}
+</section>
+
+<section markdown="block">
+## _Real_ Reindexing with `Series`
+
+__To reindex a `Series`, pass in a list of labels__ &rarr;
+
+* {:.fragment} repeated labels are ok (values are simply repeated)
+* {:.fragment} if a label is passed in that doesn't exist, it's given a missing value `NaN`
+
+__What will the `Series`, `s`, look like following the `.reindex` operation below?__ &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+s = pd.Series([1, 2, 3], list('abc'))
+s.reindex(['d', 'b', 'b', 'c'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+d    NaN
+b    2.0
+b    2.0
+c    3.0
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Interpolation
+
+__The `method` keyword argument can be used to fill in missing values via interpolation: `method="ffill"` means use the last valid value for next missing value(s)__ &rarr;
+
+<pre><code data-trim contenteditable>
+s = pd.Series([5, 7], list('ac'))
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+s.reindex(list('abcde'), method='ffill')
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+a    5
+b    5
+c    7
+d    7
+e    7
+</code></pre>
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Reindexing a `DataFrame`
+
+__Both rows (`index`) and columns (`columns`) can be reindexed in a `DataFrame`__ &rarr;
+
+__Using the following `DataFrame`...__ &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+d = pd.DataFrame({"cA": {'r1': 1, 'r2': 2, 'r3': 3},
+                  "cB": {'r1': 4, 'r2': 5, 'r3': 6},
+                  "cC": {'r1': 7, 'r2': 8, 'r3': 9}})
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+    cA  cB  cC
+r1   1   4   7
+r2   2   5   8
+r3   3   6   9
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Reindexing Rows
+
+__A single positional argument for `.reindex` works on rows__ &rarr;
+
+<pre><code data-trim contenteditable>
+d.reindex(['r2', 'r3', 'r4', 'r1'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+     cA   cB   cC  
+r2  2.0  5.0  8.0
+r3  3.0  6.0  9.0
+r4  NaN  NaN  NaN
+r1  1.0  4.0  7.0
+</code></pre>
+{:.fragment}
+
+
+Missing values filled with `NaN` by default
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Reindexing Columns
+
+__Using the `columns` keyword, the column names can be manipulated__ &rarr;
+
+<pre><code data-trim contenteditable>
+d.reindex(columns=['cD', 'cB', 'cB', 'cC'])
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+    cD  cB  cB  cC  # duplicates 
+r1 NaN   4   4   7  # allowed...
+r2 NaN   5   5   8
+r3 NaN   6   6   9
+</code></pre>
+{:.fragment}
+
+Again, missing values filled with `NaN` by default
+{:.fragment}
+</section>
+
+<section markdown="block">
+## Last Reindexing!
+
+__Rearranging both rows and columns (and with a fill!)__ &rarr;
+
+<pre><code data-trim contenteditable>
+d.reindex(['r2', 'r1', 'r4'], 
+    columns=['cB', 'cB', 'cD', 'cC'])
+     cB   cB  cD   cC
+r2  5.0  5.0 NaN  8.0
+r1  4.0  4.0 NaN  7.0
+r4  NaN  NaN NaN  NaN
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+d.reindex(['r2', 'r1', 'r4'], 
+    columns=['cB', 'cB', 'cD', 'cC'], 
+    method="ffill")
+    cB  cB  cD  cC
+r2   5   5   8   8
+r1   4   4   7   7
+r4   6   6   9   9
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Selection Using `.loc`
+
+__Using `.loc` allows us to use `numpy` like indexing (whew 😅, good thing we remember _everything_ about, amirite?)__  &rarr;
+
+__What does `.shape` give back for a two dimensional `ndarray`?__ &rarr;
+{:.fragment}
+
+A two-element tuple...
+{:.fragment}
+
+1. {:.fragment} 1st element, axis 0 is rows
+2. {:.fragment} 2nd element, axis 1 is columns
+</section>
+
+<section markdown="block">
+## `.loc` 
+
+__`.loc` allows axis label indexes to select rows and indexes__ &rarr;
+
+<pre><code data-trim contenteditable>
+# d is     cA  cB  cC
+#      r1   1   4   7
+#      r2   2   5   8
+#      r3   3   6   9
+</code></pre>
+
+<pre><code data-trim contenteditable>
+d.loc['r2', 'cB'] # gives us 5!
+</code></pre>
+{:.fragment}
+
+
+<pre><code data-trim contenteditable>
+d.loc['r1':'r2', 'cB']
+</code></pre>
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+r1    4
+r2    5
+</code></pre>
+{:.fragment}
+
+
+
+
+</section>
+
+
+
