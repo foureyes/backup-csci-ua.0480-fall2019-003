@@ -170,7 +170,11 @@ HW03
 * cleaning data for analylsis
 
 -->"
-y,,6,24-Sep,Mon,"
+,,6,24-Sep,Mon,"Tabular Data (pandas)
+
+* [Pandas Basics](slides/python/pandas-basics.html) (slides)
+
+<!--
 Data from the Web
 
 * Web APIs
@@ -207,7 +211,8 @@ Plotting and Visualization
 * matplotlib
 * pandas
 * Other (seaborn)
-* Web Based Visualization (plotly, bokeh)","Python for Data Analysis
+* Web Based Visualization (plotly, bokeh)
+-->","Python for Data Analysis
 Ch 9: Plotting and Visualization",
 y,,7,26-Sep,Wed,"Aggregation and Time Series (pandas revisited)
 
