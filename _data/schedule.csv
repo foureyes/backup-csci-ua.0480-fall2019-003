@@ -173,53 +173,20 @@ HW03
 
 Apply, Map, Unique
 
-* [Functions, Operations, Transformations](slides/python/pandas-func-ops.html) (slides)
+* [Pandas Functions, Function Application](slides/python/pandas-funcs-ops.html) (slides)
 
-Data Loading, Storage and File Formats
+Cleaning / Preparing Data, Loading Data, Data from the Web
 
-* pandas for reading files (csv, json)
+* [Pandas for reading files, About APIs, cleaning / preparing data (and pandas basics review)](notebooks/pandas/basics-review-cleaning-regex-api.ipynb) (notebook)
+* Sample Data
   * [DOHMH Dog Bite Data](https://data.cityofnewyork.us/api/views/rsgh-akpg/rows.csv?accessType=DOWNLOAD)
   * [NBA news](https://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player/?team=sixers&limit=3)
   * [UK Carbon Intensity](https://api.carbonintensity.org.uk/)
+  * [Rick and Morty API](https://rickandmortyapi.com/)
 * pandas for writing files
-* go through file formats from previous lecture, but using pandas
-
-Data from the Web
-
-* Web APIs
-  *  [Rick and Morty API](https://rickandmortyapi.com/)
-  * documentation
-  * Requests
-  * Terms of Use, Rate Limiting
-  *  API Key / Authentication
-  * Custom (e.g. retrieving raw JSON or XML to do our own parsing)
-  * .append method
-
-Data Preparation / Scrubbing (Using Dog Bite Data)
-
-* missing values (df.fillna, df.dropna)
-* removing / adding rows and cols (df.drop_duplicates)
-* transforming (df.str.*, df.replace, df.renamde(columns={}))
 
 
-More Data from the Web? (Optional)
 
-* Screen Scraping
-* Parsing Scraped
-  * Beautiful Soup
-  * lxml
-  * Requests HTML
-
-Curating Data
-
-* Open Data Sets
-* Terms of Use
-* Privacy
-
-Scrubbing / Cleaning Data
-
-* Handling Missing Data
-* Transforming Data
 
 
 
@@ -233,7 +200,27 @@ Scrubbing / Cleaning Data
 
 
 ",
-y,,8,01-Oct,Mon,"
+y,,8,01-Oct,Mon,"Data from the Web Continued
+
+* Web APIs
+  * documentation
+  * Requests
+  * Terms of Use, Rate Limiting
+  *  API Key / Authentication
+  * Custom (e.g. retrieving raw JSON or XML to do our own parsing)
+  * .append method
+* Screen Scraping
+* Parsing Scraped
+  * Beautiful Soup
+  * lxml
+  * Requests HTML
+
+Curating Data
+
+* Open Data Sets
+* Terms of Use
+* Privacy
+
 Data Wrangling (without databases)
 
 * Joins
@@ -254,7 +241,6 @@ Aggregation and Time Series (pandas revisited)
 * Time Zones
 * Time Series
 * Windowing
-
 
 
 
