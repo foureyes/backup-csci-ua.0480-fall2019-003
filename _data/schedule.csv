@@ -76,7 +76,7 @@ Articles
 
 * find it on NYU Classes
 * check the Tests and Quizzes section"
-y,,3,12-Sep,Wed,"Functions
+,,3,12-Sep,Wed,"Functions
 
 * Functions as Objects
 * Keyword Arguments
@@ -167,23 +167,45 @@ HW03
 
 
 -->",,
-y,,7,26-Sep,Wed,"Data Loading, Storage, and File Formats (revisisted)
+,,7,26-Sep,Wed,"Quick Review Pandas Basics
 
-* pandas for reading files (csv, xls, etc.)
+* [Arithmetic, Basic Selection, Indexing, etc.](slides/python/pandas-review-arithmetic-index.html) (slides)
+
+Apply, Map, Unique
+
+* [Functions, Operations, Transformations](slides/python/pandas-func-ops.html) (slides)
+
+Data Loading, Storage and File Formats
+
+* pandas for reading files (csv, json)
+  * [DOHMH Dog Bite Data](https://data.cityofnewyork.us/api/views/rsgh-akpg/rows.csv?accessType=DOWNLOAD)
+  * [NBA news](https://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player/?team=sixers&limit=3)
+  * [UK Carbon Intensity](https://api.carbonintensity.org.uk/)
 * pandas for writing files
 * go through file formats from previous lecture, but using pandas
 
 Data from the Web
 
 * Web APIs
-  * API Authentication
-  * OAuth?
-  * Rate Limiting
-  * API-specific clients (e.g. Facebook client and Twitter tweepy client)
+  *  [Rick and Morty API](https://rickandmortyapi.com/)
+  * documentation
+  * Requests
+  * Terms of Use, Rate Limiting
+  *  API Key / Authentication
   * Custom (e.g. retrieving raw JSON or XML to do our own parsing)
+  * .append method
+
+Data Preparation / Scrubbing (Using Dog Bite Data)
+
+* missing values (df.fillna, df.dropna)
+* removing / adding rows and cols (df.drop_duplicates)
+* transforming (df.str.*, df.replace, df.renamde(columns={}))
+
+
+More Data from the Web? (Optional)
+
 * Screen Scraping
-* Libraries (scrapy)
-* Parsing Data
+* Parsing Scraped
   * Beautiful Soup
   * lxml
   * Requests HTML
@@ -200,6 +222,7 @@ Scrubbing / Cleaning Data
 * Transforming Data
 
 
+
 ","Python for Data Analysis
 
 * Ch 6: Data Loading, Storage, and File Formats
@@ -209,7 +232,7 @@ Scrubbing / Cleaning Data
 * Ch 7: Data Cleaning and Preparation
 
 
-",HW04
+",
 y,,8,01-Oct,Mon,"
 Data Wrangling (without databases)
 
