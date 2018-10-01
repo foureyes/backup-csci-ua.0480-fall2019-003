@@ -19,7 +19,7 @@ function init() {
 -->
 
 <div id="quick-links">
-<h3 style="text-align: center;"><a href="syllabus.html">Course Info</a> | <a href="{{site.vars.piazza}}">Piazza</a> | <a href="{{site.vars.piazza}}">Tutoring</a> | <a href="syllabus.html#hw-policy">Homework Policy</a> | <a href="syllabus.html#quiz-policy">Quiz Policy</a></h3>
+<h3 style="text-align: center;"><a href="syllabus.html">Homework and Quiz Policy</a> | <a href="{{site.vars.piazza}}">Piazza and Tutoring</a> | <a href="data-sets.html">Data Sets</a></h3>
 </div>
 <table class="table table-striped table-hover">
 <thead>

@@ -160,13 +160,7 @@ HW03
 -->"
 ,,6,24-Sep,Mon,"Tabular Data (pandas)
 
-* [Pandas Basics](slides/python/pandas-basics.html) (slides)
-
-<!--
-
-
-
--->",,
+* [Pandas Basics](slides/python/pandas-basics.html) (slides)",,
 ,,7,26-Sep,Wed,"Quick Review Pandas Basics
 
 * [Arithmetic, Basic Selection, Indexing, etc.](slides/python/pandas-review-arithmetic-index.html) (slides)
@@ -195,38 +189,50 @@ Cleaning / Preparing Data, Loading Data, Data from the Web
 * Ch 6: Data Loading, Storage, and File Formats
   * Focus on Scraping
   * Focus on APIs
-* API Authentication 
 * Ch 7: Data Cleaning and Preparation
 
 
 ",
-y,,8,01-Oct,Mon,"Data from the Web Continued
+,,8,01-Oct,Mon,"Data from the Web
 
-* Web APIs
-  * documentation
-  * Requests
-  * Terms of Use, Rate Limiting
-  *  API Key / Authentication
-  * Custom (e.g. retrieving raw JSON or XML to do our own parsing)
+* [Data Formats on the Web](slides/data/web-data.html)
+* [Making Requests](slides/data/api-request.html)
+* [Rick and Morty API Demo](https://rickandmortyapi.com/) 
+  * Pagination and Flattening
   * .append method
-* Screen Scraping
-* Parsing Scraped
-  * Beautiful Soup
-  * lxml
-  * Requests HTML
+  * export to csv
+  * .reset_index
+* [What happened to my F.R.I.E.N.D.S? (imdb scrape)](https://www.imdb.com/title/tt0108778/fullcredits?ref_=tt_cl_sm#cast)
+  * requests + beautiful soup
+  * re.find, match object
+
+Cleaning Data Revisited
+
+* [Global Surface Temperature Change](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts+dSST.txt)
+  * without pandas
+  * with pandas
 
 Curating Data
 
-* Open Data Sets
-* Terms of Use
-* Privacy
+* see data sets
 
-Data Wrangling (without databases)
+Plotting and Visualization
+
+* [Matplotlib pt 1](slides/viz/matplotlib-review.html)
+* [Matplotlib pt 2](slides/viz/matplotlib-extras.html)
+
+
+
+
+","Python for Data Analysis
+
+* Ch 9: Plotting and Visualization",
+y,,9,03-Oct,Wed,"Data Wrangling (without databases)
 
 * Joins
 * Pivots
 
-Plotting and Visualization
+
 
 * matplotlib
 * pandas
@@ -243,14 +249,7 @@ Aggregation and Time Series (pandas revisited)
 * Windowing
 
 
-
-","Python for Data Analysis
-
-* Ch 9: Plotting and Visualization
-* Ch 8: Data Wrangling: Join, Combine, Reshape
-* Ch 10: Data Aggregation and Group By
-* Ch 11: Time Series",
-y,,9,03-Oct,Wed,"Relational Database Overview
+Relational Database Overview
 
 * Database vs File System Storage
 * Tabular Data Revisited
@@ -271,7 +270,11 @@ Creating Single Tables
 * Data Types
 * Simple Constraints (Unique)
 
-",,HW05
+","Python for Data Analysis
+
+* Ch 8: Data Wrangling: Join, Combine, Reshape
+* Ch 10: Data Aggregation and Group By
+* Ch 11: Time Series",HW05
 y,schedule,10,09-Oct,Tue,"Commandline Client, SQL, and Simple Queries
 
 * psql
