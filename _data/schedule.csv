@@ -176,7 +176,7 @@ Cleaning / Preparing Data, Loading Data, Data from the Web
   * [DOHMH Dog Bite Data](https://data.cityofnewyork.us/api/views/rsgh-akpg/rows.csv?accessType=DOWNLOAD)
   * [NBA news](https://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player/?team=sixers&limit=3)
   * [UK Carbon Intensity](https://api.carbonintensity.org.uk/)
-  * [Rick and Morty API](https://rickandmortyapi.com/)
+  * Using an API
 * pandas for writing files
 
 
@@ -197,7 +197,7 @@ Cleaning / Preparing Data, Loading Data, Data from the Web
 
 * [Data Formats on the Web](slides/data/web-data.html)
 * [Making Requests](slides/data/api-request.html)
-* [Rick and Morty API Demo](https://rickandmortyapi.com/) 
+* Using an API 
   * Pagination and Flattening
   * .append method
   * export to csv
@@ -205,6 +205,8 @@ Cleaning / Preparing Data, Loading Data, Data from the Web
 * [What happened to my F.R.I.E.N.D.S? (imdb scrape)](https://www.imdb.com/title/tt0108778/fullcredits?ref_=tt_cl_sm#cast)
   * requests + beautiful soup
   * re.find, match object
+* [Scraping, Using an API Class Notes](notebooks/web/data-from-the-web.ipynb) (notebook)
+  * note that you must manually fill in url for API example
 
 Cleaning Data Revisited
 
