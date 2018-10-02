@@ -71,7 +71,7 @@ In this assignment, you'll create two notebooks (`ipynb`) that contain documenta
 
 ## Part 0 - Extra Credit
 
-As you work through parts 1 - 5, keep in mind that you will receive extra credit by doing __any two_ of the following__:
+As you work through parts 1 - 5, keep in mind that you will receive extra credit by doing __any two of the following__:
 
 1. 💻Incorporate the use of a class, generator or decorator in a meaningful way
 	* it should be something that's _useful_
