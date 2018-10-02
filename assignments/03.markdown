@@ -3,6 +3,9 @@ layout: homework
 title: "Assignment #3"
 ---
 <style>
+.hl {
+	background-color: yellow;
+}
 img {
     border: 1px solid #000;
 }
@@ -55,6 +58,7 @@ In this assignment, you'll create two notebooks (`ipynb`) that contain documenta
 	* describe the data set
 	* come up with some questions that this data may help answer
 2. clean/prepare/transform the data
+	* if your data set is mostly clean, then transform the data in meaningful ways to help answer your questions above
 3. calculate some descriptive statistics and use your data to answer the questions that you documented earlier
 4. export and validate calculations
 	* export a csv
@@ -65,12 +69,21 @@ In this assignment, you'll create two notebooks (`ipynb`) that contain documenta
 	* if you used `pandas` previously, do this in regular python
 	* if you didn't use `pandas` previously, use `pandas`
 
-For extra credit, choose two of the following:
+## Part 0 - Extra Credit
 
-1. incorporate the use of a class, generator or decorator in a meaningful way
-2. tackle pagination
-3. work with a medium / _larger_ data set (> 5,000 records)
+As you work through parts 1 - 5, keep in mind that you will receive extra credit by doing __any two_ of the following__:
 
+1. 💻Incorporate the use of a class, generator or decorator in a meaningful way
+	* it should be something that's _useful_
+	* if you're creating a class, keep in mind that a class is likely unnecessary if you only have an `__init__` method and a single method 
+2. 📖Tackle pagination
+3. 💪Work with a medium-sized (or _larger_) data set (> 5,000 records)
+4. 📈 Incorporate at least two visualizations in your notebooks using `matplotlib`
+
+⚠️ Extra credit will only be counted if you:
+
+1. <span class="hl">add a `README.md`</span> file specifying the extra credit that you did and its location
+2. <span class="hl">add a markdown cell documenting your extra credit work</span> within your notebook
 
 ## Part 1 - Selecting and Documenting a Data Set
 
@@ -103,6 +116,8 @@ Find a data set that's meaningful to you from a source that has some information
 ## Part 2 - Clean or Prepare the Data
 
 1. Using the documentation that you wrote earlier in your notebook, write code to clean up and/or prepare your data
+	* ⚠️ <span class="hl">if your data set is already clean, then make sure that you make significant transformations to the data</span>
+	* these transformations _should_ be done with the intent of helping answer your questions
 2. 🙅Again, don't copy our previous in-class programs to do this
 3. You can do this in regular Python (including any built-in modules, like `csv`) or `pandas` (you'll do it again with or without pandas in the last part)
 4. Comment your code or add markdown cells as you proceed
@@ -112,6 +127,7 @@ Find a data set that's meaningful to you from a source that has some information
 
 1. Use your newly clean data to calculate some descriptive statistics on some columns (outliers with min and max for a column, mean, median, etc.)
 2. In a mix of markdown cells and code, try to run some simple analysis to answer your questions that you came up with earlier in your notebook
+	* (it's ok if you can't answer your questions 😅 - just describe the challenges your encountered)
 
 ## Part 4 - Export Your Data
 
