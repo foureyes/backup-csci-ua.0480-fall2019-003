@@ -99,9 +99,9 @@ Call `style.use` before using `plot` and `show` &rarr;
 
 <pre><code data-trim contenteditable>
 x = np.arange(0, 25)
-y = [(n * 4) ** 2 for n in x]
+y = (x * 4) ** 2
 x2 = np.arange(0, 25)
-y2 = [n ** 3 for n in x2]
+y2 = x2 ** 3
 
 plt.style.use('ggplot')
 plt.plot(x, y, 'r-', x2, y2, 'b:')
@@ -131,13 +131,13 @@ plt.legend() # loc keyword arg for positioning
 <section markdown="block">
 ## Legend Example
 
-__The follow plot places a legend in the upper center of the plot__ &rarr;
+__The following plot places a legend in the upper center of the plot__ &rarr;
 
 <pre><code data-trim contenteditable>
 x = np.arange(0, 25)
-y = np.array([(n * 4) ** 2 for n in x])
+y = (x * 4) ** 2
 x2 = np.arange(0, 25)
-y2 = np.array([n ** 3 for n in x2])
+y2 = x2 ** 3
 </code></pre>
 
 <pre><code data-trim contenteditable>

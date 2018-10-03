@@ -83,8 +83,16 @@ import matplotlib.pyplot as plt
 
 # your code goes here
 
+# display plot
 plt.show()
 </code></pre>
+{:.fragment}
+
+__If you're in a notebook, you can use the magic command `%matplotlib inline` to display your visualizations directly in your notebook.__
+{:.fragment}
+
+(in this case, the explicit call to `show` is not needed, and the plot is displayed once cell is run)
+
 
 </section>
 
@@ -94,7 +102,7 @@ plt.show()
 `plot` plots points or a line. __It's flexible in terms of arguments passed in__, but a common way of calling it is `plt.plot(x, y, format)`:
 
 * {:.fragment} `x` and `y` - list or numpy array 
-* {:.fragment} `format` - a string representing the color and line/marker style
+* {:.fragment} `format` - a string representing the color and line/marker style ([see docs for details](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html))
 
 `plot` can also be called with more or less arguments: 
 {:.fragment}

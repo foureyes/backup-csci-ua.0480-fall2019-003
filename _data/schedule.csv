@@ -218,33 +218,26 @@ Curating Data
 
 * see data sets
 
-Plotting and Visualization
-
-* [Matplotlib pt 1](slides/viz/matplotlib-review.html)
-* [Matplotlib pt 2](slides/viz/matplotlib-extras.html)
 
 
 
 
-","Python for Data Analysis
-
-* Ch 9: Plotting and Visualization","__Homework #03__ – due Tue 10/2 at 11pm
+",,"__Homework #03__ – due Tue 10/2 at 11pm
 
 1. [Homework #03 Instructions](assignments/03.html) 
 "
-y,,9,03-Oct,Wed,"Data Wrangling (without databases)
+,,9,03-Oct,Wed,"Plotting and Visualization
 
-* Joins
-* Pivots
+* [Matplotlib pt 1](slides/viz/matplotlib-review.html)
+* [Matplotlib pt 2](slides/viz/matplotlib-extras.html)
+* figure, add_subplot, oop
+* [What is this .txt file?](notebooks/viz/filex/enc.txt)
+  * clue: etaonisrhdlumcfwgpybvkxjqz
+* [Y U Grow So Fast?](https://catalog.data.gov/dataset/population-by-country-1980-2010)
+* [Pandas Pops (same as above) or Hot pandas (Global Surface Temperature Change)](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts+dSST.txt)
 
-
-
-* matplotlib
-* pandas
-* Other (seaborn)
-* Web Based Visualization (plotly, bokeh)
-
-Aggregation and Time Series (pandas revisited)
+<!--
+Aggregation and Time Series
 
 * Group By
 * Aggregations (sum, count, etc.)
@@ -252,8 +245,20 @@ Aggregation and Time Series (pandas revisited)
 * Time Zones
 * Time Series
 * Windowing
+-->
 
+","Python for Data Analysis
 
+* Ch 9: Plotting and Visualization
+
+<!--
+Python for Data Analysis
+
+* Ch 8: Data Wrangling: Join, Combine, Reshape
+* Ch 10: Data Aggregation and Group By
+* Ch 11: Time Series
+-->",
+y,schedule,10,09-Oct,Tue,"
 Relational Database Overview
 
 * Database vs File System Storage
@@ -275,12 +280,8 @@ Creating Single Tables
 * Data Types
 * Simple Constraints (Unique)
 
-","Python for Data Analysis
 
-* Ch 8: Data Wrangling: Join, Combine, Reshape
-* Ch 10: Data Aggregation and Group By
-* Ch 11: Time Series",HW05
-y,schedule,10,09-Oct,Tue,"Commandline Client, SQL, and Simple Queries
+Commandline Client, SQL, and Simple Queries
 
 * psql
 * Insert
@@ -288,7 +289,7 @@ y,schedule,10,09-Oct,Tue,"Commandline Client, SQL, and Simple Queries
 * Update
 * Delete
  
-",,
+",,HW04
 y,,11,10-Oct,Wed,"Relational Database Design
 
 * Relations / Foreign Key Constraints
@@ -300,7 +301,7 @@ y,,11,10-Oct,Wed,"Relational Database Design
 
 Importing Data
 
-* CSV, TSV, JSON",,HW06
+* CSV, TSV, JSON",,
 y,,12,15-Oct,Mon,"Joins and Aggregate Queries
 
 * in-depth study of SQL for data analysis and for manipulating RDBMS.
@@ -309,10 +310,16 @@ y,,12,15-Oct,Mon,"Joins and Aggregate Queries
 * Study of aggregate queries
 * In-depth look at nested queries
 * Use single tables for aggregate queries and related queries for deep dives into data sets 
-",,
+",,HW05 – in class?
 y,,13,17-Oct,Wed,Review,,
 y,exam  ,14,22-Oct,Mon,Exam 1,,
-y,,15,24-Oct,Wed,"Performance / Indexing and Query Optimization 
+y,,15,24-Oct,Wed,"Data Wrangling (without databases)
+
+* Joins
+* Pivots
+
+
+Performance / Indexing and Query Optimization 
 
 * Indexes
   * Different Types of Indexes
@@ -322,7 +329,7 @@ y,,15,24-Oct,Wed,"Performance / Indexing and Query Optimization
 Additional Administration
 
 * Backups / Replication
-* Vacuum",,HW07
+* Vacuum",,HW06
 y,,16,29-Oct,Mon,"Geo-spacial Data
 
 * PostGIS
@@ -332,7 +339,7 @@ y,,17,31-Oct,Wed,"Postgres and Python
 * pyscopg
 * SQLAlchemy?
 * Postgres, SQLAlchemy and pandas
-",,HW08
+",,HW07
 y,,18,05-Nov,Mon,"Creating APIs for Consumption
 ",,
 y,,19,07-Nov,Wed,"Visualization Revisited (web-based)
@@ -344,7 +351,7 @@ y,,19,07-Nov,Wed,"Visualization Revisited (web-based)
 y,,20,12-Nov,Mon,"Data Pipeline (everything together)
 
 * ETL
-* Python, Pandas, Postgres",,HW09
+* Python, Pandas, Postgres",,HW08
 y,,21,14-Nov,Wed,"NoSQL (mongodb)
                                                                                                                                   
 * JSON format in depth                                                                                                                 
@@ -357,7 +364,7 @@ y,,21,14-Nov,Wed,"NoSQL (mongodb)
 * Geo-spatial data queries ",,
 y,,22,19-Nov,Mon,"NoSQL (continued)
 
-Python and NoSQL",,HW10
+Python and NoSQL",,HW09
 y,holiday,,21-Nov,Wed,Thanksgiving,,
 y,,23,26-Nov,Mon,"Cloud Data Storage (Firebase, S3, RDS)
 
@@ -369,7 +376,7 @@ y,,24,28-Nov,Wed,"Serverless  (Firebase Again, Lambda, Chalice or Zappa)
 * Microservices
 * AWS lambda
 * Firebase
-* zappa or chalice",,HW11
+* zappa or chalice",,HW10
 y,,25,03-Dec,Mon,"Processing Large Data Sets (Spark or Hadoop)
 
 * Hadoop, Parque",,
