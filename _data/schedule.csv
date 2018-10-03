@@ -231,7 +231,7 @@ Curating Data
 * [Matplotlib pt 1](slides/viz/matplotlib-review.html)
 * [Matplotlib pt 2](slides/viz/matplotlib-extras.html)
 * figure, add_subplot, oop
-* [What is this .txt file?](notebooks/viz/filex/enc.txt)
+* [What is this .txt file?](notebooks/viz/files/enc.txt)
   * clue: etaonisrhdlumcfwgpybvkxjqz
 * [Y U Grow So Fast?](https://catalog.data.gov/dataset/population-by-country-1980-2010)
 * [Pandas Pops (same as above) or Hot pandas (Global Surface Temperature Change)](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts+dSST.txt)
