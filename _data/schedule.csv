@@ -235,6 +235,8 @@ Curating Data
   * clue: etaonisrhdlumcfwgpybvkxjqz
 * [Y U Grow So Fast?](https://catalog.data.gov/dataset/population-by-country-1980-2010)
 * [Pandas Pops (same as above) or Hot pandas (Global Surface Temperature Change)](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts+dSST.txt)
+* [Matplotlib Basics Class Notes](notebooks/viz/matplotlib-basics.ipynb) (notebook)
+
 
 <!--
 Aggregation and Time Series
