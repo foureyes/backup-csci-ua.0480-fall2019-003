@@ -50,7 +50,7 @@ function onClick(evt) {
 }
 </script>
 
-# Assignment #3 - Cleaning and Preparing Data - Due Mon, Oct 8th  at 11pm
+# Assignment #3 - Cleaning and Preparing Data - Due Tue, Oct 9th  at 11pm
 
 In this assignment, you'll create two notebooks (`ipynb`) that contain documentation and code for the following.
 
