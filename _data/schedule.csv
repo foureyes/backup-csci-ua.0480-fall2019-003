@@ -260,13 +260,10 @@ Python for Data Analysis
 * Ch 10: Data Aggregation and Group By
 * Ch 11: Time Series
 -->",
-y,schedule,10,09-Oct,Tue,"
+,schedule,10,09-Oct,Tue,"
 Relational Database Overview
 
-* Database vs File System Storage
-* Tabular Data Revisited
-* Relations
-* ""Competitive Landscape""
+* [Databases intro](slides/db/intro.html)
 
 Basic Postgres Administration
 
@@ -281,7 +278,6 @@ Creating Single Tables
 
 * Data Types
 * Simple Constraints (Unique)
-
 
 Commandline Client, SQL, and Simple Queries
 
