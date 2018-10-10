@@ -265,6 +265,11 @@ Relational Database Overview
 
 * [Databases intro](slides/db/intro.html)
 
+
+ 
+",,
+,,11,10-Oct,Wed,"Importing Data
+
 Basic Postgres Administration
 
 * Configuration Files
@@ -286,9 +291,12 @@ Commandline Client, SQL, and Simple Queries
 * Select
 * Update
 * Delete
- 
-",,HW04
-y,,11,10-Oct,Wed,"Relational Database Design
+
+Files
+
+* [Movies](sql/basic/movies.sql)
+* [Import](https://www.census.gov/geo/maps-data/data/gazetteer2010.html) (School Districts Elementary)",,
+y,,12,15-Oct,Mon,"Relational Database Design
 
 * Relations / Foreign Key Constraints
 * E-R Diagrams (in MySQL Workbench or similar)
@@ -297,10 +305,8 @@ y,,11,10-Oct,Wed,"Relational Database Design
 * Normalization
 
 
-Importing Data
 
-* CSV, TSV, JSON",,
-y,,12,15-Oct,Mon,"Joins and Aggregate Queries
+Joins and Aggregate Queries
 
 * in-depth study of SQL for data analysis and for manipulating RDBMS.
 * JOINs and all facets for standard SQL programming and development. 
