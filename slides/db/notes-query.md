@@ -110,7 +110,10 @@ expected grad date
 student debt
 midtermscore
 
+-- don't error out and just try to drop the table if it's there
+DROP TABLE IF EXISTS student;
 
+-- if it exists replace w/ new def
 CREATE TABLE student (
 	netid varchar(100) PRIMARY KEY,
 	class text,

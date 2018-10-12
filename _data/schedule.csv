@@ -268,16 +268,18 @@ Relational Database Overview
 
  
 ",,
-,,11,10-Oct,Wed,"Importing Data
+,,11,10-Oct,Wed,"[Slides for all topics below (Postgres, SQL Basics)](slides/db/postgres.html)
+
+Files
+
+* [Movies](sql/basics/movies.sql)
+* [Transcript of SQL written in class](sql/basics/basics-transcript.sql)
+
+Importing Data
 
 Basic Postgres Administration
 
 * Configuration Files
-* Installation
-* Access Control
-* Roles and Privileges
-* Database Creation
-* ""Dont's""
 
 Creating Single Tables
 
@@ -292,10 +294,7 @@ Commandline Client, SQL, and Simple Queries
 * Update
 * Delete
 
-Files
-
-* [Movies](sql/basic/movies.sql)
-* [Import](https://www.census.gov/geo/maps-data/data/gazetteer2010.html) (School Districts Elementary)",,
+",,
 y,,12,15-Oct,Mon,"Relational Database Design
 
 * Relations / Foreign Key Constraints

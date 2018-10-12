@@ -1,6 +1,6 @@
 ---
 layout: slides
-title: "Postgres Basics"
+title: "Postgres and SQL Basics"
 ---
 
 <section markdown="block" class="intro-slide">
@@ -107,16 +107,16 @@ Or... when connected to any database through `psql`:
 <section markdown="block">
 ## Postgres Object Hierarchy
 
-* templates
-* databases - multiple databases allowed in one instance / "cluster" of postgres
-* schemas - (ANSI SQL standard) next level of organization in database
+* __templates__ - base template(s) to copy database from
+* __databases__ - multiple databases allowed in one postgres instance / "cluster" 
+* __schemas__ - (ANSI SQL standard) next level of organization in database
 	* database -> schema -> table
 	* name spacing - useful for organizing many tables
 	* default schema is `public`
-	* we likely won't have to deal with schemas in the class
-* tables
-* views - abstraction of table / multiple tables: merge tables and perform calculations and present data as if it were a table; typically read only
-* others - languages, functions, triggers, types, sequences
+	* we will stick to the public schema
+* __tables__
+* __views__ - abstraction of table / multiple tables: merge tables and perform calculations and present data as if it were a table; typically read only
+* other - languages, functions, triggers, types, sequences
 
 </section>
 
@@ -140,19 +140,36 @@ Optional flags include:
 <section markdown="block">
 ## psql Commands 
 
+__Change database__
+
+* `\c db_name` - connect to different database
+
+__Informational__ (append an `S` to most of these to show system objects)
+
 * `\l` - list databases
 * `\dt` - list tables
 * `\dv` list views
 * `\d` - list tables and views
-* add an S!
 * `\dn` - list schemas
-* `\c db_name` - connect to different database
 * `\d table_name` - describe table
 * `\du` - list users
-* `\i importScript.sql`
-* `\h` - help on query
 
 
+</section>
+
+<section markdown="block">
+## HALP PLZ
+
+__The `psql` client has a lot of built-in help!__
+
+Use `\?` to show available `psql` commands
+
+`\h` shows help for SQL statements
+
+* `\h STATMENT` will show documentation for _that_ statement
+* for example: `\h ALTER TABLE` shows help for the `ALTER TABLE` statement
+* syntax and options will be shown
+* type `q` to leave help / space to go to next page
 
 </section>
 
@@ -348,7 +365,7 @@ INSERT INTO student
 
 <pre><code data-trim contenteditable>
 -- specify columns and matching values (does not have 
--- to follow same order of columns in CREATE TABLE
+-- to follow same order of columns in CREATE TABLE)
 INSERT INTO student 
 	(first, last, midterm, netid) 
 	VALUES ('baz', 'qux', 70, 'bq789');
@@ -369,9 +386,27 @@ __Use a <span class="hl">SELECT</span> statement to _read_ data__ &rarr;
 * followed by a comma separated list of columns or calculated values you'd like to see
 	* you can use `AS some_alias` to alias column names or name calculations
 	* `*` means all columns
-	* arithmetic operators and functions / expressions can be used here!
+	* arithmetic operators and functions / expressions can be used here (see next slide)!
 * then keyword `FROM tablename` ...to specify which table to query
 
+</section>
+
+<section markdown="block">
+## Operators and Functions
+
+__Operators__ &rarr;
+
+* arithmetic: `+`, `-`, `*`, `/`
+* string concatenation: `||` (`'HI' || 'THERE'`)
+* logical operators: `AND`, `OR`, `NOT`
+* check for NULL: `IS NULL` and `IS NOT NULL`
+* pattern matching: `LIKE`
+
+__Functions__ &rarr;
+
+* `NOW()` (current date / time), `ROUND(val)`, etc.
+
+See [documentation on operators and functions](https://www.postgresql.org/docs/9.1/static/functions.html)
 </section>
 
 <section markdown="block">
@@ -390,6 +425,20 @@ SELECT netid, first as fn FROM student;
 * {:.fragment} get all students, show net id and midterm grade divided by 100
 	<pre class="fragment"><code data-trim contenteditable>
 SELECT netid, midterm / 100 FROM student;
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## `SELECT` + `DISTINCT`
+
+__Only show the distinct rows (remove duplicate rows) by using `DISTINCT` with `SELECT`__ &rarr;
+
+Show the distinct first names of students:
+
+<pre><code data-trim contenteditable>
+SELECT DISTINCT first 
+	FROM STUDENT;
 </code></pre>
 
 </section>
@@ -413,11 +462,11 @@ __Optionally, add a `WHERE` clause to specify _conditions_ (think filtering)__ &
 __Filter your `SELECT` statement results with a `WHERE` clause__ &rarr;
 
 * {:.fragment} only students with midterm > 80
-	<pre><code data-trim contenteditable>
+	<pre class="fragment"><code data-trim contenteditable>
 SELECT * FROM student WHERE midterm > 80;
 </code></pre>
 * {:.fragment} only students with between 70 and 90
-	<pre><code data-trim contenteditable>
+	<pre class="fragment"><code data-trim contenteditable>
 SELECT * FROM student 
 	WHERE midterm > 70	
 	AND midterm < 90;
@@ -426,68 +475,161 @@ SELECT * FROM student
 </section>
 
 <section markdown="block">
-## `SELECT` + `WHERE` Contined
+## `SELECT` + `WHERE` Continued
 
-
-* {:.fragment} only students with midterm > 80
-	<pre><code data-trim contenteditable>
-SELECT * FROM student WHERE midterm > 80;
+* {:.fragment} students that have no midterm score
+	<pre class="fragment"><code data-trim contenteditable>
+SELECT * FROM student WHERE midterm IS NULL;
 </code></pre>
-* {:.fragment} only students with between 70 and 90
-	<pre><code data-trim contenteditable>
+* {:.fragment} get the netid and first name of students with that have a netid that has `jv` in it or starts with `Jo`, case insensitive
+	<pre class="fragment"><code data-trim contenteditable>
+SELECT netid, first FROM student 
+	WHERE netid LIKE '%jv%'	
+	OR first ILIKE 'Jo%';
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## Ordering
+
+__Add an `ORDER BY` clause at the end of your `SELECT` to specify ascending orderi__ &rarr;
+
+<pre><code data-trim contenteditable>
 SELECT * FROM student 
-	WHERE midterm > 70	
-	AND midterm < 90;
+	WHERE midterm < 60
+	ORDER BY registered;
+</code></pre>
+{:.fragment}
+
+__Add `DESC` to order in descending order__ &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+SELECT netid FROM student 
+	ORDER BY registered desc;
+</code></pre>
+{:.fragment}
+
+__Separate multiple column names to order by multiple columns__ &rarr;
+{:.fragment}
+
+<pre><code data-trim contenteditable>
+SELECT * FROM student ORDER BY last, first;
+</code></pre>
+{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Update (`UPDATE`)
+
+__Use an `UPDATE` statement to set the value of a column for a row / rows__ &rarr;
+
+* start with keyword, `UPDATE`
+* then name of table to update
+* followed by keyword `SET`
+* finally column name = some value
+* (see [docs on `UPDATE`](https://www.postgresql.org/docs/current/static/sql-update.html)
+
+<pre><code data-trim contenteditable>
+-- set all students' registered field to 1/1/2018
+UPDATE student SET registered = '2018-01-01';
+</code></pre>
+</section>
+
+<section markdown="block">
+## `UPDATE`, Expressions, and `WHERE`
+
+__Add a `WHERE` clause to `UPDATE` (after `SET`) to specify which rows to change__ &rarr;
+
+<pre><code data-trim contenteditable>
+-- only set midterm score for rows that
+-- have netid fb123
+UPDATE student 
+	SET midterm = 80 
+	WHERE netid = 'fb123';
+</code></pre>
+
+__Remember the value in `SET` can be an expression__ &rarr;
+
+<pre><code data-trim contenteditable>
+UPDATE student SET registered = NOW();
+</code></pre>
+
+<pre><code data-trim contenteditable>
+-- probz a bad idea to set pk to this, but...
+-- set netid to concatenation of first and last
+UPDATE student SET netid = first || last;
 </code></pre>
 
 </section>
 
 <section markdown="block">
-## `ORDER BY`
+## Delete / Remove Rows (`DELETE`) 
 
+__To remove rows from a table use the `DELETE` statement__ &rarr;
+
+<pre><code data-trim contenteditable>
+DELETE FROM student WHERE midterm > 90;
+</code></pre>
+
+Again, note the `WHERE` clause specifying which rows to take action on.
+
+(See the [documentation on `DELETE`](https://www.postgresql.org/docs/current/static/sql-delete.html))
 </section>
 
 <section markdown="block">
-## update - update
+## Add / Remove Column 
 
-```
-update student set midterm=80 where netid = 'fb123'
+__Use `ALTER TABLE` to add / remove columns__ &rarr;
 
-```
-
-
+* {:.fragment} add a new column
+	<pre class="fragment"><code data-trim contenteditable>
+ALTER TABLE student 
+	ADD COLUMN final_exam_score;
+</code></pre>
+* {:.fragment} add a new column with a default value
+	<pre class="fragment"><code data-trim contenteditable>
+ALTER TABLE student 
+	ADD COLUMN final_exam_score numeric DEFAULT 80;
+</code></pre>
+* {:.fragment} remove a column
+	<pre class="fragment"><code data-trim contenteditable>
+ALTER TABLE student DROP COLUMN final_exam_score;
+</code></pre>
 </section>
 
 <section markdown="block">
-## delete - delete
+## Modifying Columns
 
-```
-delete from student where midterm > 90;
-```
+__`ALTER TABLE` can also be used to modify columns__ &rarr;
 
+<pre><code data-trim contenteditable>
+-- change data type of column
+ALTER TABLE student 
+	ALTER COLUMN netid 
+	SET DATA TYPE varchar(200);
+</code></pre>
 
+<pre><code data-trim contenteditable>
+-- rename column
+ALTER TABLE student 
+	RENAME COLUMN midterm TO midterm_score;
+</code></pre>
+
+See [full documentation on `ALTER TABLE`](https://www.postgresql.org/docs/10/static/sql-altertable.html)
 </section>
 
 <section markdown="block">
-## add / modify / column - alter table
+## `GROUP BY` and Aggregate Functions
 
+__Adding a `GROUP BY` clause allows you to group together rows and run aggregate functions on those groups__ &rarr;
 
-</section>
+* the `GROUP BY` clause goes after `FROM` and `WHERE`
+* a column must be specified after `GROUP BY`
 
-<section markdown="block">
-## view
-
-
-</section>
-
-<section markdown="block">
-## case
-
-
-</section>
-
-<section markdown="block">
-## aggregates 
+Additionally, and Aggregate function can be included in the column list in `SELECT`:
 
 * `AVG`
 * `SUM`
@@ -495,42 +637,111 @@ delete from student where midterm > 90;
 * `MIN`
 * `COUNT`
 
+See the [documentation for `GROUP BY`](https://www.postgresql.org/docs/10/static/sql-select.html#SQL-GROUPBY)
+</section>
+
+<section markdown="block">
+## `GROUP BY` Examples
+
+__Group by first name, show counts for each group (for example, 5 students named alice, 3 students named bob, etc.)__ &rarr;
+
+<pre class="fragment"><code data-trim contenteditable>
+SELECT FIRST, COUNT(*) FROM student GROUP BY first;
+</code></pre>
+
+Note that it doesn't matter what column name is passed to count (and `*` works too), since we're simply counting
+{:.fragment}
+
+__Again, group by first name, but this time show the midterm average for students with same first name__ &rarr;
+{:.fragment}
+
+<pre class="fragment"><code data-trim contenteditable>
+SELECT FIRST, AVG(midterm) FROM student GROUP BY first;
+</code></pre>
+
+In this case, the `midterm` column is the argument used for `AVG`
+{:.fragment}
+</section>
+
+
+<section markdown="block">
+## Filtering Groups
+
+__Add a `HAVING` clause after `GROUP BY` to eliminate groups that do not satisfy a condtion__ &rarr;
+
+From the [documentation on `HAVING`](https://www.postgresql.org/docs/10/static/sql-select.html#SQL-HAVING):
+
+* "`HAVING` is different from `WHERE`:" 
+* "`WHERE` filters individual rows before the application of `GROUP BY`
+* "while `HAVING` filters group rows created by `GROUP BY`
+
+<pre><code data-trim contenteditable>
+SELECT FIRST, AVG(midterm) 
+	FROM student 
+	GROUP BY first
+	HAVING AVG(midterm) > 70;
+</code></pre>
 
 </section>
 
 <section markdown="block">
-## group by
 
+## Casting
+
+__To cast a value from one type to another in a SQL statement, use either of the two expressions__ &rarr;
+
+* `CAST (colname as newType)`
+* `val::newType`
+
+<pre><code data-trim contenteditable>
+SELECT netid, 
+	CAST (midterm AS smallint) AS smol_mid
+	FROM student;
+</code></pre>
+
+<pre><code data-trim contenteditable>
+-- assume that midterm is integer
+-- cast to numeric
+SELECT * FROM student 
+	ORDER BY ROUND(midterm::numeric, 2);
+</code></pre>
+</section>
+
+<section markdown="block">
+## `ROUND` / formating
+
+__`ROUND` rounds a numeric value to a specified number of decimal places__
+
+There's a one argument version that rounds to an integer.
+
+Used in conjunction with casting, some simple formatting can be done:
+
+<pre><code data-trim contenteditable>
+-- assuming midterm is now an integer
+-- cast to numeric
+-- so that we can round to two places
+SELECT netid, ROUND(CAST(midterm AS numeric), 2)
+	FROM student;
+</code></pre>
 
 </section>
 
 <section markdown="block">
-## having
+## Removing Tables / Databases
 
-```
-select count(*) as movie_count, director, round(avg(budget::numeric), 2)::money as avg_budget 
-	from movie 
-	group by director 
-	having count(*) > 1 
-	order by movie_count desc;
-```
+__Use the `DROP` command to remove databases or tables__ &rarr;
 
+* `DROP TABLE table_name;`
+* `DROP DATABASE database_name;`
 
-</section>
+Notes on usage:
 
-<section markdown="block">
-## rounding / formating
-
-```
-select title, director, round(cast (gross/budget as numeric), 2) as gob from movie order by gob desc;
-```
-
-* `cast ... as`
-* 2 argument version of round requires numeric type
-
-
+* you must connect to another database if you are planning on dropping the database that you're currently connected to
+* use `IF EXISTS` to suppress errors if the table you are dropping doesn't exist
+	* DROP TABLE IF EXISTS table_name;
 
 </section>
+<!--
 
 <section markdown="block">
 ## update with another field
@@ -540,7 +751,169 @@ update movie set roi=(gross - budget)/budget;
 ```
 
 </section>
+-->
 
+<section markdown="block">
+## Importing Data
+
+__Issuing a series of manual `INSERT` statements to bring in data can be quite tedious!__ &rarr;
+
+Fortunately, <span class="hl">data can also be imported by running .sql scripts or importing files</span> (csv, tab delimited).
+
+The typical workflow for imports is to:
+
+1. create a table based on the data that you'll import
+2. potentially clean the data so that the import works well
+3. import a file with a `COPY` query or generate `INSERT` statements in a `.sql` file
+</section>
+
+<section markdown="block">
+## Running SQL Scripts
+
+__Two ways to run `.sql` scripts:__ &rarr;
+
+* in the `psql` client, use the `\i` command:
+	* `\i /path/to/stuff-to-import.sql`
+* when starting psql, a file that contains sql commands can be redirected to the client so that statements within it are run:
+	* `psql someDatabaseName < /path/to/stuff-to-import.sql`
+
+In both cases, the `.sql` file can contain any number of valid sql commands.
+</section>
+
+<section markdown="block">
+## A Sample .sql Script
+
+__In songs.sql__ &rarr;
+
+<pre><code data-trim contenteditable>
+DROP TABLE IF EXISTS song;
+CREATE TABLE song (
+	id serial PRIMARY KEY,
+	title varchar(100),
+	artist varchar(100),
+	danceability numeric
+);
+
+INSERT INTO song (title, artist, danceability)
+	VALUES
+		('Heartbeats', 'Jose Gonzalez', 0.01),
+		('Heartbeats', 'The Knife', 0.9),
+		('Lucid Dreams', 'Juice WRLD', 0.9);
+</code></pre>
+
+</section>
+<section markdown="block">
+## Running Sample SQL Script
+
+__Before running psql:__ &rarr;
+
+<pre><code data-trim contenteditable>
+psql class11 < songs.sql
+</code></pre>
+
+__Or, while in psql:__ &rarr;
+
+<pre><code data-trim contenteditable>
+\i songs.sql
+</code></pre>
+</section>
+<section markdown="block">
+## `COPY` from csv
+
+__`COPY` can be used to import data from a csv__ &rarr;
+
+(note that `COPY` is not standard SQL)
+
+<pre><code data-trim contenteditable>
+COPY table_name 
+    FROM filename
+    options
+</code></pre>
+
+A list of specific columns can be added after `table_name` in parentheses (for example: `song (title, artist, danceability)`)
+
+`options` can be replaced by some combination of additional options that control how file should be imported (see next slide).
+
+The [`COPY` documentation shows more details on usage](https://www.postgresql.org/docs/current/static/sql-copy.html)
+</section>
+
+<section markdown="block">
+## `COPY` options
+
+__Options can be__ &rarr;
+
+* format of file: `text`, `csv` or `binary` 
+* `DELIMITER AS 'some char'` - specify delimiter (default is comma for csv)
+* `NULL AS 'null_string'` - determines what string to treat as null (default for csv is empty string)
+* `HEADER` - presence specifies that header is included in file
+* `QUOTE AS 'quote_character'` - specify quote character
+
+</section>
+
+<section markdown="block">
+## Example csv File for `COPY`
+
+__Here's an example csv - note that there's no whitespace before or after the delimiter (otherwise, it'll be included in value!)__ &rarr;
+
+<pre><code data-trim contenteditable>
+title,artist,danceability
+Heartbeats,Jose Gonzalez,0.01
+Heartbeats,The Knife,0.9
+Lucid Dreams,Juice WRLD,0.9
+Happy Birthday,N/A,0.9
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## `COPY` Examples
+
+__Assuming that a table exist with appropriate types__ &rarr;
+
+<pre><code data-trim contenteditable>
+id serial PRIMARY KEY,
+title varchar(100),
+artist varchar(100),
+danceability numeric
+</code></pre>
+
+* a file with a comma delimiter can be imported 
+* the fields to be filled are `title`, `artist`, `danceability`
+* this allows a `serial` primary key to not have to be specified in the csv (id will be generated!)
+
+<pre><code data-trim contenteditable>
+-- 4 columns, but only 3 in csv
+COPY song (title, artist, danceability) 
+	FROM '/tmp/songs.csv' 
+	csv HEADER NULL AS 'N/A';
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## Another Example, w/ Tabs
+
+__Assuming a tab delimited file that contains all the columns needed (for example, primary key is not artifical, but a _natural_ key instead)__ &rarr;
+
+<pre><code data-trim contenteditable>
+COPY student 
+	FROM '/tmp/students.txt' 
+	csv HEADER DELIMITER AS E'\t';
+</code></pre>
+
+In this case: 
+
+* every column in table exist in csv
+* the delimiter is specified as `E'\t'` ... 
+* E means use backslash to escape (and, consequently, specifies tab as the delimiter)
+
+</section>
+
+{% comment %}
+<section markdown="block">
+## Running SQL Scripts
+
+</section>
 <section markdown="block">
 ## import
 
@@ -571,9 +944,22 @@ copy sd from '/tmp/Gaz_elsd_national.txt' delimiter E'\t' CSV header;
 
 
 
+<section markdown="block">
+## 
 
+<pre><code data-trim contenteditable>
 
+select count(*) as movie_count, director, round(avg(budget::numeric), 2)::money as avg_budget 
+	from movie 
+	group by director 
+	having count(*) > 1 
+	order by movie_count desc;
 
+</code></pre>
+
+</section>
+
+{% endcomment %}
 
 
 
