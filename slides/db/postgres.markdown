@@ -522,6 +522,22 @@ SELECT * FROM student ORDER BY last, first;
 </section>
 
 <section markdown="block">
+## `LIMIT`
+
+__A <span class="hl">LIMIT</span> clause can be added at the end of a `SELECT` statement (after `ORDER BY`) to contrain the number of results of the query__ &rarr;
+
+Only show 10 results:
+
+<pre><code data-trim contenteditable>
+SELECT netid, first, last
+	FROM student
+	ORDER BY netid
+	LIMIT 10;
+</code></pre>
+
+</section>
+
+<section markdown="block">
 ## Update (`UPDATE`)
 
 __Use an `UPDATE` statement to set the value of a column for a row / rows__ &rarr;
