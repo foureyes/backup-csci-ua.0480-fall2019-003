@@ -268,33 +268,17 @@ Relational Database Overview
 
  
 ",,
-,,11,10-Oct,Wed,"Slides
+,,11,10-Oct,Wed,"Postgres /SQL Basics
 
-[Postgres, SQL Basics, Importing Data (from all topics below)](slides/db/postgres.html)
+* PostgreSQL administration
+* Connecting with psql client
+* [Postgres, SQL Basics, Importing Data](slides/db/postgres.html)
 
 Files
 
 * [Movies](sql/basics/movies.sql)
 * [Transcript of SQL written in class](sql/basics/basics-transcript.sql)
 
-Importing Data
-
-Basic Postgres Administration
-
-* Configuration Files
-
-Creating Single Tables
-
-* Data Types
-* Simple Constraints (Unique)
-
-Commandline Client, SQL, and Simple Queries
-
-* psql
-* Insert
-* Select
-* Update
-* Delete
 
 ","PostgreSQL: Up and Running
 
