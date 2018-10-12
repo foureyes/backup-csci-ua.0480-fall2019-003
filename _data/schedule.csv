@@ -306,6 +306,27 @@ Commandline Client, SQL, and Simple Queries
   * Textuals
   * Temporals
 
+Official Documentation 
+
+* [Data Types](https://www.postgresql.org/docs/10/static/datatype.html) and [creating tables](https://www.postgresql.org/docs/current/static/sql-createtable.html)
+* [INSERT](https://www.postgresql.org/docs/current/static/sql-insert.html), [SELECT](https://www.postgresql.org/docs/current/static/sql-select.html)
+* [GROUP BY](https://www.postgresql.org/docs/current/static/sql-select.html#SQL-HAVINGhttps://www.postgresql.org/docs/current/static/sql-select.html#SQL-GROUPBY) and [HAVING](https://www.postgresql.org/docs/current/static/sql-select.html#SQL-HAVING)
+* [UPDATE](https://www.postgresql.org/docs/current/static/sql-update.html) and [DELETE](https://www.postgresql.org/docs/current/static/sql-delete.html)
+* [ALTER TABLE](https://www.postgresql.org/docs/10/static/sql-altertable.html)
+* [COPY, Import](https://www.postgresql.org/docs/10/static/sql-copy.html)
+
+postgresqltutorial 
+
+* [SELECT](http://www.postgresqltutorial.com/postgresql-select/)
+* [ORDER BY](http://www.postgresqltutorial.com/postgresql-order-by/)
+* [DISTINCT](http://www.postgresqltutorial.com/postgresql-select-distinct/)
+* [WHERE](http://www.postgresqltutorial.com/postgresql-where/)
+* [LIMIT](http://www.postgresqltutorial.com/postgresql-limit/)
+* [GROUP BY](http://www.postgresqltutorial.com/postgresql-group-by/)
+* [HAVING](http://www.postgresqltutorial.com/postgresql-having/)
+* [COPY, Import](http://www.postgresqltutorial.com/import-csv-file-into-posgresql-table/)
+
+
 <!--
 
 Python for Data Analysis
