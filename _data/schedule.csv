@@ -317,17 +317,30 @@ Python for Data Analysis
 
 1. [Homework #04 Instructions](assignments/04.html) 
 "
-y,,12,15-Oct,Mon,"Relational Database Design
+,,12,15-Oct,Mon,"
+
+Sample Questions for Midterm and About Exam
+
+* [Sample Questions and Solution](resources/handouts/midterm/midterm_sample_questions.pdf)
+* The reference is still a draft!
+
+Homework 04
+
+Example Import
+
+* [2010 Census Data](https://www.census.gov/geo/maps-data/data/gazetteer2010.html)
+
+Relational Database Design
 
 * Relations / Foreign Key Constraints
-* E-R Diagrams (in MySQL Workbench or similar)
-  * Reverse engineering
-  * Forward engineering
+* ER Diagrams
 * Normalization
 
 
-
-Joins and Aggregate Queries
+",,
+y,,13,17-Oct,Wed,Review,* Ch 9: Plotting and Visualization,
+y,exam  ,14,22-Oct,Mon,Exam 1,,
+y,,15,24-Oct,Wed,"Joins and Aggregate Queries
 
 * in-depth study of SQL for data analysis and for manipulating RDBMS.
 * JOINs and all facets for standard SQL programming and development. 
@@ -335,16 +348,15 @@ Joins and Aggregate Queries
 * Study of aggregate queries
 * In-depth look at nested queries
 * Use single tables for aggregate queries and related queries for deep dives into data sets 
-",,HW05 – in class?
-y,,13,17-Oct,Wed,Review,* Ch 9: Plotting and Visualization,
-y,exam  ,14,22-Oct,Mon,Exam 1,,
-y,,15,24-Oct,Wed,"Data Wrangling (without databases)
+
+Data Wrangling (without databases)
 
 * Joins
 * Pivots
 
 
-Performance / Indexing and Query Optimization 
+",,HW06
+y,,16,29-Oct,Mon,"Performance / Indexing and Query Optimization 
 
 * Indexes
   * Different Types of Indexes
@@ -354,8 +366,9 @@ Performance / Indexing and Query Optimization
 Additional Administration
 
 * Backups / Replication
-* Vacuum",,HW06
-y,,16,29-Oct,Mon,"Geo-spacial Data
+* Vacuum
+
+Geo-spacial Data
 
 * PostGIS
 ",,
