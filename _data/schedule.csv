@@ -361,7 +361,18 @@ Relational Database Design
 
 
 ",,
-y,,13,17-Oct,Wed,Review,* Ch 9: Plotting and Visualization,
+,,13,17-Oct,Wed,"Review
+
+* [sql transcript for distinct, group by / having](sql/midterm-review/review.sql)
+* [midterm review notebook](notebooks/midterm-review/review.ipynb)
+
+HAVING and BETWEEN
+
+* [sql HAVING and BETWEEN questions](slides/db/having-between.html)
+
+
+
+",,
 y,exam  ,14,22-Oct,Mon,Exam 1,,
 y,,15,24-Oct,Wed,"Joins and Aggregate Queries
 
