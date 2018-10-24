@@ -1,3 +1,7 @@
+---
+layout: slides
+title: "Database Design"
+---
 <section markdown="block" class="intro-slide">
 # {{ page.title }}
 
@@ -32,13 +36,12 @@ __As with software engineering, you don't want to just jump in and start creatin
 The database design process may look something like:
 {:.fragment}
 
-1. {:.fragment} requirements analysis
-	* {:.fragment} work with _domain experts_, explore existing data etc. ... to: 
+1. {:.fragment} requirements analysis - specify the problem, work with _domain experts_, explore existing data, etc. ... to: 
 	* {:.fragment} determine what data needs to be stored 
 	* {:.fragment} how the data is related to each other?
 2. {:.fragment} conceptual design
 	* {:.fragment} use requirements to formally describe the data, relationships and constraints
-	* {:.fragment} says nothing about _actual_ implementation (not platform specific, no details on physical storage, etc.)	
+	* {:.fragment} says nothing about _actual_ implementation (no details on  platform, physical storage, etc.)	
 3. {:.fragment} translate conceptual design to actual _objects_ in specific DBMS / db platform
 
 </section>

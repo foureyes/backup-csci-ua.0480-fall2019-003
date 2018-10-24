@@ -373,9 +373,27 @@ HAVING and BETWEEN
 
 
 ",,
-y,exam  ,14,22-Oct,Mon,Exam 1,,
-y,,15,24-Oct,Wed,"Joins and Aggregate Queries
+,exam  ,14,22-Oct,Mon,Exam 1,,
+,,15,24-Oct,Wed,"Database Design
 
+* Relational Model / Relational Algebra
+* Normalization
+
+Data Modeling, Reverse Engineering
+
+* [Sample Databases for Postgres](https://wiki.postgresql.org/wiki/Sample_Databases)
+* [pgmodeler for Data Modeling and Reverse Engineering](https://pgmodeler.io/)
+* ER Diagrams
+
+Multiple Tables (Joins)
+
+* [Movies Revisited](sql/joins/movies.sql)
+* Foreign Key (REFERENCES table (col))
+* [Joins](slides/db/joins.html)
+
+Discuss Midterm Exam Solutions?
+
+<!--
 * in-depth study of SQL for data analysis and for manipulating RDBMS.
 * JOINs and all facets for standard SQL programming and development. 
 * UNION and related queries
@@ -387,9 +405,14 @@ Data Wrangling (without databases)
 
 * Joins
 * Pivots
+-->
 
-
-",,HW06
+","* [Normalization (from MariaDB docs)](https://mariadb.com/kb/en/library/database-normalization/)
+* [Foreign key constraint](http://www.postgresqltutorial.com/postgresql-foreign-key/)
+* [Inner join](http://www.postgresqltutorial.com/postgresql-inner-join/)
+* [Left outer join](http://www.postgresqltutorial.com/postgresql-left-join/)
+* [Full outer join](http://www.postgresqltutorial.com/postgresql-full-outer-join/)
+* [Self join](http://www.postgresqltutorial.com/postgresql-self-join/)",
 y,,16,29-Oct,Mon,"Performance / Indexing and Query Optimization 
 
 * Indexes
