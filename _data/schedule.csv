@@ -413,7 +413,12 @@ Data Wrangling (without databases)
 * [Left outer join](http://www.postgresqltutorial.com/postgresql-left-join/)
 * [Full outer join](http://www.postgresqltutorial.com/postgresql-full-outer-join/)
 * [Self join](http://www.postgresqltutorial.com/postgresql-self-join/)",
-y,,16,29-Oct,Mon,"Performance / Indexing and Query Optimization 
+,,16,29-Oct,Mon,"Database Design and Normalization Practice
+
+* Database Design Review (News Site?)
+* [IMDB Horror Movie Dataset](https://www.kaggle.com/PromptCloudHQ/imdb-horror-movie-dataset)
+",,
+y,,17,31-Oct,Wed,"Performance / Indexing and Query Optimization 
 
 * Indexes
   * Different Types of Indexes
@@ -428,8 +433,8 @@ Additional Administration
 Geo-spacial Data
 
 * PostGIS
-",,
-y,,17,31-Oct,Wed,"Postgres and Python
+
+Postgres and Python
 
 * pyscopg
 * SQLAlchemy?
