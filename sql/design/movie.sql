@@ -12,8 +12,9 @@ create table country (
 insert into country (name)
     (select distinct release_country from staging.movie);
 
-
-
+-- do countries match?
+select count(*) from country;
+select distinct release_country from staging.movie;
 
 --select distinct filming_locations from staging.movie;
 create table filming_location (
@@ -38,16 +39,25 @@ create table filming_location (
 --inner join country
 --on country.name = trim(loc[array_length(loc, 1)]);
 
-
 insert into filming_location (name, country_id)
-    (select distinct array_to_string(loc[1:array_length(loc, 1) - 1], ',') as location,
-      country.country_id
-    from
+    (select
+         distinct array_to_string(loc[1:array_length(loc, 1) - 1], ',') as location,country.country_id
+     from
       (select regexp_split_to_array(filming_locations, ',') as loc from staging.movie) as location
     inner join country
     on country.name = trim(loc[array_length(loc, 1)]));
 
-delete from filming_location;
+select
+         distinct array_to_string(loc[1:array_length(loc, 1) - 1], ',') as location,country.country_id
+     from
+      (select regexp_split_to_array(filming_locations, ',') as loc from staging.movie) as location
+    inner join country
+    on country.name = trim(loc[array_length(loc, 1)]);
+
+
+select count(*) from filming_location;
+select filming_locations, count(*) from staging.movie where filming_locations is not null group by filming_locations;
+--delete from filming_location;
 select * from filming_location;
 select count(*) from filming_location;
 select name, count(*) from filming_location group by name;

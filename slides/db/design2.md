@@ -25,6 +25,9 @@ every row can stand on its own
 * every value atomic
 * probably a primary key / composite primary key
 
+2nf
+non prim values (not primary key) does not have a partial dependency on a composite key
+
 
 
 
