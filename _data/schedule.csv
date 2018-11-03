@@ -413,12 +413,18 @@ Data Wrangling (without databases)
 * [Left outer join](http://www.postgresqltutorial.com/postgresql-left-join/)
 * [Full outer join](http://www.postgresqltutorial.com/postgresql-full-outer-join/)
 * [Self join](http://www.postgresqltutorial.com/postgresql-self-join/)",
-,,16,29-Oct,Mon,"Database Design and Normalization Practice
+,,16,29-Oct,Mon,"Database Design and Normalization 
+
+* [Database Design](slides/db/design.html) 
+* See previous slides on Joins
+",,
+,,17,31-Oct,Wed,"Database Design and Normalization Practice
 
 * Database Design Review (News Site?)
 * [IMDB Horror Movie Dataset](https://www.kaggle.com/PromptCloudHQ/imdb-horror-movie-dataset)
+
 ",,
-y,,17,31-Oct,Wed,"Performance / Indexing and Query Optimization 
+y,,18,05-Nov,Mon,"Indexes
 
 * Indexes
   * Different Types of Indexes
@@ -439,8 +445,8 @@ Postgres and Python
 * pyscopg
 * SQLAlchemy?
 * Postgres, SQLAlchemy and pandas
-",,HW07
-y,,18,05-Nov,Mon,"Creating APIs for Consumption
+
+Creating APIs for Consumption
 ",,
 y,,19,07-Nov,Wed,"Visualization Revisited (web-based)
 

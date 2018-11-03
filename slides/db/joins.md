@@ -179,3 +179,17 @@ SELECT * FROM movie FULL OUTER JOIN genre ON movie.genre_id = genre.genre_id;
 </code></pre>
 
 </section>
+
+<section markdown="block">
+## Self Joins
+
+__Which movies were made in the same year, shown as pairs?__ &rarr;
+
+<pre><code data-trim contenteditable>
+SELECT a.movie_id, a.title, b.movie_id, b.title, a.year
+FROM movie as a INNER JOIN movie as b ON a.year = b.year
+-- prevents "duplicate" rows
+WHERE a.movie_id < b.movie_id
+ORDER BY a.year, a.movie_id, b.movie_id;
+</code></pre>
+</section>
