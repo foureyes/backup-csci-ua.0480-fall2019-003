@@ -1,4 +1,7 @@
-create table movie(
+create schema staging;
+
+create table staging.movie (
+  movie_id serial,
 	title text,
 	genres text,
 	release_date text,
@@ -10,7 +13,8 @@ create table movie(
 	movie_cast text,
 	language varchar(100),
 	filming_locations text,
-	budget money
+	budget varchar(100),
+  primary key(movie_id)
 );
 
 
