@@ -422,9 +422,16 @@ Data Wrangling (without databases)
 
 * Database Design Review (News Site?)
 * [IMDB Horror Movie Dataset](https://www.kaggle.com/PromptCloudHQ/imdb-horror-movie-dataset)
-
+* [In class](sql/design/class17-movies.sql)
 ",,
-y,,18,05-Nov,Mon,"Indexes
+y,,18,05-Nov,Mon,"Database Design and Normalization Practice Continued
+
+
+* (Again) [IMDB Horror Movie Dataset](https://www.kaggle.com/PromptCloudHQ/imdb-horror-movie-dataset)
+* [Database and Schema](sql/design/staging.sql)
+* [Tables](sql/design/movies-schema-draft-2.sql)
+* [Annotated / Complete](sql/design/movies.sql)",,
+y,,19,07-Nov,Wed,"Indexes
 
 * Indexes
   * Different Types of Indexes
@@ -446,15 +453,16 @@ Postgres and Python
 * SQLAlchemy?
 * Postgres, SQLAlchemy and pandas
 
-Creating APIs for Consumption
 ",,
-y,,19,07-Nov,Wed,"Visualization Revisited (web-based)
+y,,20,12-Nov,Mon,"Creating APIs for Consumption
+Visualization Revisited (web-based)
 
 * svg
 * d3
 * bokeh again (or for first time?)
-* plotly again (or for first time?)",,
-y,,20,12-Nov,Mon,"Data Pipeline (everything together)
+* plotly again (or for first time?)
+
+Data Pipeline (everything together)
 
 * ETL
 * Python, Pandas, Postgres",,HW08
