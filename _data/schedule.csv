@@ -431,14 +431,62 @@ Data Wrangling (without databases)
 * [Database and Schema](sql/design/staging.sql)
 * [Tables](sql/design/movies-schema-draft-2.sql)
 * [Annotated / Complete](sql/design/movies.sql)",,
-y,,19,07-Nov,Wed,"Indexes
+,,19,07-Nov,Wed,"Resources
 
+* [Popular Names from Social Security Administration (First Names)](https://www.ssa.gov/cgi-bin/popularnames.cgi)
+* [Behind the Name (Surnames)](https://surnames.behindthename.com/)
+* [names.txt](sql/names.txt)
+* [domains.txt](sql/domains.txt)
+
+Indexes, Query Planner
+
+* [EXPLAIN / ANALYZE](slides/db/Indexes.html)
+
+
+
+Maybe Python and Postgres
+
+* psycopg2
+* psycopg2.connect(dbname, user)
+* conn.cursor()
+* cur.execute()
+* cur.fetchone()
+* cur.fetchall()","PostgreSQL Up & Running
+
+
+* Chapter 6: Tables, Constraints, and Indexes
+  * Tables - Basic Table Creation
+  * Constraints – Foreign Key Constraints
+  * Constraints – Unique Constraints
 * Indexes
-  * Different Types of Indexes
-* Optimizing Queries
-* Query Planning
+  * PostreSQL Stock Indexes
+* Chapter 8: Writing Functions
+  * Anatomy of PostgreSQL Functions – Function Basics
+  * Writing PL/pgSQL Functions – Basic PL/pgSQL Function
+* Chapter 9: Query Preformance Tuning
+  * EXPLAIN
 
-Additional Administration
+Query Planner
+
+* [Planner/Optimizer from PostgreSQL Docs](https://www.postgresql.org/docs/current/planner-optimizer.html)
+
+Functions, Variables Online Resources
+
+
+* [PostgreSQL Tutorial: CREATE FUNCTION](http://www.postgresqltutorial.com/postgresql-create-function/)
+* [PostgreSQL Tutorial: Function Parameters](http://www.postgresqltutorial.com/plpgsql-function-parameters/)
+* [PostgreSQL Tutorial: Variables](http://www.postgresqltutorial.com/plpgsql-variables/)
+
+
+Index Online Resources
+
+* [Anatomy of an index](https://use-the-index-luke.com/sql/anatomy)
+* [CREATE INDEX from PostgreSQL Docs](https://www.postgresql.org/docs/current/sql-createindex.html)
+* [Index-Only Scans from PostgreSQL Docs](https://www.postgresql.org/docs/current/indexes-index-only-scans.html)
+* [Tour of PostgreSQL Index Types](https://www.citusdata.com/blog/2017/10/17/tour-of-postgres-index-types/)
+* [Principles and Applications of the Index Types Supported by PostgreSQL
+](https://medium.com/@Alibaba_Cloud/principles-and-applications-of-the-index-types-supported-by-postgresql-481f59bab67d)",
+y,,20,12-Nov,Mon,"Additional Administration
 
 * Backups / Replication
 * Vacuum
@@ -452,9 +500,9 @@ Postgres and Python
 * pyscopg
 * SQLAlchemy?
 * Postgres, SQLAlchemy and pandas
-
-",,
-y,,20,12-Nov,Mon,"Creating APIs for Consumption
+",,HW08
+y,,21,14-Nov,Wed,"
+Creating APIs for Consumption
 Visualization Revisited (web-based)
 
 * svg
@@ -465,8 +513,9 @@ Visualization Revisited (web-based)
 Data Pipeline (everything together)
 
 * ETL
-* Python, Pandas, Postgres",,HW08
-y,,21,14-Nov,Wed,"NoSQL (mongodb)
+* Python, Pandas, Postgres",,
+y,,22,19-Nov,Mon,"
+NoSQL (mongodb)
                                                                                                                                   
 * JSON format in depth                                                                                                                 
   1. Nested objects                                                                                                                  
@@ -475,25 +524,26 @@ y,,21,14-Nov,Wed,"NoSQL (mongodb)
   1. from command line (e.g. mongo shell)                                                                                            
   2. from Python libraries (e.g. pymongo module)                                                                                     
 * Basic CRUD                                                                                                                           
-* Geo-spatial data queries ",,
-y,,22,19-Nov,Mon,"NoSQL (continued)
-
-Python and NoSQL",,HW09
+* Geo-spatial data queries ",,HW09
 y,holiday,,21-Nov,Wed,Thanksgiving,,
-y,,23,26-Nov,Mon,"Cloud Data Storage (Firebase, S3, RDS)
+y,,23,26-Nov,Mon,"NoSQL (continued)
+
+Python and NoSQL ",,
+y,,24,28-Nov,Wed,"
+Cloud Data Storage (Firebase, S3, RDS)
 
 * S3
 * RDS
-* Firebase ",,
-y,,24,28-Nov,Wed,"Serverless  (Firebase Again, Lambda, Chalice or Zappa)
+* Firebase",,HW10
+y,,25,03-Dec,Mon,"Serverless  (Firebase Again, Lambda, Chalice or Zappa)
 
 * Microservices
 * AWS lambda
 * Firebase
-* zappa or chalice",,HW10
-y,,25,03-Dec,Mon,"Processing Large Data Sets (Spark or Hadoop)
+* zappa or chalice
+",,
+y,,26,05-Dec,Wed,"Processing Large Data Sets (Spark or Hadoop)
 
 * Hadoop, Parque",,
-y,,26,05-Dec,Wed,Optional Topic TBD,,
 y,,27,10-Dec,Mon,Review,,
 y,exam  ,28,12-Dec,Wed,Exam 2,,

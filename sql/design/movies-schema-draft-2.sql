@@ -6,7 +6,7 @@ create table country (
 
 create table filming_location (
   filming_location_id serial,
-  name varchar(255) not null,
+  name varchar(255),
   country_id integer references country(country_id) on delete restrict not null,
   primary key(filming_location_id)
 );
@@ -46,8 +46,8 @@ create table movie (
 );
 
 create table movie_genre (
-  movie_id integer references movie(movie_id),
-  genre_id integer references genre(genre_id)
+  movie_id integer references movie(movie_id) not null,
+  genre_id integer references genre(genre_id) not null
 );
 
 create table movie_director (
@@ -59,3 +59,69 @@ create table movie_actor (
   movie_id integer references movie(movie_id) not null,
   person_id integer references person(person_id) not null
 );
+
+
+
+insert into country (name)
+    (select distinct release_country from staging.movie);
+
+select * from country;
+
+select regexp_split_to_array(filming_locations, ',') as locations from staging.movie;
+
+
+select trim(location)
+from (select regexp_split_to_table(filming_locations, ',') as location from staging.movie) as temp;
+
+
+select  array_to_string(loc[1:array_length(loc, 1)-1], ',') as loc_name,
+    loc[array_length(loc, 1)] as country_name from
+  (select regexp_split_to_array(filming_locations, ',') as loc from staging.movie) as loc;
+
+with loc_temp as (
+    select  trim(array_to_string(loc[1:array_length(loc, 1)-1], ',')) as loc_name,
+            trim(loc[array_length(loc, 1)]) as country_name
+    from
+         (select regexp_split_to_array(filming_locations, ',') as loc
+          from staging.movie) as loc
+)
+select distinct country_name, country.country_id, country.name
+from loc_temp left join country on country.name = loc_temp.country_name;
+
+with loc_temp as (
+    select  trim(array_to_string(loc[1:array_length(loc, 1)-1], ',')) as loc_name,
+            trim(loc[array_length(loc, 1)]) as country_name
+    from
+         (select regexp_split_to_array(filming_locations, ',') as loc
+          from staging.movie) as loc
+)
+insert into filming_location (name, country_id)
+select distinct loc_name, country.country_id
+from loc_temp left join country on country.name = loc_temp.country_name
+where country.country_id is not null;
+
+select filming_location.name, country.name
+from filming_location
+       inner join country on filming_location.country_id = country.country_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
