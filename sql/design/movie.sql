@@ -1,5 +1,5 @@
 --select distinct release_country from staging.movie;
-
+select * from staging.movie;
 -----------------------------------------------------
 -- country
 -----------------------------------------------------
@@ -150,6 +150,7 @@ $$ language 'plpgsql';
 select * from staging.movie;
 select parse_name('Ray Lovelock');
 select parse_name('Anna Maria Rizzoli');
+select parse_name('Elias');
 
 
 -- 3. insert into person table ...
@@ -166,6 +167,8 @@ from (select parse_name(full_name) as parts
   from (select distinct regexp_split_to_table(movie_cast, E'\\|') as full_name from staging.movie) as person) as name_parts;
 -- 3. run some checks; these two selects should be the same!
 select count(*) from person;
+
+select  regexp_split_to_table(movie_cast, E'\\|') from staging.movie;
 
 select count(distinct full_name)
 from (select regexp_split_to_table(movie_cast, E'\\|') as full_name from staging.movie) as actors;
@@ -577,6 +580,17 @@ group by movie.movie_id;
 -----------------
 -- rando queries!
 -----------------
+
+select * from movie;
+
+select title, string_agg(genre.name, ',') from movie
+inner join movie_genre on movie.movie_id = movie_genre.movie_id
+inner join genre on genre.genre_id = movie_genre.genre_id
+group by movie.movie_id;
+
+
+
+
 
 -- actors in movies that have to do with aliens!
 select movie.title, string_agg(person.given || ' ' || person.surname, ',') from movie
