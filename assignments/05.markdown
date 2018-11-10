@@ -54,113 +54,155 @@ function onClick(evt) {
 
 In this homework, you'll:
 
-0. install postgres (use `brew`, or on windows, download the installer from [postgresql.org](https://www.postgresql.org/download/)
-1. convert data from homework 3 into a csv file - you should already have a Python script to do this from your previous work! (`name_your_file.csv`)
-2. design a table based on your data (`create_table.sql`)
-3. import your csv into your database (`import_csv.sql`)
-4. run a few simple queries (`queries.sql`)
-5. __write about the results of your queries (`report.md`)__
+1. Use "business" requirements to build a database 
+	1. Create an ER Diagram 
+	2. Write CREATE table statements 
+	3. Write queries against the tables created
+2. Normalize the data from previous assignments and store it in a database
+	1. Normalize the data from previous assignments (or find a new data source)
+	2. Create an ER diagram representing the normalized data
+	3. Create the tables to support the ER diagram
+	4. Import and clean the data using SQL
+	5. Write queries against the imported data
+
+## Part 1: Use "business" requirements to build a database
+
+To save some money 💰, instead of taking an Uber/Lyft/Taxi all over the city, you and a bunch of friends decide to buy a pool of electric scooters to share!
+
+Other students find out about your scooter scheme, and want to join in 🙌! You rent out a small store front to be the base of your _Scoot Share_ ... where people can go to to borrow or return a scooter (for a small hourly fee), 24 hours / day 🌞🌔! Now you have to keep track of an ever-growing fleet of electric scooters __and__ who's borrowed them. 
+
+### Here's how your _Scoot Share_ works:
+
+1. A person comes into your store to borrow a scooter...
+2. You take down their name, contact information, and when they first entered your store
+	* for contact information, you simply need a way to get in touch with them in case you need to track down an unreturned scooter or a damaged scooter, so the following are required:
+		* email address
+		* cell phone 
+		* home address
+	* keep track of both date and time for when they first entered / gave you their information
+3. If they've borrowed a scooter before, you can just retrieve all of their previous information from the first time they borrowed a scooter
+4. If they already have a scooter borrowed, but that they haven't returned it, then they can't borrow anothers scooter
+5. If they've been referred by someone else that had previously borrowed a scooter, make sure to take note of that 
+	* it's adequate to simply know who referred who; no additional information has to be kept about a referral
+	* of course, someone can come it without having been referred
+6. Then... they choose a scooter to borrow from your inventory of available scooters
+	* the scooters vary, with differences in:
+		* manufacturer
+		* the manufacturer's country
+		* model number
+		* range (in kilometers)
+		* weight (in kilograms) 
+		* top speed (in kilometers/hour)
+		* condition (new, slightly used, used)
+	* you can have multiple scooters that have the same manufacturer and model number
+6. They can pre-pay to borrow a scooter for a set number of hours
+	* it's important to note when they actually borrow a scooter
+	* and, of course, when they need to return it
+	* ... and how much they paid
+7. They give you their payment information so that you can charge them for the hours they book and charge them additional fees if they return the scooter late or damaged (note that you don't keep track of this on your own - you use a 3rd party service so you don't have to deal with any credit card number storage regulations)
+8. When they return the scooter...
+	* keep track of when it was returned
+	* and determine if the return is late or not, and check for damages
+	* ... add any additional fees for damage / late return as separate line items associated with the borrow / return
+9. An arbitrary number of _freeform_ text notes can be added to when a person borrows a scooter
+	* these notes can be used to indicate issues that come up while the scooter is being used or when it's returned (for example, the scooter may not meet its stated max range while it's out... or the scooter may be returned with handle grips missing)
+	* in addition to the text, notes can be categorized as: return condition, malfunction, or other
+10. Lastly, you should be able to _flag_ a user as someone that has had issues in the past
+
+Because you're an SQL _expert_ 🤓, you decide to store all of this information in a database! 
+
+⚠️ See [the "Write Some SQL" below](#write-some-sql) to get an idea of what queries you'd be running against this database. ⚠️
 
 
-## Generate a csv File
+### Create an ER Diagram and write SQL to Make Tables
 
-1. use your previous homework to generate a _clean_ csv file from the data set that you chose for that homework
-	* the name of the file should describe the data contained within it (`students.csv`, `dog_bites.csv`) 
-	* this work should be pretty much done already if you completed homework 3
-	* the csv should be contain your data set with all of your previous transformations and data scrubbing applied
-	* if the resulting csv is over 100mb, use a subset of the data
-2. copy your csv over to the root directory of your homework repository
-3. __in your `report.md`, under a heading called `# Overview`, once again, site the source of the data and write up what is contained in it__
-
-## Design and Create a Table
-
-1. based on the your csv, design a table to import your data into (see the slides on data types and creating a table)
-	* determine what field should be a primary key (unique, something that will not be changed)
-	* if no field is a good candidate for a primary key, use a `serial` numeric type (sequence) as a surrogate / artificial primary key
-	* think of the appropriate data type for all of the other fields
-	* consider whether or not you'd like to allow null values, duplicates, or set default values
-2. __in `report.md`, under a heading called `# Table Design`,  write up your decisions for each field__ (for example, you can say that you have allowed null values for a particular field because there is missing data in your csv, or if there's missing data ... you'll fill with a default value)
-3. write the _actual_ SQL to make this table, and put it into your `create_table.sql`
-	* prior to the `CREATE TABLE` statement, make sure to try to `DROP` the table first, but only if it exists
-	* make sure that the appropriate constraints are set (`NOT NULL`, `UNIQUE`, etc.)
-	* use descriptive names for the table and columns
-	* make sure all names are lowercase and separated with underscore
-4. create and connect to a database called homework04
-5. run the SQL in your `create_table.sql` file by using copying and pasting, using `\i`, or using psql dbname < `/path/to/create_table.sql`
-
-## Import Your .csv
-
-1. Now for the moment of truth! Try importing your csv using the `COPY` command (check the slides for different options)2. If there are errors, __note the errors in your `report.md` and how you fixed them under a heading called `# Import`__
-	* (if there are no errors, just note that the import succeeded without error)
-	* you can continue to refine your create table sql file and your csv
-	* but you can only do this (^^^^)  as long as you __add notes about your refinements under `# Import`__
-	* ...and as long as all the other related files are updated 
-	* (for example `create_table.sql` should contain the new `CREATE` statement if you had to change the way your table was made... or if you needed to clean up the csv a little more, you'd have to drop in the new csv)
-3. add the command that you used to do the import into the `import_csv.sql` file
+1. ✏️ Based on the description above, create an ER Diagram (crow's foot / martin) to model the data
+	* there are multiple ways to model the scenario described, and there are clearly __ambiguities__ in the description
+	* you can use any diagramming tool to create your diagram: [draw.io](https://www.draw.io/) (you can start with "Software" --&rarr; "Entity Relationship", the last diagram type), [Google Drawings](https://docs.google.com/drawings/d/1hcTNp5IlnJXxLWDx5f8mptMLYDKqnJLt5fKgP4aP8e8/edit) with [ER Diagram Symbols](https://docs.google.com/drawings/d/1IIQ6ftgPqG082JRTW7-cBzXAi_BdxrBmEncQeQETzJk/edit), Visio, [Dia](http://dia-installer.de/), or any other drawing application
+	* ⚠️⚠️⚠️ __see the next section, "Write Some SQL", as some of those queries may inform your design decisions__
+2. 🔑 __Use natural primary keys when possible__, but surrogate / artificial keys are ok too
+3. 👀 Avoid data redundancy and update / insert/ delete anomalies by making sure your data model is __minimally in 3rd normal form__
+4. 🤝 __maintain relational integrity and use constraints as needed__
+5. 🖼 Export this as an image (any format is ok) called `er-diagram.png` (change extension appropriately)
+6. Embed the image under a heading called `Scoot-Share` in your `README.md`
+7. __Below the image, describe:__ 
+	* your design decisions for the relationships between tables
+	* any assumptions you had to make due to the ambiguities in the description above
+8. Create a a file called `part-1-scoot-share-create.sql` that contains SQL for creating all of the tables that you've modeled
+9. Add a link from your `README.md` to `part-1-scoot-share-create.sql`
 
 
-## Run Some Simple Queries
+<a name="write-some-sql">
 
-Run commands and queries on your newly imported data
+### Write Some SQL!
 
-### First, run some commands to see what's in your table
+If it's relevant for your paricular data model, check out the documentation on:
 
-1. show all of databases in your postgres instance
-2. (making sure you're connected to `homework04` database) show all of the tables in your database
-3. finally, show some information about the table you created and imported data into: find a way to show its columns, types and constraints (hint: describe the table)
+* [Date/Time Types](https://www.postgresql.org/docs/current/datatype-datetime.html)
+* [Date/Time Functions and Operators, such as NOW(), &gt;, etc.](https://www.postgresql.org/docs/current/functions-datetime.html)
 
-__Once you've run the commands for the above, copy and paste the results into your `report.md` file under a header called `# Database Information`.__
+In a file called `part-1-scoot-share-queries.sql`:
 
-### Now, run some queries to determine / calculate / show some information
+1. List all people (names are adequate) that have flags in any order
+2. List all available scooters in any order
+3. List all scooters (scooter model and manufacturer, along with person's name... and when they're due back) that are being borrowed in order of when they're due back ordered by when whey were due increasing (that is, earlier ones appear first, and more recent ones appear later)
+4. List all scooters (scooter model and manufacturer, along with person's name) that are being borrowed and that are late in any order
+5. List the top 5 people (names and number of referrals) that have the most referrals sorted by most referrals descending
+6. Given a unique identifier for a person, show all of the times that person has borrowed a scooter in chronological order (from the first time they borrowed a scooter to the most recent)
+7. Given a unique identifier for a particular instance of a person borrowing a scooter, show all of the damage / late related fees 
+8. List all of the manufacturers of scooters in your database, __even if you don't currently have any of their scooters in your inventory__
 
-As you go through writing your queries:
+Add a link to `part-1-scoot-share-queries.sql` in your `README.md`
 
-* __add your query to `queries.sql` with a comment above each statement reflecting the number and information you are extracting__
-	<pre><code data-trim contenteditable>-- 2. number and description from below	
-YOUR QUERY UNDERNEATH;
-</code></pre>
-* __add the results of each query to your `report.md`__
-	* __this should go under a heading called `# Query Results`__
-	* remember to add the number and description of the results based on the specifications below
-	* drop this into a markdown "code" block (surround with triple backticks)
-		<pre><code data-trim contenteditable>```
-### 2. number and description from below		
-Your | Results | Here
------+---------+-----
-foo  | bar     | baz
+## Part 2: Normalize the data form previous assignments....
+
+1. Use the data that you've worked on in previous assignments or find a new data set:
+	* create at least two tables with a foreign key relationship based on this data
+	* make sure that the resulting tables are minimally in 3rd normal form
+	* create a file called `part-2-normalization-create.sql`
+2. Import the data into the two tables
+	* you can use any method to do this
+	* ...from using only SQL
+	* ...to using a combination of SQL and Python (with any libraries you'd like to use)
+	* save any sql or Python that you've written into a file called `part-2-normalization-import.sql` or `part-2-normalization-import.py` (or both!)
+	* save the original data source an any intermediary transformations
+3. Write the following queries and __describe what they do in a comment__... all within `part-2-normalization-queries.sql`:
+	1. a query that involves an inner join
+		* use a comment to describe the query
+	2. a query that involves an outer join (left, right or full)
+		* use a comment to describe the query
+	3. a query that involves an inner join and an aggregate function
+		* use a comment to describe the query
+
+Under a heading called `Normalization`, add links to your:
+
+* create statements sql
+* original data and transformed/cleaned data (if relevant)
+* import scripts (SQL and/or Python)
+* queries
+
+## Conclusion
+
+At the end of the homework, your `README.md` should look like the following (with parts marked `TODO` as arease where you have to write content)
+
 ```
-</code></pre>
+# Homework 05
 
-Write queries to do / show the following:
+## Scoot-Share
 
-1. the total number of rows in the database
-2. show the first 15 rows, but only display 3 columns (your choice)
-3. do the same as above, but chose a column to sort on, and sort in descending order
-4. add a new column without a default value
-5. set the value of that new column
-6. show only the unique (non duplicates) of a column of your choice
-7. group rows together by a column value (your choice) and use an aggregate function to calculate _something_ about that group (count of all members of the group, the average of a column of the members of the group)
-	* show the column that is used for grouping AND the result of the aggregate function (so, 2 columns minimum on output)
-8. now, using the same grouping query or creating another one, find a way to filter the query results based on the values for the groups (for example, show all genres that have more than 2 movies in it and only show the genre and the number of movies for that genre)
+![er diagram for scoot share](er-diagram.png)
 
-Finally, add another 4 queries of your own that helps you gain some insight on your data
+* TODO: a list of design decisions
+* TODO: a list of assumptions
 
-__Document each query (9 - 12) in your `report.md` and `queries.sql` file__
+Scripts
 
+* [part-1-scoot-share-create.sql](part-1-scoot-share-create.sql)
+* [part-1-scoot-share-queries.sql](part-1-scoot-share-queries.sql)
 
-### Conclusion
+## Normalization
 
-At the end of the homework, you should have 5 files:
-
-1. `name_your_file.csv`
-2. `create_table.sql`
-3. `import_csv.sql`
-4. `queries.sql`
-5. `report.md` (note that report should contain the following headers)
-	* Overview
-	* Table Design
-	* Import
-	* Database Information
-	* Query Results
-	
-
+* [part-2-normalization-create.sql](part-2-normalization-create.sql)
+* [part-2-normalization-import.sql](part-2-normalization-import.sql)
+* [part-2-normalization-queries.sql](part-2-normalization-queries.sql)
+```
