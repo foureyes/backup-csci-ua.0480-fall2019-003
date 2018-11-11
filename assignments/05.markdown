@@ -118,8 +118,11 @@ Because you're an SQL _expert_ 🤓, you decide to store all of this information
 
 1. ✏️ Based on the description above, create an ER Diagram (crow's foot / martin) to model the data
 	* there are multiple ways to model the scenario described, and there are clearly __ambiguities__ in the description
-	* you can use any diagramming tool to create your diagram: [draw.io](https://www.draw.io/) (you can start with "Software" --&rarr; "Entity Relationship", the last diagram type), [Google Drawings](https://docs.google.com/drawings/d/1hcTNp5IlnJXxLWDx5f8mptMLYDKqnJLt5fKgP4aP8e8/edit) with [ER Diagram Symbols](https://docs.google.com/drawings/d/1IIQ6ftgPqG082JRTW7-cBzXAi_BdxrBmEncQeQETzJk/edit), Visio, [Dia](http://dia-installer.de/), or any other drawing application
+	* you can use any diagramming tool to create your diagram: [draw.io](https://www.draw.io/) (you can start with "Software" --&rarr; "Entity Relationship", the last diagram type), copy symbols from [Google Drawings](https://docs.google.com/drawings/d/1hcTNp5IlnJXxLWDx5f8mptMLYDKqnJLt5fKgP4aP8e8/edit) (which sourced its symbols from [ER Diagram Symbols](https://docs.google.com/drawings/d/1IIQ6ftgPqG082JRTW7-cBzXAi_BdxrBmEncQeQETzJk/edit)), Visio, [Dia](http://dia-installer.de/), or any other drawing application
 	* ⚠️⚠️⚠️ __see the next section, "Write Some SQL", as some of those queries may inform your design decisions__
+	* you can also use [pgmodeler](https://pgmodeler.io/), [MySQL Workbench](https://www.mysql.com/products/workbench/), etc. ... but:
+		* you have to write your own SQL for the creation scripts
+		* you must export to an image or pdf
 2. 🔑 __Use natural primary keys when possible__, but surrogate / artificial keys are ok too
 3. 👀 Avoid data redundancy and update / insert/ delete anomalies by making sure your data model is __minimally in 3rd normal form__
 4. 🤝 __maintain relational integrity and use constraints as needed__
