@@ -505,9 +505,9 @@ MOMA Collection
 * [MOMA Collection GitHub Page](https://github.com/MuseumofModernArt/collection)
   * [git lfs install](https://help.github.com/articles/installing-git-large-file-storage/) (can also be done through [homebrew](https://brew.sh/))
   * use `git pull` or `git lfs pull` to download csvs
-* [moma-create.sql](../sql/py/moma-create.sql)
-* [moma-import.sql](../sql/py/moma-import.sql)
-* [moma-queries.sql](../sql/py/moma-queries.sql)
+* [moma-create.sql](sql/py/moma-create.sql)
+* [moma-import.sql](sql/py/moma-import.sql)
+* [moma-queries.sql](sql/py/moma-queries.sql)
 
 
 Postgres and Python
