@@ -489,22 +489,53 @@ Index Online Resources
 
 1. [Homework #05 Instructions](assignments/05.html) 
 "
-y,,20,12-Nov,Mon,"Additional Administration
+,,20,12-Nov,Mon,"<!--
+Date/Time, Pivot
 
-* Backups / Replication
-* Vacuum
+* [Dates and Timezones](db/datetime.html)
+* [Pivot Tables](db/pivot.html)
+
+Additional Administration
+
+* [Backups / Replication, Vacuum](backups.html)
+→
+
+MOMA Collection
+
+* [MOMA Collection GitHub Page](https://github.com/MuseumofModernArt/collection)
+  * [git lfs install](https://help.github.com/articles/installing-git-large-file-storage/) (can also be done through [homebrew](https://brew.sh/))
+  * use `git pull` or `git lfs pull` to download csvs
+* [moma-create.sql](../sql/py/moma-create.sql)
+* [moma-import.sql](../sql/py/moma-import.sql)
+* [moma-queries.sql](../sql/py/moma-queries.sql)
+
+
+Postgres and Python
+
+* [psycopg2](slides/py-db/psycopg2.html)
+* [SQLAlchemy Demo](slides/py-db/sql-alchemy.html)
+
+<!--
+* [pandas and postgres](slides/py-db/pandas.html)
+-->
+
+
+
+","Python for Data Analysis
+
+* Ch 6: Data Loading, Storage, and File Formats (6.4)
+* Ch 8: Data Wrangling: Join, Combine, and Reshape
+* Ch 10: Data Aggregation and Group Operations
+
+Online Resources
+
+* [psycopg2 example usage from official documentation](http://initd.org/psycopg/docs/usage.html)",
+y,,21,14-Nov,Wed,"
 
 Geo-spacial Data
 
 * PostGIS
 
-Postgres and Python
-
-* pyscopg
-* SQLAlchemy?
-* Postgres, SQLAlchemy and pandas
-",,HW08
-y,,21,14-Nov,Wed,"
 Creating APIs for Consumption
 Visualization Revisited (web-based)
 
