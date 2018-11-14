@@ -1,5 +1,5 @@
 import psycopg2
-conn = psycopg2.connect(dbname="class20", user="jversoza")
+conn = psycopg2.connect(dbname="scratch", user="joe", password="data0480")
 cur = conn.cursor()
 cur.execute("select * from artist where name ilike  '%cory arcangel%'")
 # our query as a string...
@@ -30,6 +30,12 @@ print(result)
 for a in  cur:
     print(a)
 """
+
+
+
+
+
+
 
 
 

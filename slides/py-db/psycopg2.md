@@ -19,6 +19,12 @@ SQL is _great_ and all, but sometimes:
 * {:.fragment} ...or you may find that you want the persistent and structured storage of a relational database __combined with the expressiveness of another programming language__ (_like Python_)
 
 
+
+</section>
+
+<section markdown="block">
+## DB API 2
+
 So, Python has a specification for accessing / interfacing with databases: [Python Database API Specification v2](https://www.python.org/dev/peps/pep-0249/#introduction)
 {:.fragment}
 
@@ -34,6 +40,7 @@ So, Python has a specification for accessing / interfacing with databases: [Pyth
 __`psycopg2` is a Python module that is:__ &rarr;
 
 * {:.fragment} a _database adapter_ - software that connects an application to a database
+* {:.fragment} __specifically, for connecting to a PostgreSQL 🐘__
 * {:.fragment} a __complete implementation__ of the Python DB API 2
 * {:.fragment} able to share a single connection among multiple threads
 
@@ -65,13 +72,21 @@ __`pyscopg2` Methods and Workflow:__ &rarr;
 2. {:.fragment} create a cursor object by `cursor` on a `connection` object
 	* {:.fragment} allows execution of queries
 	* {:.fragment} allows `commit` or `rollback` of transactions
+</section>
+
+<section markdown="block">
+## psycopg2 Methods Continued
+
 3. {:.fragment} execute queries form the `cursor` object
 	* {:.fragment} use `execute` to query the database
 	* {:.fragment} iteration over result or "fetch" some number of results (`fetchone`, `fetchall`)
-4. {:.fragment} use `commit` on the `connection` object to make changes persistent (on update, delete, insert, etc.)
+4. {:.fragment} use `commit` on the `connection` object to make changes persistent 
+	* {:.fragment} (for example, on updates, deletes, and inserts)
+	* {:.fragment} (optionally use `rollback` on the `connection` to revert changes)
 5. {:.fragment} close the connection
-</section>
+{:start="3"}
 
+</section>
 
 <section markdown="block">
 ## pyscopg2 Connection and Cursor
@@ -126,7 +141,7 @@ cur.execute(q);
 <section markdown="block">
 ## psycopg2 Working With Query Results
 
-__Once the query has been executed, you can treat the cursor object as an iterator__ &arr;
+__Once the query has been executed, you can treat the cursor object as an iterator__ &rarr;
 
 <pre><code data-trim contenteditable>
 # iterate over the cursor object to see 
@@ -152,6 +167,10 @@ print(result)
 </code></pre>
 {:.fragment}
 
+* {:.fragment} Note that `fetchone` _remembers_ where it was from previous calls 
+* {:.fragment} (so you can continue to call it to retrieve more rows from your result set)
+* {:.fragment} if you want all rows as a `list` of `tuple`s:
+
 <pre><code data-trim contenteditable>
 result = cur.fetchall()
 print(result)
@@ -168,6 +187,9 @@ __By default, psycopg creates a transaction before executing commands...__ &rarr
 2. {:.fragment} (not apparent when simply using select statements)
 3. {:.fragment} to persist changes, call `commit` on the `connection` object
 
+__⚠️ Make sure to commit after INSERT, UPDATE, and DELETE!__
+{:.fragment}
+
 <pre><code data-trim contenteditable>
 q = """
 insert into web_user (user_id, first, last, active, email, password)
@@ -180,16 +202,21 @@ conn.commit()
 
 </section>
 <section markdown="block">
-## Close
+## Autocommit, Close
 
-__Lastly, you can close the connection to the database by calling `close` on the `connection` and `cursor` objects.__
+__Tired of writing commit after your queries?__
 
-* `cur.close()`
-* `conn.close()`
-* note that once close, a `cursor` or `connection` can no longer be used
+<pre><code data-trim contenteditable>
+conn.autocommit = True
+</code></pre>
+{:.fragment}	
 
+__Lastly, you can close the connection to the database by calling `close` on the `connection` objects.__
+{:.fragment}
 
-
+* {:.fragment} `conn.close()`
+* {:.fragment} `cur.close()` is available as well to close a cursor, but not connection 
+* {:.fragment} note that once close, a `cursor` or `connection` can no longer be used
 </section>
 
 <section markdown="block">
@@ -281,11 +308,12 @@ __DO NOT USE....__
 * {:.fragment} % operator
 * {:.fragment} format strings
 
-when creating queries...
+...to construct queries 🚫
 {:.fragment}
 
-(especially when dealing with user input!)
+__Otherwise, your application will be vulnerable to SQL Injection__
 {:.fragment}
+
 </section>
 
 <section markdown="block">

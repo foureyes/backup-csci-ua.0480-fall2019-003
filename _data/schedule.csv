@@ -530,8 +530,10 @@ Postgres and Python
 Online Resources
 
 * [psycopg2 example usage from official documentation](http://initd.org/psycopg/docs/usage.html)",
-y,,21,14-Nov,Wed,"
+,,21,14-Nov,Wed,"Postgres and Python Continued (See Previous Slides)
 
+Pandas and Databases",,
+y,,22,19-Nov,Mon,"
 Geo-spacial Data
 
 * PostGIS
@@ -544,11 +546,6 @@ Visualization Revisited (web-based)
 * bokeh again (or for first time?)
 * plotly again (or for first time?)
 
-Data Pipeline (everything together)
-
-* ETL
-* Python, Pandas, Postgres",,
-y,,22,19-Nov,Mon,"
 NoSQL (mongodb)
                                                                                                                                   
 * JSON format in depth                                                                                                                 
