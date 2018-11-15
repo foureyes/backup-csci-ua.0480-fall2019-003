@@ -50,7 +50,7 @@ function onClick(evt) {
 }
 </script>
 
-# Assignment #5 - Database Design, Joins - Due Friday, Nov 16  at 11pm
+# Assignment #5 - Database Design, Joins - Due Monday, Nov 19  at 11pm
 
 In this homework, you'll:
 
