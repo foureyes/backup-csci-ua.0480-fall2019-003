@@ -124,12 +124,15 @@ Because you're an SQL _expert_ 🤓, you decide to store all of this information
 		* you have to write your own SQL for the creation scripts
 		* you must export to an image or pdf
 2. 🔑 __Use natural primary keys when possible__, but surrogate / artificial keys are ok too
-3. 👀 Avoid data redundancy and update / insert/ delete anomalies by making sure your data model is __minimally in 3rd normal form__
+3. 👀 Avoid data redundancy and update / insert/ delete anomalies by making sure your data model is <s>minimally in 3rd normal form</s>, __minimally in 2nd normal form__
+
 4. 🤝 __maintain relational integrity and use constraints as needed__
 5. 🖼 Export this as an image (any format is ok) called `er-diagram.png` (change extension appropriately)
 6. Embed the image under a heading called `Scoot-Share` in your `README.md`
 7. __Below the image, describe:__ 
 	* your design decisions for the relationships between tables
+		* if there are tables that aren't in 3rd normal form, please point them out
+		* describe why you did not normalize further ...or if there are any issues that would come up due to that design decision
 	* any assumptions you had to make due to the ambiguities in the description above
 8. Create a a file called `part-1-scoot-share-create.sql` that contains SQL for creating all of the tables that you've modeled
 9. Add a link from your `README.md` to `part-1-scoot-share-create.sql`
