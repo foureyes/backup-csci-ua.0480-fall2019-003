@@ -532,19 +532,11 @@ Online Resources
 * [psycopg2 example usage from official documentation](http://initd.org/psycopg/docs/usage.html)",
 ,,21,14-Nov,Wed,"Postgres and Python Continued (See Previous Slides)
 
-Pandas and Databases",,
-y,,22,19-Nov,Mon,"
-Geo-spacial Data
+",,
+,,22,19-Nov,Mon,"Postgres and Python Finale!
 
-* PostGIS
-
-Creating APIs for Consumption
-Visualization Revisited (web-based)
-
-* svg
-* d3
-* bokeh again (or for first time?)
-* plotly again (or for first time?)
+* [SQLAlchemy Details](slides/py-db/sql-alchemy-relationships.html)
+* [pandas and Databases](slides/py-db/pandas.html)
 
 NoSQL (mongodb)
                                                                                                                                   
@@ -555,12 +547,25 @@ NoSQL (mongodb)
   1. from command line (e.g. mongo shell)                                                                                            
   2. from Python libraries (e.g. pymongo module)                                                                                     
 * Basic CRUD                                                                                                                           
-* Geo-spatial data queries ",,HW09
-y,holiday,,21-Nov,Wed,Thanksgiving,,
-y,,23,26-Nov,Mon,"NoSQL (continued)
+",,
+,holiday,,21-Nov,Wed,Thanksgiving,,
+,,23,26-Nov,Mon,"MongoDB Continued
+
+Geo-spacial Data
+
+* PostGIS
+* Geo-spatial data queries 
 
 Python and NoSQL ",,
-y,,24,28-Nov,Wed,"
+y,,24,28-Nov,Wed,"Creating APIs for Consumption
+Visualization Revisited (web-based)
+
+* svg
+* d3
+* bokeh again (or for first time?)
+* plotly again (or for first time?)
+
+
 Cloud Data Storage (Firebase, S3, RDS)
 
 * S3
