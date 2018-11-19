@@ -79,20 +79,9 @@ They're particularly good for applications where flexible data storage or consta
 <section markdown="block">
 ## MongoDB
 
-* {:.fragment} it uses a __JSON__ like data structure (we know JSON)
-* {:.fragment} it's __query language is JavaScript__ (we know JavaScript syntax)
-* {:.fragment} it's not very rigid when it comes to dealing with data (we don't have to be so precise/exacting)
-* {:.fragment} it's fairly straightforward to set up, usually with __little / no configuration required__  (unlike, ahem... PostgreSQL)
-* {:.fragment} (to the point where the default installation doesn't even require a username/password to connect to the database -- wait, that's not so good!?)
-
-</section>
-
-<section markdown="block">
-## MongoDB
-
 * MongoDB is a nosql database...
 * Specifically, it's a document store
-	* a single __record__ in Mongo is a __document__ (a _user_, a _bird_ in the case of our homework!)
+	* a single __record__ in Mongo is a __document__ 
 	* a document is a bunch of key value pairs... 
 	* hey... __that sounds like...__ &rarr; 
 	* {:.fragment} documents are similar to JSON objects (actually BSON?)
