@@ -18,7 +18,7 @@ __In MongoDB, documents can be related to each other in two ways:__ &rarr;
 
 * embedded (that is, one document contains one or more other documents)
 * related (...one document references another document by id)
-    * 🤔seems familiar, eh?
+    * {:.fragment} seems familiar, eh?
 
 </section>
 
