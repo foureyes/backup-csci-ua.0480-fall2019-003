@@ -65,8 +65,8 @@ Again, these are very broad generalizations (some NoSQL databases are ACID compl
 <section markdown="block">
 ## Document Stores
 
-Let's talk more about __document stores specifically__. __Data is organized (as the name implies) as semi-structured documents__ &rarr; 
-* {:.fragment} think JSON (but there are many possible formats, such as XML, YAML, etc.)
+In __document stores__, data is organized (as the name implies) as semi-structured documents &rarr; 
+* {:.fragment} think JSON (other formats are possible: XML, YAML, etc.)
 * {:.fragment} or... a _richer_ key-value store (there's _meta data_ within the document... the keys are usually meaningful)
 * {:.fragment} typically, no schema is required (that is, data types of values are inferred from values)
 * {:.fragment} typically, semi structured (documents, property names, etc... do not have to be pre-defined)
@@ -79,12 +79,47 @@ They're particularly good for applications where flexible data storage or consta
 <section markdown="block">
 ## MongoDB
 
-* MongoDB is a nosql database...
-* Specifically, it's a document store
-	* a single __record__ in Mongo is a __document__ 
-	* a document is a bunch of key value pairs... 
-	* hey... __that sounds like...__ &rarr; 
-	* {:.fragment} documents are similar to JSON objects (actually BSON?)
+__MongoDB is a nosql database__. Specifically, it's a document store:
+
+* a single __record__ in Mongo is a __document__ 
+* a document is a bunch of key value pairs... 
+* hey... __that sounds like...__ &rarr; 
+* {:.fragment} documents are similar to JSON / JavaScript objects 
+* {:.fragment} (it's actually BSON? 🤷‍)
+* {:.fragment} for convenience, we can say that __MongoDB uses JSON document to store records__ 
+</section>
+
+
+<section markdown="block">
+## JSON 
+
+__What's JSON again?__ &rarr;
+
+__JSON__ is a data interchange format / file format that is composed of key value pairs. It's _a lot_ like JavaScript object literal notation or even Python dictionary literal notation. A single JSON document / object constists of:
+{:.fragment}
+
+* {:.fragment} curly braces
+* {:.fragment} keys and values joined by :
+* {:.fragment} key/value pairs separated by commas
+* {:.fragment} __all keys must be double quoted__
+* {:.fragment} values can be numbers, strings, arrays or other JSON documents/objects
+* {:.fragment} (you can have documents embedded/nested within other documents)
+
+</section>
+
+<section markdown="block">
+## BSON
+
+__Uh BSON⁉️__ 
+
+* {:.fragment} [see the spec](http://bsonspec.org/)
+* {:.fragment} __MongoDB uses a binary-encoded format to store JSON documents__
+* {:.fragment} this format is called __BSON__ or binary JSON
+* {:.fragment} it's similar to JSON (it has embedded documents, arrays, etc.), but...
+	* it has additional data types
+	* more space efficient
+	* faster to read
+
 </section>
 
 <section markdown="block">
@@ -92,28 +127,27 @@ They're particularly good for applications where flexible data storage or consta
 
 A couple of 🔑 terms to remember (yay, definitions again!)
 
-* __key__ - a field name - analogous to a column in a relational database
-* __value__ - obvs, a value
-* __document__ - a single object or record in our database, 
+* {:.fragment} __key__ - a field name - analogous to a column in a relational database
+* {:.fragment} __value__ - obvs, a value
+* {:.fragment} __document__ - a single object or record in our database, 
 	* consists of key value pairs
 	* similar to a single row in a relational database
-* __collection__ - a group of documents 
+* {:.fragment} __collection__ - a group of documents 
 	* analogous to tables in relational databases
 </section>
 
 <section markdown="block">
 ## Data Types
 
-Although MongoDB doesn't require you to pre-define the types of values that your documents will have, it does have data types. These types __are inferred from the value__. Some available types include:
+Although MongoDB doesn't require you to pre-define the types of values that your documents will have, BSON does have data types ([see full list in docs](https://docs.mongodb.com/manual/reference/bson-types/)). These types __are inferred from the value__. Some available types include:
 
-
-* __string__ - an empty string or an ordered sequence characters
-* __numeric types__ - such as integer, double (float)
-* __boolean__ - true / false
-* __array__ -  a list of values
-* __timpestamp__ - 64 bit value where first 32 bits are seconds since the Unix epoch
-* __Object ID__ every MongoDB object or document must have an Object ID which is unique
-
+* {:.fragment} `string` - utf-8 string
+* {:.fragment} __numeric types__ - such as `double` (64 bit floating point), `int`, etc.
+* {:.fragment} `bool` - true / false
+* {:.fragment} `array` -  a list of values
+* {:.fragment} `date` - (use `new Date()` or `ISODate()`)
+	* {:.fragment} no arg for _now_ or `'yyy-MM-dd HH:mm:ss'`
+* {:.fragment} `objectID`
 
 </section>
 
@@ -123,7 +157,7 @@ Although MongoDB doesn't require you to pre-define the types of values that your
 The __Object ID__ is a 12-byte value, consists of: a 4-byte timestamp (seconds since epoch), a 5-byte random value, and a 3-byte counter
 
 * {:.fragment} each document in a collection requires a primary key, `_id` that uniquely identifies it
-* {:.fragment} if an inserted document doesn't have an `_id`, it will be automatically generated 
+* {:.fragment} if an inserted document doesn't have an `_id`, it will be automatically generated as an __Object ID__
 
 </section>
 
@@ -165,19 +199,15 @@ This drops you into the MongoDB shell (yay... more shell). You can issue command
 </section>
 
 <section markdown="block">
-## Some Commands
+## mongo (the default mongodb client)
 
-__The following commands can be used to navigate, create and remove databases and collections__ &rarr;
+__`mongo` is the client that comes bundled with `mongod`. It's an interactive shell, and it's JavaScript based:__ &rarr;
 
-* `show databases` - show available databases (remember, there can be more than one database)
-* `use db` - work with a specific database (if unspecified, the default database connected to is test)
-* `show collections` - once a db is selected, show the collections within the database
-* `db.dropDatabase()` - drop (remove) the database that you're currently in
-* `db.collectionName.drop()` - drop (remove) the collection named `collectionName`
-
-To get some inline help:
-
-* `help` - get help on available commands
+* {:.fragment} again, start it by typing `mongo` in your terminal
+* {:.fragment} you can use JavaScript (the ES6 kind of JavaScript if _you care_) in your shell
+* {:.fragment} which means ... you can create variables, use control structures, such as loops and conditionals
+* {:.fragment} note that the types in the mongo shell match JavaScript types, not BSON types 
+	* {:.fragment} `typeof` any numeric type is _just_ `number`, `typeof` an object id is _just_ `object`
 
 </section>
 
@@ -191,9 +221,26 @@ __To begin using the commandline client to inspect your data:__ &rarr;
 3. type in `use databaseName` to switch to the database that you're looking through
 
 From there, you can start querying for data, inserting documents, etc. These basic create, read, update, and delete operations are called __CRUD__ operations...
+</section>
 
+
+<section markdown="block">
+## Some Commands
+
+__The following commands can be used to navigate, create and remove databases and collections__ &rarr;
+
+* `show databases` - show available databases (remember, there can be more than one database)
+* `use db` - work with a specific database (if unspecified, the default database connected to is test)
+* `show collections` - once a db is selected, show the collections within the database
+* `db.dropDatabase()` - drop (remove) the database that you're currently in (must `use` first)
+* `db.collectionName.drop()` - drop (remove) the collection named `collectionName`
+
+To get some inline help:
+
+* `help` - get help on available commands
 
 </section>
+
 <section markdown="block">
 ## CRUD!?
 
@@ -209,18 +256,14 @@ __(C)reate, (R)ead, (U)pdate, and (D)elete operations:__ &rarr;
 * {:.fragment} db.[collection].remove(queryObj)
 	* <code>db.Person.remove({'last':'bob'})</code>
 
-<br>
 Where `queryObj` is a name value pair that represents the property you're searching on... with a value that matches the value you specify
 {:.fragment}
 </section>
 
 <section markdown="block">
-## More Examples
+## Finding
 
-__As prep for the next part, some insert and finds (with a test for greater than!)__ &rarr;
-
-Inserting, finding all, then finding by exact number of lives:
-{:.fragment}
+__Inserting, finding all, then finding by exact number of lives:__
 
 <pre><code data-trim contenteditable>
 > db.Cat.insert({name:'foo', lives:9})
@@ -232,8 +275,13 @@ WriteResult({ "nInserted" : 1 })
 </code></pre>
 {:.fragment}
 
-Inserting more, then using greater than!
-{:.fragment}
+
+</section>
+
+<section markdown="block">
+## Finding Continued
+
+__Inserting more, then using greater than!__
 
 <pre><code data-trim contenteditable>
 > db.Cat.insert({name:'bar', lives:2})
@@ -248,6 +296,26 @@ WriteResult({ "nInserted" : 1 })
 
 </section>
 
+<section markdown="block">
+## Find and Update
+
+* [`find(query, projections)`](https://docs.mongodb.com/manual/reference/method/db.collection.find/#db.collection.find) and `findOne`
+	* query documents (default and)
+		* `null`, `ObjectId`, `ISODate`
+	* projection documents (1 vs 0)
+	* `count`, `limit`, `sort` (-1 vs 1)
+	* `k: {$op: v}` operators: `$lt`, `$lte`, `$in`, `$nin`, etc.
+	* (default) and vs `$and` and `$or`
+	* cursor, `next()`, `forEach`
+* [`update(query, update, options)`](https://docs.mongodb.com/manual/reference/method/db.collection.update/#db.collection.update) and using `$set`
+	* (what happens without it?)
+	* push element to an array with `{$push: {k: v}}`
+	* `multi` (false), `upsert` (false), others...
+
+
+</section>
+
+
 
 <section markdown="block">
 ## Importing Data
@@ -257,6 +325,12 @@ __Using a local mongodb instance... and the commandline client, `mongo`:__ &rarr
 Import files using `mongoimport`...
 {:.fragment}
 
+<pre><code data-trim contenteditable>
+# csv
+mongoimport --db test --collection books --type csv --file books.csv --fieldFile books_fields.txt
+</code></pre>
+{:.fragment}
+
 
 <pre><code data-trim contenteditable>
 # json
@@ -264,10 +338,6 @@ mongoimport --db nyc --collection wifi --type json --file wifi3.json
 </code></pre>
 {:.fragment}
 
-<pre><code data-trim contenteditable>
-# csv
-mongoimport --db test --collection books --type csv --file books.csv --fieldFile books_fields.txt
-</code></pre>
 </section>
 
 <section markdown="block">
@@ -288,35 +358,36 @@ __A quick review of adding and removing data__ &rarr;
 
 
 <section markdown="block">
-## Doin' Some Queryin' on Books
+## Querying Books
 
 __A quick examination:__ &rarr;
 
-* `show databases`
-* `show collections`
-* `from the collection db.COLLECTION_NAME`
-* __do we have anything?__
-	* `find()`
-* __what's a book look like anyway?__
-	* `findOne()`
-* __how do we prevent our eyes from bleeding?__ (so many curly braces :( )
-	* `pretty()`
-	* maybe a failed experiment: `DBQuery.prototype._prettyShell = true in $HOME/.mongorc.js`
+* {:.fragment} __what databases do we have?__
+	* {:.fragment} `show databases`
+* {:.fragment} __what collections do we have?__
+	* {:.fragment} `show collections`
+* {:.fragment} __do we have anything?__
+	* {:.fragment} `db.books.find()`
+* {:.fragment} __what's a book look like anyway?__
+	* {:.fragment} `db.booksfindOne()`
+* {:.fragment} __how do we prevent our eyes from bleeding?__ (so many curly braces :( )
+	* {:.fragment} `db.books.find().pretty()`
+	* {:.fragment} (maybe) `DBQuery.prototype._prettyShell = true in $HOME/.mongorc.js`
 </section>
 
 <section markdown="block">
 ##  Counting and Finding
 
-* __what if we want to see exactly two books?__
-	* `db.books.find().pretty().limit(2)`
-* __how many there exactly?__ we could count. ugh. no.
-	* `db.books.find().count()`
-	* `db.books.count()`
-* __can we show only books by the author of Pride and Prejudice?__
-	* sure! hint: "Austen, Jane"
-	* use a criteria object / document!
-	* `db.books.find( {"AUTHOR":"Austen, Jane"} )`
-* __how about figuring how many books there are by the guy that wrote war and peace?__ 
+* {:.fragment} __what if we want to see exactly two books?__
+	* {:.fragment} `db.books.find().pretty().limit(2)`
+* {:.fragment} __how many there exactly?__ we could count. ugh. no.
+	* {:.fragment} `db.books.find().count()`
+	* {:.fragment} `db.books.count()`
+* {:.fragment} __can we show only books by the author of Pride and Prejudice?__
+	* {:.fragment} sure! hint: "Austen, Jane"
+	* {:.fragment} use a criteria object / document!
+	* {:.fragment} `db.books.find( {"AUTHOR":"Austen, Jane"} )`
+* {:.fragment} __how about figuring how many books there are by the guy that wrote war and peace?__ 
 	* `db.books.find({"AUTHOR": "Tolstoy, Leo"}).count()`
 </section>
 
@@ -324,62 +395,126 @@ __A quick examination:__ &rarr;
 <section markdown="block">
 ## Projections
 
-* back to jane austen. __let's just see the title and year written of the book that we have on file__
-	* use a project object / document!
-	* `db.books.find( {"AUTHOR":"Austen, Jane"}, {_id:0, "TITLE":1, "YEAR_WRITTEN": 1} )`
-* do the same, but exclude only the id
-	* `db.books.find( {"AUTHOR":"Austen, Jane"},{_id:0})`
-* __can supress edition, but include title?__
-	* nah, nope, blah ... not this way:
-	* `db.books.find( {"AUTHOR":"Austen, Jane"},{"EDITION":0,"TITLE":1,"YEAR_WRITTEN":1})`
-	* can't mix inclusions and exclusions... can only mix supressing id
-	* OOORRR ... just don't include
-	* `db.books.find( { },{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1})`
+* {:.fragment} back to jane austen. __let's just see the title and year written of the book that we have on file__
+	* {:.fragment} use a projection object / document!
+	* {:.fragment} `db.books.find( {"AUTHOR":"Austen, Jane"}, {_id:0, "TITLE":1, "YEAR_WRITTEN": 1} )`
+* {:.fragment} do the same, but exclude only the id
+	* {:.fragment} `db.books.find( {"AUTHOR":"Austen, Jane"},{_id:0})`
+* {:.fragment} __can we supress edition, but include title?__
+	* {:.fragment} nah, nope, blah ... not this way:
+	* {:.fragment} <s>`db.books.find( {"AUTHOR":"Austen, Jane"},{"EDITION":0,"TITLE":1,"YEAR_WRITTEN":1})`</s>
+	* {:.fragment} can't mix inclusions and exclusions... can only mix in supressing id
+	* {:.fragment} instead: `db.books.find( {},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1})`
 </section>
 
 
 <section markdown="block">
 ## Sorting
 
-* let's try some sortin' __sort by author, then title__
-	* `db.books.find( { },{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1}).sort({"AUTHOR":1,"TITLE":1})`
-* __how about by year ascending?__
-	* `db.books.find( { },{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1}).sort({"year_written":1})`
-* __how about descending order by year?__
-	* use -1 instead of 1 (of course 🤷‍)
-	* `db.books.find( { },{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1}).sort({"YEAR_WRITTEN":-1})`
+__let's try some sortin'__ &rarr;
+
+* {:.fragment} __sort by author, then title__
+	* {:.fragment} `db.books.find( {},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1}).sort({"AUTHOR":1,"TITLE":1})`
+* {:.fragment} __how about by year ascending?__
+	* {:.fragment} `db.books.find( {},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1}).sort({"year_written":1})`
+* {:.fragment} __how about descending order by year?__
+	* {:.fragment} use -1 instead of 1 (of course 🤷‍)
+	* {:.fragment} `db.books.find( {},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1}).sort({"YEAR_WRITTEN":-1})`
 </section>
 
 <section markdown="block">
 ## Comparisons
 
-* ok... now try some comparisons. 
-* `db.books.find( {"YEAR_WRITTEN":{$gte:1870}},{ _id:0} )`
-* __how about1870 and 1900 (inclusive)__ &rarr;
-	* `db.books.find( {"YEAR_WRITTEN":{$gte:1870, $lte: 1900}},{ _id:0} )`
-* __...and sort the result by author__
-	* `db.books.find( {"YEAR_WRITTEN":1900},{ _id:0} ).sort({"AUTHOR":1})`
-* __anything written exactly in 1870?__
-	* `db.books.find( {"YEAR_WRITTEN":1870},{ _id:0} ).sort({"AUTHOR":1})`
+__OK... now try some comparisons.__  &rarr;
+
+* {:.fragment} __find all books written after 1870__ &rarr;
+	* {:.fragment} `db.books.find( {"YEAR_WRITTEN":{$gte:1870}},{ _id:0} )`
+* {:.fragment} __how about 1870 and 1900 (inclusive)__ &rarr;
+	* {:.fragment} `db.books.find( {"YEAR_WRITTEN":{$gte:1870, $lte: 1900}},{ _id:0} )`
+* {:.fragment} __...and sort the result by author__
+	* {:.fragment} `db.books.find( {"YEAR_WRITTEN":1900},{ _id:0} ).sort({"AUTHOR":1})`
+* {:.fragment} __anything written exactly in 1870?__
+	* {:.fragment} `db.books.find( {"YEAR_WRITTEN":1870},{ _id:0} ).sort({"AUTHOR":1})`
 </section>
 
 <section markdown="block">
 ## Operators
 
-* __books that cost $15 or more; or were written in 1900 or later__
-	* `db.books.find({ "$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]})` 
-* __same with author, title, year and price__
-	* `db.books.find({ "$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1,"PRICE":1})`
-* __now sort by author and title__
-	* `db.books.find({ "$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1,"PRICE":1}).sort({"AUTHOR":1,"TITLE":1})`
+* {:.fragment} __books that cost $15 or more; or were written in 1900 or later__
+	* {:.fragment} `db.books.find({ "$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]})` 
+* {:.fragment} __same with author, title, year and price__
+	* {:.fragment} `db.books.find({ "$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1,"PRICE":1})`
+* {:.fragment} __now sort by author and title__
+	* {:.fragment} `db.books.find({ "$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1,"PRICE":1}).sort({"AUTHOR":1,"TITLE":1})`
 </section>
 
-{% comment %}
-* $ <-- operation
-* $push push something to an array
-* $or?
-* $set will update a document
+<section markdown="block">
+## And More with Operators
 
+__Show the title, author and year of all books written after 1870 by either Tolstoy or Woolf__ (sort by year) &rarr;
+
+* {:.fragment} using or: 
+	* `db.books.find({YEAR_WRITTEN: {$gt: 1870}, $or: [{AUTHOR: 'Woolf, Virginia'}, {AUTHOR: 'Tolstoy, Leo'}]}, {_id: 0, TITLE: 1, YEAR_WRITTEN: 1, AUTHOR: 1}).sort({YEAR_WRITTEN: 1})`
+* {:.fragment} using in: 
+	* `db.books.find({YEAR_WRITTEN: {$gt: 1870}, AUTHOR: {$in: ['Woolf, Virginia', 'Tolstoy, Leo']}}, {_id: 0, TITLE: 1, YEAR_WRITTEN: 1, AUTHOR: 1}).sort({YEAR_WRITTEN: 1})`
+</section>
+
+<section markdown="block">
+## Xtra: `$group`!
+
+<pre><code data-trim contenteditable>
+db.books.aggregate(
+	[{$group : {
+		_id: "$YEAR_WRITTEN", 
+		books: {$push: "$TITLE"}
+	}}]
+)
+</code></pre>
+
+<pre><code data-trim contenteditable>
+db.books.aggregate(
+	[{$group : {
+		_id: "$YEAR_WRITTEN", 
+		books: {$push: "$TITLE"}, 
+		price: {$avg: "$PRICE"}
+	}}]
+)
+</code></pre>
+
+</section>
+
+<section markdown="block">
+## Practice
+
+__Exploring wifi3.json__ &rarr;
+
+* {:.fragment} __how do we show databses?__
+* {:.fragment} __how about switch databases?__ 
+* {:.fragment} __how do list the collections?__
+* {:.fragment} __how do list all of the documents in the collection?__
+* {:.fragment} __let's show only the cities__
+* {:.fragment} __show only the ones in the bronx__
+* {:.fragment} __show only the ones that are free__ 
+</section>
+
+<section markdown="block">
+## Practice Continued
+
+__Now with moar operators!__ &rarr;
+
+* {:.fragment} __show only the ones that are free and in flushing__ 
+* {:.fragment} __are there any that are free and in the bronx?__ 
+* {:.fragment} __show only wifi hotspots in the bronx ... or ones that are free?__ 
+* {:.fragment} __that's a mess... let's limit output of the results to the fields city and type__
+* {:.fragment} __now sort it by alphabetical order by city__
+* {:.fragment} __...and now descending__
+* {:.fragment} __how about... only in bronx or flushing, but without id__
+* {:.fragment} __oookkkkk... not in bronx or flushing!?__
+</section>
+
+
+
+{% comment %}
 {AUTHOR:"Tolstoy, Leo", YEAR:1800}
 wifi
 -----
@@ -408,9 +543,5 @@ wifi again
 * __not in bronx or flushing!?__
 	* db.wifi.find({'CITY': {$nin:['Flushing', 'Bronx']}}, {"CITY":1, "_id":0})
 
-pets
------
-* only the cutest pets, plz
-* that are cats, of course
 
 {% endcomment %}

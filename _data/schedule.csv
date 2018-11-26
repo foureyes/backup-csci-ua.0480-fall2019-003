@@ -539,7 +539,21 @@ Online Resources
 * [pandas and Databases](slides/py-db/pandas.html)
 
 NoSQL (mongodb)
-                                                                                                                                  
+
+* MongoDB preview                                                                                                                                  
+",,
+,holiday,,21-Nov,Wed,Thanksgiving,,
+,,23,26-Nov,Mon,"MongoDB Continued
+
+* [MongoDB Intro](slides/mongo/intro.html)
+  * [books.csv](mongo/books.csv)
+  * [books_fields.txt](mongo/books_fields.txt)
+  * [wifi3.json](mongo/wifi3.json)
+* [MongoDB Database Design](slides/mongo/design.html)
+
+
+<!--
+* [Python + MongoDB](slides/mongo/python.html)
 * JSON format in depth                                                                                                                 
   1. Nested objects                                                                                                                  
 * compare/contrast MongoDB with SQL.                                                                                                   
@@ -547,16 +561,17 @@ NoSQL (mongodb)
   1. from command line (e.g. mongo shell)                                                                                            
   2. from Python libraries (e.g. pymongo module)                                                                                     
 * Basic CRUD                                                                                                                           
-",,
-,holiday,,21-Nov,Wed,Thanksgiving,,
-,,23,26-Nov,Mon,"MongoDB Continued
+
 
 Geo-spacial Data
 
 * PostGIS
 * Geo-spatial data queries 
 
-Python and NoSQL ",,
+Python and NoSQL 
+-->","* [MongoDB Data Model Design](https://docs.mongodb.com/manual/core/data-model-design/)
+* [MongoDB Data Model Examples and Patterns](https://docs.mongodb.com/manual/applications/data-models/)
+  * (see all sections under “Model Relationships Between Documents”)",
 y,,24,28-Nov,Wed,"Creating APIs for Consumption
 Visualization Revisited (web-based)
 
