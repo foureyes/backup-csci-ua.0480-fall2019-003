@@ -572,11 +572,9 @@ Python and NoSQL
 -->","* [MongoDB Data Model Design](https://docs.mongodb.com/manual/core/data-model-design/)
 * [MongoDB Data Model Examples and Patterns](https://docs.mongodb.com/manual/applications/data-models/)
   * (see all sections under Model Relationships Between Documents)",
-,,24,28-Nov,Wed,"Creating APIs for Consumption
-Visualization Revisited (web-based)
+,,24,28-Nov,Wed,"Visualization Revisited (web-based)
 
-* svg
-* d3
+* [svg + d3](d3/overview.html)
 
 <!--
 * bokeh again (or for first time?)
@@ -589,13 +587,21 @@ Cloud Data Storage (Firebase, S3, RDS)
 * RDS
 * Firebase
 -->",,
-y,,25,03-Dec,Mon,"Serverless  (Firebase Again, Lambda, Chalice or Zappa)
+y,,25,03-Dec,Mon,"Visualization Revisited (web-based)
 
-* Microservices
-* AWS lambda
+* [svg + d3](d3/scrach.html)
+
+<!--
+* bokeh again (or for first time?)
+* plotly again (or for first time?)
+
+
+Cloud Data Storage (Firebase, S3, RDS)
+
+* S3
+* RDS
 * Firebase
-* zappa or chalice
-",,
+-->",,
 y,,26,05-Dec,Wed,"Processing Large Data Sets (Spark or Hadoop)
 
 * Hadoop, Parque",,

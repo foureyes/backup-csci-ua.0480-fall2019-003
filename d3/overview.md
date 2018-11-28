@@ -6,6 +6,8 @@ title: "d3 Overview"
 
 # d3 Overview
 
+This is a summary of the 3 parts of the tutorial, [Let's Make a Bar Chart](https://bost.ocks.org/mike/bar/), by Mike Bostock.
+
 ## Basics!
 
 ### Creating a Chart Manually With Divs and Styling
