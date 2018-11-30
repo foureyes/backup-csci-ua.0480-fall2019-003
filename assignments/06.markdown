@@ -1,0 +1,271 @@
+---
+layout: homework
+title: "Assignment #6"
+---
+<style>
+.hl {
+	background-color: yellow;
+}
+img {
+    border: 1px solid #000;
+}
+
+.warning {
+    background-color: yellow;
+    color: #aa1122;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.hintButton {
+    color: #7788ff;
+    cursor: pointer;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', hideHints);
+
+function hideHints(evt) {
+    document.querySelectorAll('.hint').forEach((ele, i) => {
+        const div = document.createElement('div');
+        div.id = 'hint' + i + 'Button';
+        ele.id = 'hint' + i;
+        ele.classList.add('hidden');
+        div.addEventListener('click', onClick);
+        div.textContent = 'Show Hint';
+        div.className = 'hintButton';
+        ele.parentNode.insertBefore(div, ele);
+    });
+
+}
+
+function onClick(evt) {
+    const hintId = this.id.replace('Button', '');
+    const hint = document.getElementById(hintId);
+    hint.classList.toggle('hidden');
+    this.textContent = this.textConent === 'Show Hint' ? 'Hide Hint' : 'Show Hint';
+}
+</script>
+
+# Assignment #6 - SQL Alchemy, MongoDB - Due Friday, Dec 7 at 11pm
+
+In this homework, you'll:
+
+1. Work with SQLAlchemy's ORM to:
+	1. Create classes that represent tables in your database
+	2. Create _actual_ tables in the database (without writing any SQL!)
+	3. Insert rows into the tables that you created (without writing any SQL!)
+	4. Read some data from the tables (without writing any SQL!)
+2. Practice joins by writing SQL queries against the data that you created
+3. Try out MongoDB
+	1. Export Postgres data to a json file
+	2. Install MongoDB
+	3. Import the json file into MongoDB
+	4. Run a few queries on the resulting dataset through MongoDB
+
+## Part 1: SQLAlchemy
+
+Your _Scoot Share_ business is still running along, but you're tired of using SQL to keep track of your inventory. You're more Python person (dare I say... a _pythonista_ or a _pythoneer_?), so you decide to use SQLAlchemy to manage your scooter inventory. 
+
+
+### Create SQLAlchemy ORM Classes
+
+Your repository should have a bunch of `.py` files already present in it. Your first step to freeing yourself from the terrible jail that is SQL is to create some classes (`Company`, `ScooterType`, `Scooter`) in `model.py` that can be used to represent tables for you scooter inventory. These tables won't exist yet; they'll be created by using the classes that you implement. These classes should allow you to write the following Python code to insert new scooters and get scooter data:
+
+
+__imports and setup__
+
+```
+from sqlalchemy.orm import sessionmaker
+
+# db.py is a module that is fully implemented and included in your repository
+# it connects to the database an gives you access to an engine object:
+# db.engine
+
+import db
+
+
+# model.py is the module that you will implement your classes in
+# ... those classes are Company, ScooterType, and Scooter
+# note that the base class for those classes, Base, is also available!
+
+from model import Company, ScooterType, Scooter, Base
+
+# create a session: 
+
+Session = sessionmaker(db.engine)
+session = Session()
+```
+
+__Creating Companies__
+
+
+```
+# create company 1: Super Fast Co
+# set attributes directly 
+
+superfastco = Company()
+superfastco.name = 'Super Fast Co'
+superfastco.website = 'superfast.lol'
+superfastco.founded = 2017
+
+# create company 2: Scootz LTD
+# use keyword args to set attributes
+
+scootz = Company(
+    name='Scootz LTD',
+    website='scootz.jp',
+    founded=2000 
+)
+```
+
+__Creating Scooter Types__
+
+
+```
+# set up some scooter types
+# (using a mix of keyword arguments and attributes)
+# notice that the attribute, manufacturer refers to a company!
+
+sf_pro = ScooterType()
+sf_pro.model = 'SFV1'
+sf_pro.max_range = 200
+sf_pro.weight = 15
+sf_pro.max_speed = 40
+sf_pro.manufacturer = superfastco
+
+sf_lite = ScooterType(
+    model='Scoot Lite v2',
+    max_range=100,
+    weight=10,
+    max_speed=30,
+    manufacturer=superfastco
+)
+```
+
+__Creating Scooters__
+
+
+```
+# finally, make some scooters...
+# notice that scooter type is set using the types created above
+
+s1 = Scooter()
+s1.acquired_date = '2017-10-01'
+s1.scooter_type = sf_pro
+# (we don't set retired, allow default value of False)
+
+s2 = Scooter()
+s2.acquired_date = '2017-08-05'
+s2.retired = True
+s2.scooter_type = sf_pro
+
+s3 = Scooter(
+    acquired_date='2018-12-30', 
+    # explicitly set retired (despite already set default value of False)
+    retired=False,
+    scooter_type=sf_lite
+)
+```
+
+__Finally, Insert Scooters!__
+
+```
+# now let's insert these scooters (and their types and companies)!
+session.add_all([s1, s2, s3])
+session.commit()
+
+# notice that that the primary key for these scooters will be filled in!
+for scooter in [s1, s2, s3]:
+    print(scooter)
+
+session.close()
+```
+
+1. __infer__ the types and fields of your SQLAlchemy classes in `model.py` from the example above
+	* use the notes from the [SQLAlchemy slides](https://cs.nyu.edu/courses/fall18/CSCI-UA.0480-007/_site/slides/py-db/sql-alchemy-relationships.html)
+	* in combination with these slides, [check the documentation to include backreferences](https://docs.sqlalchemy.org/en/latest/orm/basic_relationships.html#many-to-one)
+		* this should allow something like retrieving all the companies, and then asking for the scooter types for each company simply by dotting the company insance (`c.scooter_types`):
+			<pre><code data-trim contenteditable>
+# assuming session is created and all imports are present:
+companies = session.query(Company)
+for c in companies:
+    print(f'The company, {c}, has the following scooter models:');
+    for i, scooter_type in enumerate(c.scooter_types):
+        print(i, scooter_type)
+    print('\n')
+</code></pre>
+		* ...but it should also allow going back up the other way 
+		* (that is refer to company from a scooter)
+		* (notice that this is done through a `manufacturer` atttribute)
+		* (but `manufacturer` doesn't exist in the table... and of course, the relationship is setup by a `company_id` foreign key)
+			<pre><code data-trim contenteditable>
+scooter_types = session.query(ScooterType)
+for s in scooter_types:
+    print(f'{s.manufacturer.name} ==> {s.model}')
+</code></pre>
+	* all classes should have surrogate / artificial primary keys
+	* (these can be named at your discretion; just make sure to match up the names to set up relationships between classes appropriately)
+	* when you're done creating classes, the resulting tables should like like this:
+		* __company__
+			<pre><code data-trim contenteditable>
+                                    Table "public.company"
+   Column   |       Type        |                          Modifiers                           
+------------+-------------------+--------------------------------------------------------------
+ company_id | integer           | not null default nextval('company_company_id_seq'::regclass)
+ name       | character varying | 
+ website    | character varying | 
+ founded    | integer           | 
+</code></pre>
+		* __scooter_type__
+			<pre><code data-trim contenteditable>
+                                         Table "public.scooter_type"
+     Column      |       Type        |                               Modifiers                                
+-----------------+-------------------+------------------------------------------------------------------------
+ scooter_type_id | integer           | not null default nextval('scooter_type_scooter_type_id_seq'::regclass)
+ model           | character varying | 
+ max_range       | integer           | 
+ weight          | integer           | 
+ max_speed       | integer           | 
+ company_id      | integer           | 
+</code></pre>
+		* __scooter__
+			<pre><code data-trim contenteditable>
+                                  Table "public.scooter"
+     Column      |  Type   |                          Modifiers                           
+-----------------+---------+--------------------------------------------------------------
+ scooter_id      | integer | not null default nextval('scooter_scooter_id_seq'::regclass)
+ acquired_date   | date    | 
+ retired         | boolean | 
+ scooter_type_id | integer | 
+</code></pre>
+
+
+## Conclusion
+
+At the end of the homework, your `README.md` should look like the following (with parts marked `TODO` as arease where you have to write content)
+
+```
+# Homework 05
+
+## Scoot-Share
+
+![er diagram for scoot share](er-diagram.png)
+
+* TODO: a list of design decisions
+* TODO: a list of assumptions
+
+Scripts
+
+* [part-1-scoot-share-create.sql](part-1-scoot-share-create.sql)
+* [part-1-scoot-share-queries.sql](part-1-scoot-share-queries.sql)
+
+## Normalization
+
+* [part-2-normalization-create.sql](part-2-normalization-create.sql)
+* [part-2-normalization-import.sql](part-2-normalization-import.sql)
+* [part-2-normalization-queries.sql](part-2-normalization-queries.sql)
+```
