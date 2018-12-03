@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+<title></title>
+</head>
+<body>
+
+<!--<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+-->
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+<script>
+  /* 
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAVwe64W51nDpcSje9RuEJy4bLks_FLr6Q",
+    authDomain: "csci0480-007-scratch.firebaseapp.com",
+    databaseURL: "https://csci0480-007-scratch.firebaseio.com",
+    projectId: "csci0480-007-scratch",
+    storageBucket: "csci0480-007-scratch.appspot.com",
+    messagingSenderId: "302843742449"
+  };
+  firebase.initializeApp(config);
+  */
+firebase.initializeApp({
+  apiKey: 'AIzaSyAVwe64W51nDpcSje9RuEJy4bLks_FLr6Q',
+  authDomain: 'csci0480-007-scratch.firebaseapp.com',
+  projectId: 'csci0480-007-scratch'
+});
+
+// Initialize Cloud Firestore through Firebase
+var db = firebase.firestore();
+
+// Disable deprecated features
+db.settings({
+  timestampsInSnapshots: true
+});
+</script>
+</body>
+</html>
