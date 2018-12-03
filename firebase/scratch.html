@@ -8,19 +8,10 @@
 -->
 <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script> 
 <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+<script src="https://d3js.org/d3.v5.js"></script>
+
+<svg class="scooterChart"></svg>
 <script>
-  /* 
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAVwe64W51nDpcSje9RuEJy4bLks_FLr6Q",
-    authDomain: "csci0480-007-scratch.firebaseapp.com",
-    databaseURL: "https://csci0480-007-scratch.firebaseio.com",
-    projectId: "csci0480-007-scratch",
-    storageBucket: "csci0480-007-scratch.appspot.com",
-    messagingSenderId: "302843742449"
-  };
-  firebase.initializeApp(config);
-  */
 firebase.initializeApp({
   apiKey: 'AIzaSyAVwe64W51nDpcSje9RuEJy4bLks_FLr6Q',
   authDomain: 'csci0480-007-scratch.firebaseapp.com',
@@ -28,12 +19,64 @@ firebase.initializeApp({
 });
 
 // Initialize Cloud Firestore through Firebase
-var db = firebase.firestore();
+const db = firebase.firestore();
 
 // Disable deprecated features
 db.settings({
   timestampsInSnapshots: true
 });
+
+const counts = {};
+
+// Get date
+db.collection("scooters").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+		// TODO: fill in what to do when we receive data
+		const d = doc.data();
+		console.log(d.model, d.retired, d.acquired_date);
+        console.log(`${doc.id} => ${doc.data()}`);
+		if(counts[d.model]) {
+			counts[d.model] += 1;
+		} else {
+			counts[d.model] = 1;
+		}
+    });
+	console.log(counts);
+	createBarChart(counts);
+});
+
+
+
+function createBarChart(counts) {
+    const maxHeight = 400;
+	const nums = Object.values(counts);
+
+    const scaleY = d3.scaleLinear()
+        .domain([0, d3.max(nums)])
+        .range([maxHeight, 0]);
+
+	console.log(nums);
+
+	const barChart = d3.select('.scooterChart');
+	barChart.attr('height', maxHeight);
+	const myBarWidth = 40;
+	const vBars = barChart.selectAll('g')
+		.data(nums)
+			.enter()
+		.append('g')
+			.attr('transform', (d, i) => `translate(${myBarWidth * i}, 0)`)
+
+	vBars.append('rect')
+		.attr('y', d => scaleY(d))
+		.attr('width', myBarWidth)
+		.attr('height', d => maxHeight - scaleY(d));
+
+	vBars.append('text')
+		.attr('x', 20)
+		.attr('y', d => (scaleY(d) + 20))
+		.attr('fill', 'white')
+		.text(d => d);
+}
 </script>
 </body>
 </html>
