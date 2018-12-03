@@ -2,8 +2,8 @@
 layout: default
 nav-state: schedule
 ---
-<!--
 
+<!--
 <script>
 document.addEventListener('DOMContentLoaded', init);
 function init() {
