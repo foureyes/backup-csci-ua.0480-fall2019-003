@@ -315,10 +315,13 @@ To explore the data that you created, write any 4 of the following queries in `e
 4. Count how many scooter types there are for each company by showing the company id and the number of scooter types associated with that company id
 5. (this ones a bit challenging) show the company name, model and max speed of the model of scooter with the highest max speed for every company
 	* if there are two models that have the highest max speed, show both
-	* hint 1: create a query to select the columns that you want
-	* hint 2: create a query that only does the aggregation
+	* hint 1: create a query that only does the aggregation
+	* hint 2: create a query to select the columns that you want
 	* hint 3: join both queries by executing the first and using the second query as a subquery... and use inner join to put the two together!
-	* hint 4: here's a good article on how to do it: [group by non aggregate columns from bernardoamc.github.io](http://bernardoamc.github.io/sql/2015/05/04/group-by-non-aggregate-columns/)
+		* when you do this join, you're trying to match the max value from aggregation to scooter types with the same max value
+		* you may also need to add more to join... as matching on max speed will give back all scooters with that speed (perhaps add another condition to narrow it down by company as well!)
+	* hint 4: you may need to to another join as you're getting info from both scooter_type and company
+	* hint 5: here's a good article on how to do it: [group by non aggregate columns from bernardoamc.github.io](http://bernardoamc.github.io/sql/2015/05/04/group-by-non-aggregate-columns/)
 6. revisit number 4, but instead of showing the company id and the scooter type count, show the __company name__ and the scooter type count instead
 	* you could use he same strategy for number 5 (inner join a subquery)... but
 	* if you group by a primary key field, you can include any column in the select clause (since there could only be on value per group)
