@@ -275,6 +275,8 @@ WriteResult({ "nInserted" : 1 })
 </code></pre>
 {:.fragment}
 
+__Note__ ... if you have a nested object, `{a: {b: 1}}` you can refer to the nested property name using dot notation within a string: `"a.b" = 1`
+
 
 </section>
 
@@ -307,6 +309,7 @@ WriteResult({ "nInserted" : 1 })
 	* `k: {$op: v}` operators: `$lt`, `$lte`, `$in`, `$nin`, etc.
 	* (default) and vs `$and` and `$or`
 	* cursor, `next()`, `forEach`
+	* again, querying nested documents is possible using `"outter.inner": val` ([see the docs](https://docs.mongodb.com/manual/tutorial/query-embedded-documents/)
 * [`update(query, update, options)`](https://docs.mongodb.com/manual/reference/method/db.collection.update/#db.collection.update) and using `$set`
 	* (what happens without it?)
 	* push element to an array with `{$push: {k: v}}`
@@ -482,7 +485,7 @@ __Show the title, author and year of all books written after 1870 by either Tols
 </section>
 
 <section markdown="block">
-## Xtra: `$group`!
+## Grouping / Pivoting: `$group`!
 
 <pre><code data-trim contenteditable>
 db.books.aggregate(
@@ -505,6 +508,7 @@ db.books.aggregate(
 
 </section>
 
+{% comment %}
 <section markdown="block">
 ## Practice
 
@@ -533,6 +537,7 @@ __Now with moar operators!__ &rarr;
 * {:.fragment} __how about... only in bronx or flushing, but without id__
 * {:.fragment} __oookkkkk... not in bronx or flushing!?__
 </section>
+{% endcomment %}
 
 
 
