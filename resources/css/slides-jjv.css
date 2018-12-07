@@ -51,6 +51,9 @@ strong {
   color: #000; 
   background-color: #ff7;
 }
+pre .hljs {
+  padding: 0.3em;
+}
 
 
 body section aside {
@@ -95,6 +98,7 @@ code {
 pre {
   padding: 0em;
   border: 1px solid #aaa;
+  margin: 0.2em;
 }
 
 .printLink {

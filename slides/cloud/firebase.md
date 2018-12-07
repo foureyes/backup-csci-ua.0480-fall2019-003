@@ -53,3 +53,19 @@ Include client libraries:
 
 </section>
 
+
+<section markdown="block">
+##  Cloud Service Acct?
+
+Settings &rarr; Project Settings  &rarr;
+Click on Service Accounts table 	
+Click on Python
+Generate new key
+
+pip install --upgrade firebase-admin
+
+pip3 install --upgrade google-cloud-firestore
+
+
+
+</section>

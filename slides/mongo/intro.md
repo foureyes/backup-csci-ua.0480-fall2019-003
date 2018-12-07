@@ -66,13 +66,13 @@ Again, these are very broad generalizations (some NoSQL databases are ACID compl
 ## Document Stores
 
 In __document stores__, data is organized (as the name implies) as semi-structured documents &rarr; 
-* {:.fragment} think JSON (other formats are possible: XML, YAML, etc.)
+* {:.fragment} think JSON (other formats too: XML, YAML, etc.)
 * {:.fragment} or... a _richer_ key-value store (there's _meta data_ within the document... the keys are usually meaningful)
 * {:.fragment} typically, no schema is required (that is, data types of values are inferred from values)
 * {:.fragment} typically, semi structured (documents, property names, etc... do not have to be pre-defined)
-* {:.fragment} some document stores are particularly featureful when it comes to high availability and scaling (through replication/redundancy and sharding/separating large databases into smaller ones)
+* {:.fragment} some document stores are are known for high availability and scaling through replication / redundancy and sharding (separating large databases into smaller ones)
 
-They're particularly good for applications where flexible data storage or constantly changing data storage is required.
+Good for applications where flexible data storage or constantly changing data storage is required.
 {:.fragment}
 </section>
 
@@ -414,12 +414,18 @@ __A quick examination:__ &rarr;
 __let's try some sortin'__ &rarr;
 
 * {:.fragment} __sort by author, then title__
-	* {:.fragment} `db.books.find( {},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1}).sort({"AUTHOR":1,"TITLE":1})`
+	<pre class="fragment"><code data-trim contenteditable>db.books.find({},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1})
+	.sort({"AUTHOR":1,"TITLE":1})
+</code></pre>
 * {:.fragment} __how about by year ascending?__
-	* {:.fragment} `db.books.find( {},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1}).sort({"year_written":1})`
+	<pre class="fragment"><code data-trim contenteditable>db.books.find( {},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1})
+	.sort({"year_written":1})
+</code></pre>
 * {:.fragment} __how about descending order by year?__
 	* {:.fragment} use -1 instead of 1 (of course 🤷‍)
-	* {:.fragment} `db.books.find( {},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1}).sort({"YEAR_WRITTEN":-1})`
+		<pre><code data-trim contenteditable>db.books.find( {},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1})
+		.sort({"YEAR_WRITTEN":-1})
+</code></pre>
 </section>
 
 <section markdown="block">
@@ -440,12 +446,21 @@ __OK... now try some comparisons.__  &rarr;
 <section markdown="block">
 ## Operators
 
-* {:.fragment} __books that cost $15 or more; or were written in 1900 or later__
-	* {:.fragment} `db.books.find({ "$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]})` 
+* {:.fragment} __books that cost $15 or more... or after 1899__
+	<pre class="fragment"><code data-trim contenteditable>db.books.find(
+	{ "$or": [ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]})
+</code></pre>
 * {:.fragment} __same with author, title, year and price__
-	* {:.fragment} `db.books.find({ "$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1,"PRICE":1})`
+	<pre class="fragment"><code data-trim contenteditable>db.books.find(
+	{"$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]},
+	{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1,"PRICE":1})
+</code></pre>
 * {:.fragment} __now sort by author and title__
-	* {:.fragment} `db.books.find({ "$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]},{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1,"PRICE":1}).sort({"AUTHOR":1,"TITLE":1})`
+	<pre class="fragment"><code data-trim contenteditable>db.books.find(
+	{ "$or":[ {"PRICE":{"$gte":15}},{"YEAR_WRITTEN":{"$gte":1900}}]},
+	{_id:0,"AUTHOR":1,"TITLE":1,"YEAR_WRITTEN":1,"PRICE":1}
+).sort({"AUTHOR":1,"TITLE":1})
+</code></pre>
 </section>
 
 <section markdown="block">
@@ -454,9 +469,16 @@ __OK... now try some comparisons.__  &rarr;
 __Show the title, author and year of all books written after 1870 by either Tolstoy or Woolf__ (sort by year) &rarr;
 
 * {:.fragment} using or: 
-	* `db.books.find({YEAR_WRITTEN: {$gt: 1870}, $or: [{AUTHOR: 'Woolf, Virginia'}, {AUTHOR: 'Tolstoy, Leo'}]}, {_id: 0, TITLE: 1, YEAR_WRITTEN: 1, AUTHOR: 1}).sort({YEAR_WRITTEN: 1})`
+	<pre class="fragment"><code data-trim contenteditable>db.books.find(
+	{YEAR_WRITTEN: {$gt: 1870}, $or: [{AUTHOR: 'Woolf, Virginia'}, {AUTHOR: 'Tolstoy, Leo'}]}, 
+	{_id: 0, TITLE: 1, YEAR_WRITTEN: 1, AUTHOR: 1}).sort({YEAR_WRITTEN: 1})
+</code></pre>
 * {:.fragment} using in: 
-	* `db.books.find({YEAR_WRITTEN: {$gt: 1870}, AUTHOR: {$in: ['Woolf, Virginia', 'Tolstoy, Leo']}}, {_id: 0, TITLE: 1, YEAR_WRITTEN: 1, AUTHOR: 1}).sort({YEAR_WRITTEN: 1})`
+	<pre class="fragment"><code data-trim contenteditable>db.books.find(
+	{YEAR_WRITTEN: {$gt: 1870}, AUTHOR: {$in: ['Woolf, Virginia', 'Tolstoy, Leo']}}, 
+	{_id: 0, TITLE: 1, YEAR_WRITTEN: 1, AUTHOR: 1}
+).sort({YEAR_WRITTEN: 1})
+</code></pre>
 </section>
 
 <section markdown="block">

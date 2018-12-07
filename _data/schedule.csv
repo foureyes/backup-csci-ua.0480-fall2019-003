@@ -590,9 +590,9 @@ Cloud Data Storage (Firebase, S3, RDS)
 
 1. [Homework #06 Instructions](assignments/06.html) 
 "
-y,,25,03-Dec,Mon,"Visualization Revisited (web-based)
+,,25,03-Dec,Mon,"Cloud Data Storage (Firebase)
 
-* [svg + d3](d3/scrach.html)
+* See Lab #01 in last column
 
 <!--
 * bokeh again (or for first time?)
@@ -604,7 +604,9 @@ Cloud Data Storage (Firebase, S3, RDS)
 * S3
 * RDS
 * Firebase
--->",,
+-->",,"__Lab #01__ - due today at end of class
+
+* [Lab #01 – Firebase / d3](assignments/01-lab-firebase-d3.html)"
 y,,26,05-Dec,Wed,"Processing Large Data Sets (Spark or Hadoop)
 
 * Hadoop, Parque",,
